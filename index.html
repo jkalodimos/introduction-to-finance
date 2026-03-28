@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BA 240H — Introduction to Finance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --text: #1a1a1a;
+      --accent: #c75000;
+      --accent-light: #fff3ec;
+      --border: #d4d0c8;
+      --muted: #6b6560;
+      --card-bg: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem 4rem;
+      font-size: 1.05rem;
+    }
+
+    .course-header {
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .course-header .course-id {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+    .course-header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0.25rem 0;
+    }
+    .course-header .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .instructor-line {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .instructor-line a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .instructor-line a:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 2.5rem 0 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+
+    .week-list, .practice-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .week-item, .practice-item {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      margin-bottom: 0.6rem;
+      background: var(--card-bg);
+      transition: border-color 0.15s ease;
+    }
+    .week-item:hover, .practice-item:hover {
+      border-color: var(--accent);
+    }
+
+    .week-link, .practice-link {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.85rem 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .week-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      min-width: 3.2rem;
+      flex-shrink: 0;
+    }
+
+    .week-title, .practice-label {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .week-chapters {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-left: auto;
+      flex-shrink: 0;
+      padding-left: 1rem;
+    }
+
+    .week-item.disabled, .practice-item.disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .week-item.disabled .week-link, .practice-item.disabled .practice-link {
+      cursor: default;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.5rem 1.2rem 3rem; }
+      .week-link { flex-wrap: wrap; gap: 0.3rem; }
+      .week-chapters { margin-left: 0; padding-left: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="course-header">
+    <div class="course-id">BA 240H · Spring 2026 · Oregon State University</div>
+    <h1>Introduction to Finance</h1>
+    <div class="subtitle">Course Materials</div>
+  </div>
+
+  <div class="instructor-line">
+    Jonathan Kalodimos · <a href="mailto:jonathan.kalodimos@oregonstate.edu">jonathan.kalodimos@oregonstate.edu</a>
+  </div>
+
+  <h2>Weekly Course Packs</h2>
+
+  <ul class="week-list">
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week01.html">
+        <span class="week-num">Week 1</span>
+        <span class="week-title">Introduction & Time Value of Money</span>
+        <span class="week-chapters">Ch. 1, 5</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week02.html">
+        <span class="week-num">Week 2</span>
+        <span class="week-title">Annuities, Perpetuities & Interest Rates</span>
+        <span class="week-chapters">Ch. 5–6</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week03.html">
+        <span class="week-num">Week 3</span>
+        <span class="week-title">Interest Rates & Bond Valuation</span>
+        <span class="week-chapters">Ch. 6–7</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week04.html">
+        <span class="week-num">Week 4</span>
+        <span class="week-title">Stock Valuation</span>
+        <span class="week-chapters">Ch. 7–8</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week05.html">
+        <span class="week-num">Week 5</span>
+        <span class="week-title">Review & Midterm Preparation</span>
+        <span class="week-chapters">Ch. 1, 5–8</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week06.html">
+        <span class="week-num">Week 6</span>
+        <span class="week-title">NPV & Other Investment Criteria</span>
+        <span class="week-chapters">Ch. 9</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week07.html">
+        <span class="week-num">Week 7</span>
+        <span class="week-title">NPV continued; Capital Market History</span>
+        <span class="week-chapters">Ch. 9, 12</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week08.html">
+        <span class="week-num">Week 8</span>
+        <span class="week-title">Risk, Return & Portfolios</span>
+        <span class="week-chapters">Ch. 13</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week09.html">
+        <span class="week-num">Week 9</span>
+        <span class="week-title">CAPM & Cost of Capital</span>
+        <span class="week-chapters">Ch. 13–14</span>
+      </a>
+    </li>
+    <li class="week-item disabled">
+      <a class="week-link" href="packs/week10.html">
+        <span class="week-num">Week 10</span>
+        <span class="week-title">WACC & Final Review</span>
+        <span class="week-chapters">Ch. 14</span>
+      </a>
+    </li>
+  </ul>
+
+  <h2>Practice Exams</h2>
+
+  <ul class="practice-list">
+    <li class="practice-item disabled">
+      <a class="practice-link" href="practice/midterm.html">
+        <span class="practice-label">Practice Midterm</span>
+        <span class="week-chapters">Ch. 1, 5–8</span>
+      </a>
+    </li>
+    <li class="practice-item disabled">
+      <a class="practice-link" href="practice/final.html">
+        <span class="practice-label">Practice Final</span>
+        <span class="week-chapters">Ch. 9, 12–14</span>
+      </a>
+    </li>
+  </ul>
+
+  <p class="note">Materials are posted as they become available. Grayed-out items are not yet published.</p>
+
+  <footer>
+    Course content licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>. Code licensed under <a href="LICENSE-CODE">MIT</a>.
+    Textbook content &copy; McGraw-Hill Education and is not included in this license.
+  </footer>
+
+</body>
+</html>
