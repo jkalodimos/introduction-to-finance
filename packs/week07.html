@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Finance — Week 7</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+table.reference {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+table.reference th {
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 2px solid var(--accent);
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+table.reference td {
+  padding: 0.35rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table.reference td .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+table.data-table th {
+  text-align: center;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 2px solid var(--border);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+table.data-table td {
+  text-align: center;
+  padding: 0.35rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---- Figures / Charts ---- */
+.figure {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1.2rem 1rem 0.6rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.figure svg {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.figure-caption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.figure-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+  text-align: left;
+  padding-left: 0.4rem;
+}
+@media (max-width: 600px) {
+  body { padding: 1.5rem 1.2rem 3rem; }
+  .figure { padding: 0.8rem 0.5rem 0.4rem; }
+  .figure svg { max-width: 100%; }
+}
+
+/* ---- Nav Link ---- */
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-block;
+}
+.nav-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-link a:hover {
+  text-decoration: underline;
+}
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box, .figure { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<div class="course-header">
+  <div class="course-id">Introduction to Finance &middot; Jonathan Kalodimos</div>
+  <h1>Week 7 Course Pack</h1>
+  <div class="subtitle">NPV vs. IRR Conflicts &amp; Capital Market History</div>
+</div>
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W7.1</span> Explain when NPV and IRR conflict, and why NPV should dominate</li>
+    <li><span class="skill-code">W7.2</span> Compute arithmetic and geometric average returns from a series of annual returns</li>
+    <li><span class="skill-code">W7.3</span> Rank asset classes by historical return and risk, and describe the risk-return tradeoff</li>
+    <li><span class="skill-code">W7.4</span> Define the equity risk premium and explain why it exists</li>
+    <li><span class="skill-code">W7.5</span> Compute the standard deviation of returns and use it to describe investment risk</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART A: NPV vs. IRR Conflicts                                 -->
+<!-- ============================================================ -->
+
+<h2>Part A — When NPV and IRR Disagree</h2>
+
+<p>In Week 6, you learned four tools for evaluating capital investments: NPV, IRR, payback period, and profitability index. When you're looking at a single, independent project with conventional cash flows (an outflow followed by a series of inflows), all four tools tend to point in the same direction. NPV is positive, IRR exceeds the required return, and you accept the project. Life is simple.</p>
+
+<p>This week, we complicate things — because the real world is complicated. You'll encounter situations where the IRR rule and the NPV rule give you <em>opposite</em> recommendations. When that happens, you need to understand <em>why</em> they disagree and which one to trust. The short answer: always trust NPV. The longer answer is worth understanding, because it reveals something important about what these tools actually measure.</p>
+
+<h3>Why NPV and IRR Can Conflict</h3>
+
+<p>Recall from Week 6 that the <span class="key-term">internal rate of return (IRR)</span> is the discount rate that makes a project's NPV equal to zero. The IRR rule says: accept if IRR exceeds the required return. The <span class="key-term">net present value (NPV)</span> rule says: accept if NPV is positive at the required return. For a single independent project with conventional cash flows, these two rules will always agree. The problems arise in three specific situations:</p>
+
+<p><strong>1. Mutually exclusive projects with different scales.</strong> If you're choosing between a small project and a large project — and you can only pick one — the small project might earn a higher <em>percentage</em> return (higher IRR) while the large project creates more <em>dollar</em> value (higher NPV). IRR tells you about return rates; NPV tells you about wealth creation. When you can only pick one, you want the project that makes you the most money, not the one with the best percentage.</p>
+
+<p><strong>2. Mutually exclusive projects with different timing.</strong> Even when two projects require the same initial investment, their cash flow patterns can differ. A project that returns cash early will tend to have a higher IRR, while a project with larger but later cash flows might have a higher NPV. This happens because the IRR calculation implicitly assumes that intermediate cash flows can be reinvested at the IRR itself — an assumption that's often unrealistic when the IRR is high.</p>
+
+<p><strong>3. Non-conventional cash flows.</strong> When a project's cash flows change sign more than once — for example, an initial investment followed by revenues followed by cleanup costs — there can be <em>multiple</em> IRRs or no IRR at all. The IRR rule simply breaks down in these cases.</p>
+
+<p>Let's work through each of these in detail.</p>
+
+<h3>The Scale Problem</h3>
+
+<p>Imagine Red Acre Industries is evaluating two mutually exclusive equipment upgrades. Project A is a small automation module costing $20,000 that generates cash flows of $15,000, $12,000, and $8,000 over three years. Project B is a full production line overhaul costing $200,000 that generates $90,000 per year for three years. Red Acre's required return is 10%.</p>
+
+<div class="example-embed" data-label="Example 1 — The Scale Problem">
+  <p class="scenario">
+    Red Acre Industries must choose between two mutually exclusive projects. Project A costs $20,000 and produces cash flows of $15,000, $12,000, and $8,000 in years 1–3. Project B costs $200,000 and produces $90,000 per year for three years. The required return is 10%. Which project should Red Acre choose?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Compute NPV for each project at 10%:</li>
+      <li data-step="">Project A: <span class="calc">NPV = −$20,000 + $15,000/1.10 + $12,000/1.10² + $8,000/1.10³ = $9,564.24</span></li>
+      <li data-step="">Project B: <span class="calc">NPV = −$200,000 + $90,000/1.10 + $90,000/1.10² + $90,000/1.10³ = $23,816.68</span></li>
+      <li data-step="2.">Compute IRR for each project:</li>
+      <li data-step="">Project A: <span class="calc">IRR = 38.92%</span></li>
+      <li data-step="">Project B: <span class="calc">IRR = 16.65%</span></li>
+      <li data-step="3.">Compare: IRR says choose A (38.92% &gt; 16.65%). NPV says choose B ($23,816.68 &gt; $9,564.24).</li>
+      <li data-step="4.">The conflict arises from scale. Project A earns a spectacular <em>rate</em> of return on a small investment, but Project B creates far more <em>total value</em>. Choosing A is like preferring a 50% return on $100 over a 15% return on $100,000 — the percentage sounds better, but the dollars don't lie.</li>
+    </ul>
+    <div class="answer-line">Choose Project B. NPV = $23,816.68 vs. $9,564.24. NPV rules when projects are mutually exclusive.</div>
+  </details>
+</div>
+
+<p>The intuition here is straightforward: IRR is a <em>rate</em> — it doesn't know or care about the <em>size</em> of the investment. A 100% return on $1 is a dollar of value. A 10% return on $1,000,000 is $100,000 of value. When you can only take one project, you care about dollars, not percentages.</p>
+
+<h3>The Timing Problem</h3>
+
+<p>The second conflict arises when two mutually exclusive projects require the same initial investment but return cash at different speeds. A project that pays off quickly will tend to look better under the IRR rule, while a project with larger but more distant payoffs can have a higher NPV.</p>
+
+<p>The deeper issue is the <span class="key-term">reinvestment rate assumption</span>. When you compute a project's IRR, you're implicitly assuming that all intermediate cash flows can be reinvested at the IRR. If Project C has an IRR of 21%, the IRR calculation assumes every dollar of cash flow that comes in during the project's life earns 21% until the end. That's often unrealistic — especially for projects with unusually high IRRs. The NPV calculation, by contrast, discounts at the <em>required return</em>, which is a more reasonable assumption about what intermediate cash flows actually earn.</p>
+
+<div class="example-embed" data-label="Example 2 — The Timing Problem">
+  <p class="scenario">
+    Blue Acre Industries is choosing between two marketing campaigns, each requiring a $200,000 investment. Campaign C (the "blitz" strategy) generates $180,000 in year 1, $60,000 in year 2, and $20,000 in year 3. Campaign D (the "build" strategy) generates $40,000 in year 1, $80,000 in year 2, and $180,000 in year 3. The required return is 10%. Which campaign should Blue Acre choose?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Compute NPV at 10%:</li>
+      <li data-step="">Campaign C: <span class="calc">NPV = −$200,000 + $180,000/1.10 + $60,000/1.10² + $20,000/1.10³ = $28,249.44</span></li>
+      <li data-step="">Campaign D: <span class="calc">NPV = −$200,000 + $40,000/1.10 + $80,000/1.10² + $180,000/1.10³ = $37,716.00</span></li>
+      <li data-step="2.">Compute IRR:</li>
+      <li data-step="">Campaign C: <span class="calc">IRR = 21.47%</span></li>
+      <li data-step="">Campaign D: <span class="calc">IRR = 18.22%</span></li>
+      <li data-step="3.">The IRR rule favors Campaign C (21.47% &gt; 18.22%), but the NPV rule favors Campaign D ($37,716.00 &gt; $28,249.44).</li>
+      <li data-step="4.">Campaign C's higher IRR reflects its front-loaded cash flows — you get money back faster, which boosts the percentage return. But Campaign D creates more total value at the 10% required return.</li>
+    </ul>
+    <div class="answer-line">Choose Campaign D. NPV = $37,716.00 vs. $28,249.44. The "build" strategy creates more value.</div>
+  </details>
+</div>
+
+<p>There's an elegant way to see why the two rules conflict here. If you plot the NPV of each project as a function of the discount rate, the two NPV curves cross at a rate called the <span class="key-term">crossover rate</span>. For rates below the crossover, one project has a higher NPV; for rates above it, the other does. In this example, the crossover rate is about 14.29%. Since the required return (10%) is below the crossover, the back-loaded project has the higher NPV even though the front-loaded project has the higher IRR.</p>
+
+<h3>Non-Conventional Cash Flows</h3>
+
+<p>The most fundamental problem with the IRR rule arises when a project's cash flows switch signs more than once. A <span class="key-term">conventional cash flow</span> pattern has one sign change: you invest money (negative) and then receive money (positive). A <span class="key-term">non-conventional cash flow</span> pattern has multiple sign changes — for example, an investment followed by revenues followed by significant cleanup or decommissioning costs.</p>
+
+<p>By <span class="key-term">Descartes' rule of signs</span>, the number of possible IRRs is equal to the number of sign changes in the cash flow sequence. Two sign changes means up to two IRRs. Three sign changes means up to three. When there are multiple IRRs, which one do you use? The IRR rule gives no guidance.</p>
+
+<div class="example-embed" data-label="Example 3 — Non-Conventional Cash Flows">
+  <p class="scenario">
+    Green Acre Industries is considering a strip mining project. The initial investment is $100,000. The mine will produce cash flows of $230,000 in year 1. However, environmental remediation at the end of year 2 will cost $132,000. The required return is 15%. Should Green Acre proceed?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify the cash flow pattern: <span class="calc">−$100,000, +$230,000, −$132,000</span></li>
+      <li data-step="">Two sign changes (negative → positive → negative), so up to two IRRs exist.</li>
+      <li data-step="2.">Solving the IRR equation yields two solutions: <span class="calc">IRR₁ = 10.00%</span> and <span class="calc">IRR₂ = 20.00%</span></li>
+      <li data-step="3.">The IRR rule is ambiguous: 15% is greater than 10% but less than 20%. Which IRR should we compare against?</li>
+      <li data-step="4.">Use NPV instead. At <em>r</em> = 15%: <span class="calc">NPV = −$100,000 + $230,000/1.15 + (−$132,000)/1.15² = $189.04</span></li>
+      <li data-step="">NPV is positive (barely), so the project adds value at a 15% required return.</li>
+    </ul>
+    <div class="answer-line">Accept the project. NPV = $189.04 at 15%. The IRR rule cannot be applied because there are multiple IRRs.</div>
+  </details>
+</div>
+
+<p>The NPV of this project is positive for discount rates between 10% and 20%, and negative outside that range. If you plotted the NPV profile, it would be an inverted-U shape rather than the usual downward-sloping curve. This is a case where the IRR rule simply cannot help you — you'd have to know which IRR to use, and there's no principled way to choose. NPV, by contrast, gives a clear and unambiguous answer.</p>
+
+<h3>When IRR Works Just Fine</h3>
+
+<p>After three examples of IRR failing, it's worth emphasizing that IRR is a perfectly useful tool in many situations. When you're evaluating a single, independent project with conventional cash flows, the IRR rule and the NPV rule will always agree. Many practitioners like IRR because a <em>rate</em> of return is intuitive — it's easy to communicate and compare against hurdle rates. The trouble only starts when projects are mutually exclusive, when cash flows are non-conventional, or when you're comparing projects of very different sizes or timing.</p>
+
+<div class="example-embed" data-label="Example 4 — When IRR Works">
+  <p class="scenario">
+    Red Acre Industries is evaluating an independent project: a $500,000 warehouse expansion expected to generate $150,000 per year for five years. The required return is 12%. Use both the NPV and IRR rules.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">This is an independent project (not mutually exclusive with anything) with conventional cash flows (one sign change). Both rules should agree.</li>
+      <li data-step="2.">NPV at 12%: <span class="calc">NPV = −$500,000 + $150,000 × [(1 − 1/1.12⁵) / 0.12] = −$500,000 + $150,000 × 3.6048 = $40,716.43</span></li>
+      <li data-step="3.">IRR: <span class="calc">IRR = 15.24%</span></li>
+      <li data-step="4.">NPV &gt; 0 ✓ and IRR &gt; 12% ✓ — both rules say accept.</li>
+    </ul>
+    <div class="answer-line">Accept. NPV = $40,716.43 and IRR = 15.24% &gt; 12%. Both rules agree, as expected for an independent project with conventional cash flows.</div>
+  </details>
+</div>
+
+<p>The lesson from Part A is not that IRR is a bad tool. It's that IRR has specific limitations, and NPV doesn't share them. Here's the summary:</p>
+
+<table class="data-table">
+  <tr>
+    <th style="text-align:left;">Situation</th>
+    <th>IRR Rule</th>
+    <th>NPV Rule</th>
+  </tr>
+  <tr>
+    <td style="text-align:left;">Independent, conventional CFs</td>
+    <td>Works ✓</td>
+    <td>Works ✓</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;">Mutually exclusive (scale difference)</td>
+    <td>Can mislead ✗</td>
+    <td>Works ✓</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;">Mutually exclusive (timing difference)</td>
+    <td>Can mislead ✗</td>
+    <td>Works ✓</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;">Non-conventional cash flows</td>
+    <td>Breaks down ✗</td>
+    <td>Works ✓</td>
+  </tr>
+</table>
+
+<p>NPV is the universal rule. It always works. We'll formalize the connection between NPV and the cost of capital when we study WACC in Weeks 9 and 10.</p>
+
+
+<!-- ============================================================ -->
+<!-- PART B: Capital Market History                                 -->
+<!-- ============================================================ -->
+
+<h2>Part B — A History of Capital Market Returns</h2>
+
+<p>We now shift gears. Part A completed our coverage of project evaluation (Chapter 9). Part B begins a new thread that will carry us through the rest of the course: understanding <em>risk and return</em> in capital markets. The question is deceptively simple: if you invested money in the past, what kind of returns did you earn, and how much risk did you take? The answers provide the empirical foundation for everything that follows — portfolio theory, the CAPM, and the cost of capital.</p>
+
+<p>This material draws from Chapter 12 of your textbook, which presents historical return data for major U.S. asset classes. The numbers tell a consistent story: higher average returns come with higher volatility. Understanding exactly what we mean by "average return" and "volatility" — and how to calculate them — is the goal of this section.</p>
+
+<h3>Dollar Returns and Percentage Returns</h3>
+
+<p>When you invest, your return comes in two forms. A <span class="key-term">dollar return</span> is the absolute amount you gain or lose — the change in market value plus any income (dividends or interest) you received. A <span class="key-term">percentage return</span> expresses that gain or loss as a fraction of what you invested. Percentage returns let you compare investments of different sizes on equal footing, which is why they're the standard unit for discussing historical performance.</p>
+
+<p>If you bought a stock for $50, received a $1 dividend, and sold it for $54, your dollar return is $5 ($4 capital gain + $1 dividend) and your percentage return is 10% ($5 ÷ $50).</p>
+
+<h3>Arithmetic Average Return</h3>
+
+<p>Given a series of annual returns, the simplest summary is the <span class="key-term">arithmetic average return</span>: add them up and divide by the number of years. This gives you the return you earned in a "typical" year.</p>
+
+<div class="formula-box">
+  <span class="label">Arithmetic Average Return</span>
+  <span class="formula">Avg = (R₁ + R₂ + ⋯ + R<sub>T</sub>) ÷ <em>T</em></span>
+  <div class="note">where R₁ through R<sub>T</sub> are the returns in each period and <em>T</em> is the number of periods</div>
+</div>
+
+<div class="example-embed" data-label="Example 5 — Arithmetic Average Return">
+  <p class="scenario">
+    An investment fund reports the following annual returns over five years: 12%, −5%, 18%, −8%, and 22%. What is the arithmetic average return?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Sum the returns: <span class="calc">12% + (−5%) + 18% + (−8%) + 22% = 39%</span></li>
+      <li data-step="2.">Divide by the number of years: <span class="calc">39% ÷ 5 = 7.80%</span></li>
+    </ul>
+    <div class="answer-line">The arithmetic average return is 7.80% per year.</div>
+  </details>
+</div>
+
+<p>The arithmetic average is useful and intuitive, but it has a subtle problem: it can overstate how much your money actually grew. To see why, we need the geometric average.</p>
+
+<h3>Geometric Average Return</h3>
+
+<p>The <span class="key-term">geometric average return</span> tells you the single, constant rate of return that would have produced the same cumulative growth over the entire period. It accounts for the fact that losses hurt more than gains help — a 50% loss followed by a 50% gain doesn't get you back to where you started (you end up at 75% of your original value).</p>
+
+<div class="formula-box">
+  <span class="label">Geometric Average Return</span>
+  <span class="formula">Geo Avg = [(1 + R₁) × (1 + R₂) × ⋯ × (1 + R<sub>T</sub>)]<sup>1/<em>T</em></sup> − 1</span>
+  <div class="note">Multiply the wealth relatives (1 + return) for each year, take the <em>T</em>th root, then subtract 1</div>
+</div>
+
+<div class="example-embed" data-label="Example 6 — Geometric Average Return">
+  <p class="scenario">
+    Using the same five years of returns from Example 5 — 12%, −5%, 18%, −8%, and 22% — compute the geometric average return. If you invested $10,000 at the start, what would it be worth at the end?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Convert to wealth relatives and multiply: <span class="calc">1.12 × 0.95 × 1.18 × 0.92 × 1.22 = 1.409196</span></li>
+      <li data-step="2.">Take the 5th root: <span class="calc">1.409196<sup>1/5</sup> = 1.0710</span></li>
+      <li data-step="3.">Subtract 1: <span class="calc">1.0710 − 1 = 0.0710 = 7.10%</span></li>
+      <li data-step="4.">Your $10,000 investment: <span class="calc">$10,000 × 1.409196 = $14,091.96</span></li>
+    </ul>
+    <div class="answer-line">The geometric average return is 7.10% per year. $10,000 grows to $14,091.96.</div>
+  </details>
+</div>
+
+<p>Notice the geometric average (7.10%) is lower than the arithmetic average (7.80%). This is always the case when returns vary — the more volatile the returns, the larger the gap. The geometric average is the return that, compounded steadily, reproduces your actual ending wealth. The arithmetic average overstates growth because it ignores the drag of volatility.</p>
+
+<p>Which average should you use? It depends on the question. If you want to know what to <em>expect</em> in any single future year, the arithmetic average is appropriate — it's the unbiased estimate of next year's return. If you want to know the rate at which your wealth actually grew (or the rate to use for compounding over multiple years), use the geometric average. We'll see this distinction matter when we discuss risk premiums.</p>
+
+<h3>Variance and Standard Deviation</h3>
+
+<p>Averages tell you the center of the distribution, but they say nothing about how spread out the returns are. An investment that returns 10% every year is very different from one that returns +40% one year and −20% the next, even if they have similar averages. To measure this spread — this <span class="key-term">volatility</span> — we use the <span class="key-term">variance</span> and its square root, the <span class="key-term">standard deviation</span>.</p>
+
+<p>Variance measures the average squared deviation from the mean. We square the deviations so that negative deviations (returns below the mean) and positive deviations (returns above the mean) don't cancel out. Standard deviation brings us back to the same units as the returns themselves, making it directly interpretable: a standard deviation of 13% means that in a typical year, the actual return is about 13 percentage points away from the average.</p>
+
+<div class="formula-box">
+  <span class="label">Sample Variance and Standard Deviation</span>
+  <span class="formula">σ² = Σ(R<sub>t</sub> − Avg)² ÷ (<em>T</em> − 1)</span>
+  <span class="formula">σ = √σ²</span>
+  <div class="note">Use <em>T</em> − 1 (not <em>T</em>) in the denominator when computing from a sample of historical data</div>
+</div>
+
+<p>The reason we divide by <em>T</em> − 1 rather than <em>T</em> is a statistical adjustment called <span class="key-term">Bessel's correction</span>. When you estimate a population parameter from a sample, dividing by <em>T</em> would systematically understate the true variance. Dividing by <em>T</em> − 1 corrects this bias. For large samples the difference is negligible, but for the small samples you'll work with in this course, it matters.</p>
+
+<div class="example-embed" data-label="Example 7 — Variance and Standard Deviation">
+  <p class="scenario">
+    Continuing with the same returns — 12%, −5%, 18%, −8%, and 22% — compute the sample variance and standard deviation. The arithmetic average is 7.80%.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Compute each deviation from the mean and square it:</li>
+      <li data-step="">Year 1: <span class="calc">(12 − 7.80)² = (4.20)² = 17.6400</span></li>
+      <li data-step="">Year 2: <span class="calc">(−5 − 7.80)² = (−12.80)² = 163.8400</span></li>
+      <li data-step="">Year 3: <span class="calc">(18 − 7.80)² = (10.20)² = 104.0400</span></li>
+      <li data-step="">Year 4: <span class="calc">(−8 − 7.80)² = (−15.80)² = 249.6400</span></li>
+      <li data-step="">Year 5: <span class="calc">(22 − 7.80)² = (14.20)² = 201.6400</span></li>
+      <li data-step="2.">Sum the squared deviations: <span class="calc">17.64 + 163.84 + 104.04 + 249.64 + 201.64 = 736.80</span></li>
+      <li data-step="3.">Divide by <em>T</em> − 1 = 4: <span class="calc">σ² = 736.80 ÷ 4 = 184.20</span></li>
+      <li data-step="4.">Take the square root: <span class="calc">σ = √184.20 = 13.57%</span></li>
+    </ul>
+    <div class="answer-line">The sample variance is 184.20 (in %²) and the standard deviation is 13.57%.</div>
+  </details>
+</div>
+
+<p>A standard deviation of 13.57% means that this fund's annual returns typically deviate from the 7.80% average by about 13.57 percentage points. If returns are roughly normally distributed, about two-thirds of annual returns will fall within one standard deviation of the average (between −5.77% and 21.37%), and about 95% will fall within two standard deviations.</p>
+
+<h3>The Historical Record</h3>
+
+<p>Now that you can compute average returns and standard deviations, let's look at what history actually shows us. The table below summarizes arithmetic average annual returns and standard deviations for five major U.S. asset classes, computed from data going back to the late 1920s. The broad patterns are remarkably consistent:</p>
+
+<table class="data-table">
+  <tr>
+    <th style="text-align:left;">Asset Class</th>
+    <th>Avg. Annual Return</th>
+    <th>Standard Deviation</th>
+  </tr>
+  <tr>
+    <td style="text-align:left;">Small-company stocks</td>
+    <td>16.0%</td>
+    <td>32.0%</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;">Large-company stocks</td>
+    <td>12.0%</td>
+    <td>19.1%</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;">Long-term corporate bonds</td>
+    <td>6.9%</td>
+    <td>7.6%</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;">Long-term government bonds</td>
+    <td>4.8%</td>
+    <td>7.9%</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;">U.S. Treasury bills</td>
+    <td>3.3%</td>
+    <td>3.0%</td>
+  </tr>
+</table>
+
+<p style="font-size: 0.85rem; color: var(--muted); margin-top: -0.5rem;">Sources: Equity returns from Kenneth French Data Library (size-decile portfolios, value-weighted, 1927&ndash;2025). Bond returns from Damodaran Online (10-year T-bond and Baa corporate bond total returns, 1928&ndash;2025). T-bill returns from the Fama-French risk-free rate series.</p>
+
+<p>The important message is the pattern, not the exact numbers to the decimal. Higher-risk asset classes have delivered higher average returns over long horizons.</p>
+
+<div class="example-embed" data-label="Example 8 — Reading the Historical Record">
+  <p class="scenario">
+    Based on the historical data above, rank the five asset classes from lowest to highest average return. Then rank them from lowest to highest risk (standard deviation). What pattern do you notice?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Return ranking (low to high): T-bills (3.3%) → LT Gov Bonds (4.8%) → LT Corp Bonds (6.9%) → Large Stocks (12.0%) → Small Stocks (16.0%)</li>
+      <li data-step="2.">Risk ranking (low to high): T-bills (3.0%) → LT Corp Bonds (7.6%) → LT Gov Bonds (7.9%) → Large Stocks (19.1%) → Small Stocks (32.0%)</li>
+      <li data-step="3.">The pattern: asset classes with higher average returns also have higher standard deviations. This is the risk-return tradeoff — you don't get higher returns without accepting higher risk. The market rewards risk-bearing.</li>
+    </ul>
+    <div class="answer-line">Higher average return comes with higher volatility. This positive relationship between risk and return is one of the most fundamental patterns in finance.</div>
+  </details>
+</div>
+
+<p>This is worth pausing on. The <span class="key-term">risk-return tradeoff</span> is not just an interesting empirical fact — it's the logical foundation for how markets price risk. If stocks didn't offer higher expected returns than bonds, why would anyone bear the additional volatility? If small stocks didn't offer higher returns than large stocks, why would anyone accept the wilder ride? Investors demand compensation for bearing risk, and the historical data confirms that they've received it — on average, over long periods.</p>
+
+<p>Note the emphasis on "on average" and "over long periods." In any given year, stocks can (and do) underperform bonds or even lose money. The higher average return is compensation for the <em>possibility</em> of bad outcomes, not a guarantee of good ones. We'll formalize this idea when we study portfolio theory and the CAPM in Weeks 8 and 9.</p>
+
+<div class="figure">
+  <span class="figure-label">Figure 1 — The Risk-Return Tradeoff (Historical)</span>
+  <svg viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Scatter plot showing five asset classes positioned by historical standard deviation and average return, revealing the positive risk-return relationship.">
+    <rect x="80" y="30" width="480" height="260" fill="#ffffff" stroke="#d4d0c8" stroke-width="0.5" rx="2"/>
+    <g stroke="#e8e4dc" stroke-width="0.5">
+      <line x1="80" y1="246.7" x2="560" y2="246.7"/>
+      <line x1="80" y1="203.3" x2="560" y2="203.3"/>
+      <line x1="80" y1="160" x2="560" y2="160"/>
+      <line x1="80" y1="116.7" x2="560" y2="116.7"/>
+      <line x1="80" y1="73.3" x2="560" y2="73.3"/>
+      <line x1="148.6" y1="30" x2="148.6" y2="290"/>
+      <line x1="217.1" y1="30" x2="217.1" y2="290"/>
+      <line x1="285.7" y1="30" x2="285.7" y2="290"/>
+      <line x1="354.3" y1="30" x2="354.3" y2="290"/>
+      <line x1="422.9" y1="30" x2="422.9" y2="290"/>
+      <line x1="491.4" y1="30" x2="491.4" y2="290"/>
+    </g>
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="end">
+      <text x="74" y="294">0%</text>
+      <text x="74" y="250">3%</text>
+      <text x="74" y="207">6%</text>
+      <text x="74" y="164">9%</text>
+      <text x="74" y="121">12%</text>
+      <text x="74" y="77">15%</text>
+      <text x="74" y="34">18%</text>
+    </g>
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="middle">
+      <text x="80" y="308">0%</text>
+      <text x="148.6" y="308">5%</text>
+      <text x="217.1" y="308">10%</text>
+      <text x="285.7" y="308">15%</text>
+      <text x="354.3" y="308">20%</text>
+      <text x="422.9" y="308">25%</text>
+      <text x="491.4" y="308">30%</text>
+      <text x="560" y="308">35%</text>
+    </g>
+    <text x="320" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Standard Deviation (Risk)</text>
+    <text x="22" y="165" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 22 165)">Average Annual Return</text>
+    <!-- Trend line (approximate) -->
+    <line x1="94" y1="254" x2="546" y2="37" stroke="#d4d0c8" stroke-width="1" stroke-dasharray="6 4"/>
+    <!-- Data points -->
+    <!-- T-bills: sd=3.0%, ret=3.3% -->
+    <circle cx="121.1" cy="242.3" r="7" fill="#c75000" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="136" y="256" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#c75000" font-weight="500">T-bills (3.3%)</text>
+    <!-- LT Corp bonds: sd=7.6%, ret=6.9% -->
+    <circle cx="184.2" cy="190.3" r="7" fill="#c75000" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="130" y="180" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#c75000" font-weight="500">Corp bonds (6.9%)</text>
+    <!-- LT Gov bonds: sd=7.9%, ret=4.8% -->
+    <circle cx="188.3" cy="220.7" r="7" fill="#c75000" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="203" y="234" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#c75000" font-weight="500">Gov bonds (4.8%)</text>
+    <!-- Large stocks: sd=19.1%, ret=12.0% -->
+    <circle cx="341.9" cy="116.7" r="7" fill="#c75000" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="230" y="109" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#c75000" font-weight="500">Large stocks (12.0%)</text>
+    <!-- Small stocks: sd=32.0%, ret=16.0% -->
+    <circle cx="518.9" cy="58.9" r="7" fill="#c75000" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="506" y="51" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#c75000" font-weight="500" text-anchor="end">Small stocks (16.0%)</text>
+  </svg>
+  <p class="figure-caption">Historical U.S. asset class returns. Higher risk (standard deviation) has been rewarded with higher average returns. This positive relationship is the empirical foundation for the risk-return tradeoff — investors demand compensation for bearing volatility.</p>
+</div>
+
+<h3>The Equity Risk Premium</h3>
+
+<p>The difference between the average return on stocks and the average return on a risk-free investment (typically T-bills) is called the <span class="key-term">equity risk premium (ERP)</span>. It measures the extra return that investors have historically earned — and that they presumably <em>require</em> — for bearing the risk of holding stocks instead of risk-free assets.</p>
+
+<div class="formula-box">
+  <span class="label">Equity Risk Premium</span>
+  <span class="formula">ERP = Avg. Stock Return − Avg. Risk-Free Return</span>
+  <div class="note">Historically, the U.S. equity risk premium has been approximately 8–9% using arithmetic averages</div>
+</div>
+
+<div class="example-embed" data-label="Example 9 — The Equity Risk Premium">
+  <p class="scenario">
+    Using the historical data above, estimate the equity risk premium for large-company stocks relative to Treasury bills.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Average large-stock return: <span class="calc">12.0%</span></li>
+      <li data-step="2.">Average T-bill return: <span class="calc">3.3%</span></li>
+      <li data-step="3.">ERP: <span class="calc">12.0% − 3.3% = 8.7%</span></li>
+    </ul>
+    <div class="answer-line">The historical equity risk premium is approximately 8.7%.</div>
+  </details>
+</div>
+
+<p>The equity risk premium matters enormously for practice. When we compute the cost of equity capital in Weeks 9 and 10, we'll need an estimate of the ERP as an input to the Capital Asset Pricing Model (CAPM). The historical average is a starting point, though there's active debate among practitioners and academics about whether the future ERP will be as large as the historical one.</p>
+
+<p>Why might investors demand this premium? Two reasons. First, stocks are risky — in the short run, your portfolio might lose 30% or more of its value. That potential for loss is psychologically and financially painful, so investors need to be compensated for bearing it. Second, stocks are claims on real economic activity, which is inherently uncertain. Recessions, competitive disruptions, and management failures all create risk that bondholders largely avoid because they have a contractual claim on cash flows. Stockholders bear this residual risk and are compensated through higher expected returns.</p>
+
+<h3>Using Standard Deviation to Compare Investments</h3>
+
+<p>Standard deviation is our primary tool for comparing the riskiness of different investments. Two investments with similar average returns but different standard deviations present a clear choice — and two investments with similar risk but different returns present an equally clear one.</p>
+
+<div class="example-embed" data-label="Example 10 — Comparing Risk">
+  <p class="scenario">
+    You're evaluating two mutual funds. Fund F returned 8%, 10%, 7%, 11%, and 9% over the past five years. Fund G returned −4%, 22%, 3%, 28%, and −4% over the same period. Both have an arithmetic average return of 9%. Which fund is riskier?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Fund F: Mean = 9%. Deviations: −1, 1, −2, 2, 0. Squared deviations: 1, 1, 4, 4, 0. Sum = 10.</li>
+      <li data-step="">Variance = 10 ÷ 4 = 2.50. <span class="calc">SD = √2.50 = 1.58%</span></li>
+      <li data-step="2.">Fund G: Mean = 9%. Deviations: −13, 13, −6, 19, −13. Squared deviations: 169, 169, 36, 361, 169. Sum = 904.</li>
+      <li data-step="">Variance = 904 ÷ 4 = 226.00. <span class="calc">SD = √226.00 = 15.03%</span></li>
+      <li data-step="3.">Fund G's standard deviation (15.03%) is nearly ten times Fund F's (1.58%), despite identical average returns.</li>
+    </ul>
+    <div class="answer-line">Fund G is dramatically riskier. Same 9% average return, but SD of 15.03% vs. 1.58%. A risk-averse investor would strongly prefer Fund F.</div>
+  </details>
+</div>
+
+<p>This example illustrates a key principle: <em>average returns alone don't tell you enough</em>. Two investments can have the same average return while offering very different experiences. Fund F is a smooth ride. Fund G is a roller coaster. A risk-averse investor — which describes most people — would choose Fund F without hesitation. To accept Fund G's volatility, you'd need it to offer a meaningfully higher average return as compensation.</p>
+
+<p>This is exactly the logic behind the risk-return tradeoff we saw in the historical data. Investors don't just chase returns — they evaluate returns <em>relative to the risk taken</em>. We'll make this idea precise in Week 8 when we study portfolios and diversification, and in Week 9 when we introduce the CAPM.</p>
+
+
+<!-- ============================================================ -->
+<!-- KEY FORMULAS REFERENCE                                        -->
+<!-- ============================================================ -->
+
+<h2>Key Formulas Reference</h2>
+
+<table class="reference">
+  <tr>
+    <th>Formula</th>
+    <th>Expression</th>
+  </tr>
+  <tr>
+    <td>Net Present Value</td>
+    <td><span class="calc">NPV = −C₀ + Σ [C<sub>t</sub> ÷ (1 + r)<sup>t</sup>]</span></td>
+  </tr>
+  <tr>
+    <td>IRR</td>
+    <td><span class="calc">0 = −C₀ + Σ [C<sub>t</sub> ÷ (1 + IRR)<sup>t</sup>]</span></td>
+  </tr>
+  <tr>
+    <td>Arithmetic Average Return</td>
+    <td><span class="calc">Avg = (R₁ + R₂ + ⋯ + R<sub>T</sub>) ÷ T</span></td>
+  </tr>
+  <tr>
+    <td>Geometric Average Return</td>
+    <td><span class="calc">Geo = [(1+R₁)(1+R₂)⋯(1+R<sub>T</sub>)]<sup>1/T</sup> − 1</span></td>
+  </tr>
+  <tr>
+    <td>Sample Variance</td>
+    <td><span class="calc">σ² = Σ(R<sub>t</sub> − Avg)² ÷ (T − 1)</span></td>
+  </tr>
+  <tr>
+    <td>Standard Deviation</td>
+    <td><span class="calc">σ = √σ²</span></td>
+  </tr>
+  <tr>
+    <td>Equity Risk Premium</td>
+    <td><span class="calc">ERP = Avg. Stock Return − Avg. Risk-Free Return</span></td>
+  </tr>
+</table>
+
+
+<!-- ============================================================ -->
+<!-- PRACTICE PROBLEMS                                             -->
+<!-- ============================================================ -->
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<h2>Practice Problems</h2>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W7.1]</span>
+  </div>
+  <p>Red Acre Industries must choose between two mutually exclusive projects. Project P requires a $80,000 investment and generates cash flows of $50,000 in year 1, $40,000 in year 2, and $20,000 in year 3. Project Q requires a $200,000 investment and generates cash flows of $90,000 per year for three years. The required return is 10%. Compute the NPV and IRR of each project. Which should Red Acre choose, and why?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W7.2]</span>
+  </div>
+  <p>A stock had the following annual returns over five years: 15%, −10%, 25%, 5%, and −3%. Compute both the arithmetic and geometric average return. If you invested $5,000 at the start of this period, how much would you have at the end?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W7.5]</span>
+  </div>
+  <p>A bond fund reported the following annual returns: 6%, −2%, 14%, 8%, and −4%. Compute the arithmetic average return, the sample variance, and the standard deviation.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W7.3]</span>
+  </div>
+  <p>Rank the following asset classes from lowest to highest expected return, based on the historical evidence: large-company stocks, long-term government bonds, small-company stocks, U.S. Treasury bills, long-term corporate bonds. Then explain in 2–3 sentences <em>why</em> this ordering makes sense from an economic perspective.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W7.3, W7.4]</span>
+  </div>
+  <p>Suppose the average annual return on large-company stocks has been 11.5%, the average on long-term corporate bonds has been 5.8%, and the average on T-bills has been 3.2%. Compute the equity risk premium relative to T-bills and relative to corporate bonds. Which comparison is more standard, and why?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W7.1]</span>
+  </div>
+  <p>Green Acre Industries is evaluating a project with the following cash flows: an initial investment of $50,000, a cash inflow of $115,000 in year 1, and a required environmental cleanup cost of $66,000 in year 2. (a) How many IRRs does this project have? Find them. (b) Compute the NPV at a 15% required return. (c) Explain why the IRR rule is unreliable for this project.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 7</span>
+    <span class="skill-tag">[W7.2, W7.5]</span>
+  </div>
+  <p>A portfolio generated the following annual returns over six years: 20%, −12%, 8%, 15%, −5%, and 18%. Compute: (a) the arithmetic average return, (b) the geometric average return, (c) the sample variance, and (d) the standard deviation. If you invested $10,000 at the start, what would you have after six years?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 8</span>
+    <span class="skill-tag">[W7.2, W7.3]</span>
+  </div>
+  <p>Explain in your own words why the geometric average return is always less than or equal to the arithmetic average return (they're equal only when returns are identical every year). Then explain when you would use each average and why. Give a concrete example of a situation where using the wrong average would lead to a misleading conclusion.</p>
+</div>
+
+</body>
+</html>

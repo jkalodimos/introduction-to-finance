@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BA 240 — Week 2 Course Pack</title>
+  <title>Introduction to Finance — Week 2</title>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -288,10 +288,67 @@ table.formula-ref td:last-child {
   font-size: 0.9rem;
 }
 
+/* ---- Figures / Charts ---- */
+.figure {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1.2rem 1rem 0.6rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.figure svg {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.figure-caption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.figure-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+  text-align: left;
+  padding-left: 0.4rem;
+}
+@media (max-width: 600px) {
+  body { padding: 1.5rem 1.2rem 3rem; }
+  .figure { padding: 0.8rem 0.5rem 0.4rem; }
+  .figure svg { max-width: 100%; }
+}
+
+/* ---- Nav Link ---- */
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-block;
+}
+.nav-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-link a:hover {
+  text-decoration: underline;
+}
 @media print {
   body { padding: 0.5in; max-width: none; font-size: 10pt; }
   .course-header { page-break-after: avoid; }
-  .example-embed, .problem, .formula-box { page-break-inside: avoid; }
+  .example-embed, .problem, .formula-box, .figure { page-break-inside: avoid; }
   details { display: block; }
   details > summary { display: none; }
   details > *:not(summary) { display: block; }
@@ -305,10 +362,12 @@ table.formula-ref td:last-child {
 <!-- ============================================================ -->
 
 <div class="course-header">
-  <div class="course-id">BA 240 · Spring 2026 · Oregon State University</div>
+  <div class="course-id">Introduction to Finance &middot; Jonathan Kalodimos</div>
   <h1>Week 2 Course Pack</h1>
-  <div class="subtitle">Discounted Cash Flows — Annuities &amp; Perpetuities (Ch. 5 cont., 6)</div>
+  <div class="subtitle">Discounted Cash Flows &mdash; Annuities &amp; Perpetuities</div>
 </div>
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
 
 <div class="skills-list">
   <div class="skills-label">This week's demonstrable skills:</div>
@@ -713,6 +772,60 @@ Look at how the interest/principal split shifts over time. In Year 1, roughly 27
 For Green Acre, total payments over four years are $30,192.08 × 4 = $120,768.32. Since the loan was $100,000, the total interest cost is $20,768.32. A manager evaluating this equipment purchase should factor this financing cost into the decision — something we'll formalize when we study net present value in Week 6.
 </p>
 
+<div class="figure">
+  <span class="figure-label">Figure 1 — Amortization: Interest vs. Principal</span>
+  <svg viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Stacked bar chart showing how each annual payment on a 4-year loan splits between interest and principal, with interest shrinking and principal growing over time.">
+    <rect x="80" y="30" width="480" height="260" fill="#ffffff" stroke="#d4d0c8" stroke-width="0.5" rx="2"/>
+    <g stroke="#e8e4dc" stroke-width="0.5">
+      <line x1="80" y1="46.2" x2="560" y2="46.2"/>
+      <line x1="80" y1="127.5" x2="560" y2="127.5"/>
+      <line x1="80" y1="208.8" x2="560" y2="208.8"/>
+    </g>
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="end">
+      <text x="74" y="294">$0</text>
+      <text x="74" y="253">$5k</text>
+      <text x="74" y="212">$10k</text>
+      <text x="74" y="171">$15k</text>
+      <text x="74" y="131">$20k</text>
+      <text x="74" y="90">$25k</text>
+      <text x="74" y="50">$30k</text>
+    </g>
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="11" fill="#6b6560" text-anchor="middle">
+      <text x="140" y="308">Year 1</text>
+      <text x="260" y="308">Year 2</text>
+      <text x="380" y="308">Year 3</text>
+      <text x="500" y="308">Year 4</text>
+    </g>
+    <text x="320" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Payment Period</text>
+    <text x="22" y="165" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 22 165)">Payment Amount ($)</text>
+    <!-- Year 1: Principal $22,192 (bottom), Interest $8,000 (top) -->
+    <rect x="100" y="109.7" width="80" height="180.3" fill="#c75000" rx="2"/>
+    <rect x="100" y="44.7" width="80" height="65.0" fill="#d4a574" rx="2"/>
+    <text x="140" y="210" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#ffffff" text-anchor="middle">$22,192</text>
+    <text x="140" y="82" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#ffffff" text-anchor="middle">$8,000</text>
+    <!-- Year 2: Principal $23,967, Interest $6,225 -->
+    <rect x="220" y="95.3" width="80" height="194.7" fill="#c75000" rx="2"/>
+    <rect x="220" y="44.7" width="80" height="50.6" fill="#d4a574" rx="2"/>
+    <text x="260" y="210" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#ffffff" text-anchor="middle">$23,967</text>
+    <text x="260" y="74" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#ffffff" text-anchor="middle">$6,225</text>
+    <!-- Year 3: Principal $25,885, Interest $4,307 -->
+    <rect x="340" y="79.7" width="80" height="210.3" fill="#c75000" rx="2"/>
+    <rect x="340" y="44.7" width="80" height="35.0" fill="#d4a574" rx="2"/>
+    <text x="380" y="210" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#ffffff" text-anchor="middle">$25,885</text>
+    <text x="380" y="66" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#ffffff" text-anchor="middle">$4,307</text>
+    <!-- Year 4: Principal $27,956, Interest $2,236 -->
+    <rect x="460" y="62.9" width="80" height="227.1" fill="#c75000" rx="2"/>
+    <rect x="460" y="44.7" width="80" height="18.2" fill="#d4a574" rx="2"/>
+    <text x="500" y="210" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#ffffff" text-anchor="middle">$27,956</text>
+    <!-- Legend -->
+    <rect x="400" y="325" width="12" height="12" fill="#c75000" rx="1"/>
+    <text x="416" y="336" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#6b6560">Principal</text>
+    <rect x="480" y="325" width="12" height="12" fill="#d4a574" rx="1"/>
+    <text x="496" y="336" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#6b6560">Interest</text>
+  </svg>
+  <p class="figure-caption">Each $30,192 payment is split between interest and principal. Early payments are interest-heavy (27% in Year 1); by Year 4, interest is only 7% of the payment. The principal portion grows as the outstanding balance shrinks.</p>
+</div>
+
 <h3>Mortgages: The Same Idea, at Scale</h3>
 
 <p>
@@ -817,6 +930,8 @@ This is a preview of how the same TVM toolkit we're building now connects direct
 <!-- ============================================================ -->
 <!-- PRACTICE PROBLEMS                                             -->
 <!-- ============================================================ -->
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
 
 <h2>Practice Problems</h2>
 

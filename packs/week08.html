@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Finance — Week 8</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+table.formula-ref {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+table.formula-ref th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: var(--formula-bg);
+  border-bottom: 2px solid var(--border);
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+table.formula-ref td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table.formula-ref td:nth-child(2) {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+table.state-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0 1rem;
+  font-size: 0.95rem;
+}
+table.state-table th {
+  text-align: center;
+  padding: 0.4rem 0.75rem;
+  background: var(--formula-bg);
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+table.state-table td {
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+table.state-table td:first-child,
+table.state-table th:first-child {
+  text-align: left;
+}
+
+/* ---- Figures / Charts ---- */
+.figure {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1.2rem 1rem 0.6rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.figure svg {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.figure-caption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.figure-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+  text-align: left;
+  padding-left: 0.4rem;
+}
+@media (max-width: 600px) {
+  body { padding: 1.5rem 1.2rem 3rem; }
+  .figure { padding: 0.8rem 0.5rem 0.4rem; }
+  .figure svg { max-width: 100%; }
+}
+/* ---- Nav Link ---- */
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-block;
+}
+.nav-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-link a:hover {
+  text-decoration: underline;
+}
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<div class="course-header">
+  <div class="course-id">Introduction to Finance &middot; Jonathan Kalodimos</div>
+  <h1>Week 8 Course Pack</h1>
+  <div class="subtitle">Risk, Return &amp; Portfolios</div>
+</div>
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W8.1</span> Compute expected return of a single asset using state-contingent probabilities</li>
+    <li><span class="skill-code">W8.2</span> Compute variance and standard deviation of an asset's returns</li>
+    <li><span class="skill-code">W8.3</span> Compute expected return of a portfolio from weighted individual returns</li>
+    <li><span class="skill-code">W8.4</span> Explain the principle of diversification and why portfolio risk is less than the weighted average of individual risks</li>
+    <li><span class="skill-code">W8.5</span> Distinguish systematic from unsystematic risk and explain which type the market rewards</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART A — Expected Returns -->
+<!-- ============================================================ -->
+
+<h2>Part A — Expected Returns</h2>
+
+<h3>From History to Expectations</h3>
+
+<p>In Week 7, you worked with <em>historical</em> returns — actual data showing what investors earned in the past. You computed averages and standard deviations from realized outcomes. That historical perspective is valuable, but when you're making an investment decision <em>today</em>, what matters is what you expect to happen going forward. This week, we shift from looking backward to looking forward: from historical returns to <span class="key-term">expected returns</span>.</p>
+
+<p>The key difference is that expected returns deal explicitly with uncertainty. You don't know which outcome will actually occur — but you can describe a set of possible outcomes and how likely each one is. That's the foundation of the framework we'll build this week: use probability-weighted scenarios to quantify what you expect to earn and how much risk you're taking on.</p>
+
+<h3>States of the Economy</h3>
+
+<p>The simplest way to model uncertainty is to define a set of <span class="key-term">states of the economy</span> — mutually exclusive scenarios that describe what might happen in the future. A common setup uses three states: a boom (the economy outperforms), a normal state (things go roughly as expected), and a recession (the economy underperforms). Each state has a <span class="key-term">probability</span> — the likelihood that it occurs — and each asset in your analysis has a return associated with each state.</p>
+
+<p>Two rules govern these probabilities. First, they must all be between 0 and 1 (no negative probabilities, and no probability greater than certainty). Second, the probabilities across all states must sum to 1 — one of the states <em>will</em> happen; you just don't know which one. These aren't exotic constraints; they're just the basic rules of probability applied to economic forecasting.</p>
+
+<p>Once you've defined your states, computing the <span class="key-term">expected return</span> on an asset is straightforward: multiply each possible return by its probability and add them up. The result, <em>E(R)</em>, is the probability-weighted average of all possible outcomes.</p>
+
+<div class="formula-box">
+  <span class="label">Expected Return</span>
+  <span class="formula">E(R) = Σ [<em>p<sub>i</sub></em> × <em>R<sub>i</sub></em>]</span>
+  <div class="note">where <em>p<sub>i</sub></em> = probability of state <em>i</em>, <em>R<sub>i</sub></em> = return in state <em>i</em>, and the sum runs over all states</div>
+</div>
+
+<p>This formula is just a weighted average — the same concept you've used before — but the weights are probabilities rather than portfolio fractions. The expected return tells you the return you'd earn <em>on average</em> if you could replay the future many, many times. It doesn't promise any particular outcome in any single year. It's a measure of central tendency for a distribution of uncertain outcomes.</p>
+
+<div class="example-embed" data-label="Example 1 — Expected Return">
+  <p class="scenario">
+    Analysts at your firm are evaluating Red Acre Industries stock. They've identified three possible economic scenarios for next year with the following probabilities and projected returns:
+  </p>
+  <table class="state-table">
+    <tr><th>State</th><th>Probability</th><th>Return</th></tr>
+    <tr><td>Boom</td><td>25%</td><td>30%</td></tr>
+    <tr><td>Normal</td><td>50%</td><td>12%</td></tr>
+    <tr><td>Recession</td><td>25%</td><td>−10%</td></tr>
+  </table>
+  <p class="scenario">What is the expected return on Red Acre stock?</p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Verify probabilities sum to 1: <span class="calc">0.25 + 0.50 + 0.25 = 1.00 ✓</span></li>
+      <li data-step="2.">Apply formula: <span class="calc">E(R) = 0.25 × 0.30 + 0.50 × 0.12 + 0.25 × (−0.10)</span></li>
+      <li data-step="3.">Calculate each term: <span class="calc">= 0.0750 + 0.0600 + (−0.0250)</span></li>
+      <li data-step="4.">Sum: <span class="calc">= 0.1100</span></li>
+    </ul>
+    <div class="answer-line">E(R) = 11.00%. On average across all scenarios, Red Acre stock is expected to return 11% next year.</div>
+  </details>
+</div>
+
+<p>Notice what the expected return is <em>not</em>. It's not a forecast that Red Acre will return exactly 11%. In the boom state they'd return 30%, in the recession they'd lose 10%, and in the normal state they'd earn 12%. The 11% is a summary measure — the gravitational center of these three possibilities, weighted by how likely each one is.</p>
+
+<h3>Comparing Expected Returns Across Assets</h3>
+
+<p>Expected returns become especially useful when you're comparing investments. Consider an asset that does <em>well</em> in recessions and <em>poorly</em> in booms — the opposite pattern of what most stocks do. This kind of counter-cyclical behavior has important implications that we'll explore shortly.</p>
+
+<div class="example-embed" data-label="Example 2 — Counter-Cyclical Returns">
+  <p class="scenario">
+    Blue Acre Financial offers a product heavily concentrated in government bonds. Under the same three states of the economy, analysts project the following returns for Blue Acre stock:
+  </p>
+  <table class="state-table">
+    <tr><th>State</th><th>Probability</th><th>Return</th></tr>
+    <tr><td>Boom</td><td>25%</td><td>5%</td></tr>
+    <tr><td>Normal</td><td>50%</td><td>8%</td></tr>
+    <tr><td>Recession</td><td>25%</td><td>15%</td></tr>
+  </table>
+  <p class="scenario">Compute Blue Acre's expected return. How does its pattern of returns differ from Red Acre's?</p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Apply formula: <span class="calc">E(R) = 0.25 × 0.05 + 0.50 × 0.08 + 0.25 × 0.15</span></li>
+      <li data-step="2.">Calculate: <span class="calc">= 0.0125 + 0.0400 + 0.0375</span></li>
+      <li data-step="3.">Sum: <span class="calc">= 0.0900</span></li>
+    </ul>
+    <div class="answer-line">E(R) = 9.00%. Blue Acre's expected return is lower than Red Acre's (9% vs. 11%), but its return pattern is reversed: Blue Acre does <em>better</em> when the economy does worse. This counter-cyclical behavior will prove extremely valuable when we combine these assets into a portfolio.</div>
+  </details>
+</div>
+
+<p>Keep these two stocks in mind — Red Acre (cyclical, higher expected return) and Blue Acre (counter-cyclical, lower expected return). We'll come back to them repeatedly as we build toward portfolio analysis.</p>
+
+<div class="example-embed" data-label="Example 3 — Unequal Probabilities">
+  <p class="scenario">
+    Green Acre Agriculture, a large agribusiness company, has returns that depend on both economic conditions and weather patterns. Your research team assigns the following:
+  </p>
+  <table class="state-table">
+    <tr><th>State</th><th>Probability</th><th>Return</th></tr>
+    <tr><td>Boom</td><td>20%</td><td>35%</td></tr>
+    <tr><td>Normal</td><td>55%</td><td>10%</td></tr>
+    <tr><td>Recession</td><td>25%</td><td>−15%</td></tr>
+  </table>
+  <p class="scenario">What is Green Acre's expected return?</p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Verify probabilities: <span class="calc">0.20 + 0.55 + 0.25 = 1.00 ✓</span></li>
+      <li data-step="2.">Apply formula: <span class="calc">E(R) = 0.20 × 0.35 + 0.55 × 0.10 + 0.25 × (−0.15)</span></li>
+      <li data-step="3.">Calculate: <span class="calc">= 0.0700 + 0.0550 + (−0.0375)</span></li>
+      <li data-step="4.">Sum: <span class="calc">= 0.0875</span></li>
+    </ul>
+    <div class="answer-line">E(R) = 8.75%. Despite having the highest single-state return (35% in a boom), Green Acre's expected return is the lowest of our three stocks. The high recession loss and the relatively low probability of the boom state pull the weighted average down.</div>
+  </details>
+</div>
+
+<p>Example 3 illustrates why you can't just look at the best-case outcome. The probabilities matter — a lot. Green Acre has spectacular upside in a boom, but that boom only happens 20% of the time, and the recession loss is severe. The expected return integrates all of this information into a single number.</p>
+
+
+<!-- ============================================================ -->
+<!-- PART B — Variance and Standard Deviation -->
+<!-- ============================================================ -->
+
+<h2>Part B — Measuring Risk: Variance and Standard Deviation</h2>
+
+<h3>Why Expected Return Isn't Enough</h3>
+
+<p>If two investments have the same expected return, would you consider them identical? Not necessarily. Imagine one investment that returns exactly 10% every year and another that returns 30% half the time and −10% half the time. Both have an expected return of 10%, but they feel <em>very</em> different. The second one is riskier — its outcomes are spread further from the center.</p>
+
+<p>That spread is what we measure with <span class="key-term">variance</span> and <span class="key-term">standard deviation</span>. Recall from Week 7 that you computed standard deviation from historical return data. The logic here is identical, but instead of using historical frequencies, we use the probabilities attached to each state of the economy. The result is a forward-looking measure of how dispersed an asset's returns are around its expected return.</p>
+
+<div class="formula-box">
+  <span class="label">Variance of Returns</span>
+  <span class="formula">σ² = Σ [<em>p<sub>i</sub></em> × (<em>R<sub>i</sub></em> − E(R))²]</span>
+  <div class="note">where <em>p<sub>i</sub></em> = probability of state <em>i</em>, <em>R<sub>i</sub></em> = return in state <em>i</em>, E(R) = expected return</div>
+</div>
+
+<div class="formula-box">
+  <span class="label">Standard Deviation of Returns</span>
+  <span class="formula">σ = √σ²</span>
+  <div class="note">Standard deviation is the square root of variance, expressed in the same units (%) as the returns</div>
+</div>
+
+<p>The computation has three steps. First, for each state, calculate the <span class="key-term">deviation</span> — how far that state's return is from the expected return. Second, square each deviation (this eliminates negative signs and penalizes large deviations more than small ones). Third, take the probability-weighted average of those squared deviations. That gives you the variance. Take the square root to get the standard deviation, which has the nice property of being in the same units as the returns themselves — percentages.</p>
+
+<p>A higher standard deviation means the asset's returns are more spread out — more uncertain. A lower standard deviation means returns cluster tightly around the expected value. An asset with zero standard deviation would deliver its expected return with certainty every time — a risk-free asset.</p>
+
+<div class="example-embed" data-label="Example 4 — Variance and Standard Deviation">
+  <p class="scenario">
+    Using the Red Acre Industries data from Example 1 (expected return = 11.00%), compute the variance and standard deviation of Red Acre's returns.
+  </p>
+  <table class="state-table">
+    <tr><th>State</th><th>Probability</th><th>Return</th><th>Deviation (R − E(R))</th></tr>
+    <tr><td>Boom</td><td>0.25</td><td>0.30</td><td>0.30 − 0.11 = 0.19</td></tr>
+    <tr><td>Normal</td><td>0.50</td><td>0.12</td><td>0.12 − 0.11 = 0.01</td></tr>
+    <tr><td>Recession</td><td>0.25</td><td>−0.10</td><td>−0.10 − 0.11 = −0.21</td></tr>
+  </table>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Square each deviation:<br>
+        <span class="calc">Boom: (0.19)² = 0.0361</span><br>
+        <span class="calc">Normal: (0.01)² = 0.0001</span><br>
+        <span class="calc">Recession: (−0.21)² = 0.0441</span>
+      </li>
+      <li data-step="2.">Multiply by probabilities and sum:<br>
+        <span class="calc">σ² = 0.25 × 0.0361 + 0.50 × 0.0001 + 0.25 × 0.0441</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;= 0.009025 + 0.000050 + 0.011025</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;= 0.0201</span>
+      </li>
+      <li data-step="3.">Take the square root: <span class="calc">σ = √0.0201 = 0.1418</span></li>
+    </ul>
+    <div class="answer-line">σ² = 0.0201, σ = 14.18%. Red Acre's returns are expected to deviate from the 11% mean by roughly 14 percentage points in a typical scenario. That's substantial variability.</div>
+  </details>
+</div>
+
+<div class="example-embed" data-label="Example 5 — Comparing Risk Across Assets">
+  <p class="scenario">
+    Compute the variance and standard deviation for Blue Acre Financial (expected return = 9.00%) using the data from Example 2. Then compare Red Acre and Blue Acre on both expected return and risk.
+  </p>
+  <table class="state-table">
+    <tr><th>State</th><th>Probability</th><th>Return</th><th>Deviation (R − 0.09)</th></tr>
+    <tr><td>Boom</td><td>0.25</td><td>0.05</td><td>−0.04</td></tr>
+    <tr><td>Normal</td><td>0.50</td><td>0.08</td><td>−0.01</td></tr>
+    <tr><td>Recession</td><td>0.25</td><td>0.15</td><td>+0.06</td></tr>
+  </table>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Square deviations:<br>
+        <span class="calc">Boom: (−0.04)² = 0.0016</span><br>
+        <span class="calc">Normal: (−0.01)² = 0.0001</span><br>
+        <span class="calc">Recession: (0.06)² = 0.0036</span>
+      </li>
+      <li data-step="2.">Probability-weighted sum:<br>
+        <span class="calc">σ² = 0.25 × 0.0016 + 0.50 × 0.0001 + 0.25 × 0.0036</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;= 0.000400 + 0.000050 + 0.000900</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;= 0.001350</span>
+      </li>
+      <li data-step="3.">Standard deviation: <span class="calc">σ = √0.001350 = 0.0367</span></li>
+    </ul>
+    <div class="answer-line">Blue Acre: σ² = 0.0014, σ = 3.67%. Compare: Red Acre has both a higher expected return (11% vs. 9%) and much higher risk (14.18% vs. 3.67%). Blue Acre's returns are far more stable because they cluster tightly around 9%.</div>
+  </details>
+</div>
+
+<p>The comparison between Red Acre and Blue Acre captures the classic risk-return tradeoff you explored historically in Week 7. Higher expected returns typically come with higher volatility. But — and this is the crucial insight for this week — what happens when you <em>combine</em> these two assets into a single portfolio?</p>
+
+
+<!-- ============================================================ -->
+<!-- PART C — Portfolio Expected Return -->
+<!-- ============================================================ -->
+
+<h2>Part C — Portfolio Expected Return</h2>
+
+<h3>Combining Assets</h3>
+
+<p>In practice, investors rarely hold a single asset. They build <span class="key-term">portfolios</span> — collections of assets held simultaneously. The natural question is: if you know the expected return and risk of each individual asset, what are the expected return and risk of the combination?</p>
+
+<p>Portfolio expected return is the easy part. It's simply the weighted average of the individual expected returns, where the weights are the fraction of your money invested in each asset. If you put 60% of your money in Red Acre and 40% in Blue Acre, the portfolio's expected return is 60% of Red Acre's expected return plus 40% of Blue Acre's expected return.</p>
+
+<div class="formula-box">
+  <span class="label">Portfolio Expected Return</span>
+  <span class="formula">E(R<sub>p</sub>) = <em>w</em><sub>1</sub> × E(R<sub>1</sub>) + <em>w</em><sub>2</sub> × E(R<sub>2</sub>) + … + <em>w<sub>n</sub></em> × E(R<sub>n</sub>)</span>
+  <div class="note">where <em>w<sub>i</sub></em> = fraction of portfolio value in asset <em>i</em> (weights must sum to 1)</div>
+</div>
+
+<p>This is completely intuitive: the portfolio return is a blend of the individual returns, in proportion to how much you've allocated to each one. If you put all your money in the highest-return asset, your portfolio return equals that asset's return. If you split evenly, you get the simple average. There are no surprises here — portfolio expected return is strictly linear in the weights.</p>
+
+<div class="example-embed" data-label="Example 6 — Portfolio Expected Return (Two Assets)">
+  <p class="scenario">
+    You invest 60% of your money in Red Acre Industries (E(R) = 11.00%) and 40% in Blue Acre Financial (E(R) = 9.00%). What is the expected return on your portfolio?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify weights and expected returns:<br>
+        <span class="calc">w<sub>Red</sub> = 0.60, E(R<sub>Red</sub>) = 0.1100</span><br>
+        <span class="calc">w<sub>Blue</sub> = 0.40, E(R<sub>Blue</sub>) = 0.0900</span>
+      </li>
+      <li data-step="2.">Verify weights sum to 1: <span class="calc">0.60 + 0.40 = 1.00 ✓</span></li>
+      <li data-step="3.">Apply formula: <span class="calc">E(R<sub>p</sub>) = 0.60 × 0.1100 + 0.40 × 0.0900</span></li>
+      <li data-step="4.">Calculate: <span class="calc">= 0.0660 + 0.0360 = 0.1020</span></li>
+    </ul>
+    <div class="answer-line">E(R<sub>p</sub>) = 10.20%. The portfolio's expected return falls between the two individual expected returns, closer to Red Acre because it has the larger weight.</div>
+  </details>
+</div>
+
+<h3>The State-by-State Approach</h3>
+
+<p>There's an equivalent way to compute portfolio expected return that will prove essential when we get to portfolio risk. Instead of working with individual expected returns, you can first compute the portfolio's return in <em>each state</em>, then take the probability-weighted average of those state-level portfolio returns. The two methods always give the same answer — but the state-by-state approach gives you the raw material needed to compute portfolio variance.</p>
+
+<div class="example-embed" data-label="Example 7 — State-by-State Portfolio Return">
+  <p class="scenario">
+    Using the same 60/40 Red Acre/Blue Acre portfolio, compute the portfolio return in each state of the economy, then verify that the expected return matches Example 6.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Portfolio return in each state (0.60 × Red + 0.40 × Blue):<br>
+        <span class="calc">Boom: 0.60 × 0.30 + 0.40 × 0.05 = 0.1800 + 0.0200 = 0.2000</span><br>
+        <span class="calc">Normal: 0.60 × 0.12 + 0.40 × 0.08 = 0.0720 + 0.0320 = 0.1040</span><br>
+        <span class="calc">Recession: 0.60 × (−0.10) + 0.40 × 0.15 = −0.0600 + 0.0600 = 0.0000</span>
+      </li>
+      <li data-step="2.">Expected return from state-level returns:<br>
+        <span class="calc">E(R<sub>p</sub>) = 0.25 × 0.2000 + 0.50 × 0.1040 + 0.25 × 0.0000</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 0.0500 + 0.0520 + 0.0000 = 0.1020</span>
+      </li>
+    </ul>
+    <div class="answer-line">E(R<sub>p</sub>) = 10.20% — same as Example 6. But notice something remarkable: in the recession state, the portfolio return is exactly 0%. Red Acre's −10% loss is precisely offset by Blue Acre's +15% gain (weighted by 60/40). The counter-cyclical asset is already cushioning the downside.</div>
+  </details>
+</div>
+
+<p>That recession-state result deserves your attention. Red Acre alone would have lost 10% in a recession. But by combining it with Blue Acre — which does well when the economy struggles — the portfolio breaks even. You haven't eliminated all risk (the boom and normal returns still vary), but the worst-case scenario has improved dramatically. This is the beginning of the diversification story.</p>
+
+<div class="example-embed" data-label="Example 8 — Three-Asset Portfolio">
+  <p class="scenario">
+    You allocate your portfolio across three Acre companies: 40% in Red Acre (E(R) = 11.00%), 30% in Blue Acre (E(R) = 9.00%), and 30% in Green Acre Agriculture (E(R) = 8.75%). What is the portfolio's expected return?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Verify weights: <span class="calc">0.40 + 0.30 + 0.30 = 1.00 ✓</span></li>
+      <li data-step="2.">Apply formula:<br>
+        <span class="calc">E(R<sub>p</sub>) = 0.40 × 0.1100 + 0.30 × 0.0900 + 0.30 × 0.0875</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 0.0440 + 0.0270 + 0.0263</span>
+      </li>
+      <li data-step="3.">Sum: <span class="calc">= 0.0973</span></li>
+    </ul>
+    <div class="answer-line">E(R<sub>p</sub>) = 9.73%. The formula extends naturally to any number of assets — just add more weighted terms.</div>
+  </details>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PART D — The Diversification Payoff -->
+<!-- ============================================================ -->
+
+<h2>Part D — Portfolio Risk and the Diversification Payoff</h2>
+
+<h3>Portfolio Risk Is Not a Weighted Average</h3>
+
+<p>Here's the single most important idea in this week's material: <strong>portfolio expected return <em>is</em> a weighted average of individual expected returns, but portfolio risk is <em>not</em> a weighted average of individual risks.</strong> That asymmetry is the entire reason diversification works.</p>
+
+<p>To compute portfolio risk, you use the state-by-state portfolio returns (as in Example 7), treat them as if they were the returns on a single asset, and apply the variance/standard deviation formulas from Part B. The expected return of the portfolio is the mean; the deviations are measured from that mean.</p>
+
+<div class="example-embed" data-label="Example 9 — Portfolio Standard Deviation">
+  <p class="scenario">
+    Using the 60/40 Red Acre/Blue Acre portfolio from Examples 6–7, compute the portfolio's variance and standard deviation. Recall that the state-level portfolio returns were: Boom = 20.00%, Normal = 10.40%, Recession = 0.00%, and E(R<sub>p</sub>) = 10.20%.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Deviations from portfolio expected return (0.1020):<br>
+        <span class="calc">Boom: 0.2000 − 0.1020 = 0.0980</span><br>
+        <span class="calc">Normal: 0.1040 − 0.1020 = 0.0020</span><br>
+        <span class="calc">Recession: 0.0000 − 0.1020 = −0.1020</span>
+      </li>
+      <li data-step="2.">Square deviations:<br>
+        <span class="calc">(0.0980)² = 0.009604</span><br>
+        <span class="calc">(0.0020)² = 0.000004</span><br>
+        <span class="calc">(−0.1020)² = 0.010404</span>
+      </li>
+      <li data-step="3.">Probability-weighted sum:<br>
+        <span class="calc">σ² = 0.25 × 0.009604 + 0.50 × 0.000004 + 0.25 × 0.010404</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;= 0.002401 + 0.000002 + 0.002601</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;= 0.005004</span>
+      </li>
+      <li data-step="4.">Standard deviation: <span class="calc">σ = √0.005004 = 0.0707</span></li>
+    </ul>
+    <div class="answer-line">Portfolio σ = 7.07%. Now compare this to what you'd get by just averaging the individual standard deviations.</div>
+  </details>
+</div>
+
+<div class="example-embed" data-label="Example 10 — The Diversification Benefit">
+  <p class="scenario">
+    Red Acre has σ = 14.18% and Blue Acre has σ = 3.67%. If portfolio risk were simply a weighted average of individual risks, what would the 60/40 portfolio's standard deviation be? Compare this to the actual portfolio σ from Example 9.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Weighted average of individual SDs:<br>
+        <span class="calc">0.60 × 14.18% + 0.40 × 3.67% = 8.51% + 1.47% = 9.98%</span>
+      </li>
+      <li data-step="2.">Actual portfolio SD (from Example 9): <span class="calc">7.07%</span></li>
+      <li data-step="3.">Diversification benefit: <span class="calc">9.98% − 7.07% = 2.91%</span></li>
+    </ul>
+    <div class="answer-line">The actual portfolio risk (7.07%) is substantially lower than the weighted average of individual risks (9.98%). The "missing" 2.91% is the diversification benefit — risk reduction you get for free, just by combining assets whose returns don't move in perfect lockstep.</div>
+  </details>
+</div>
+
+<h3>Why Does Diversification Work?</h3>
+
+<p>The key is in the <em>relationship</em> between the assets' returns across states. Look at Red Acre and Blue Acre: when one goes up, the other tends to go down. In the boom, Red Acre soars (+30%) while Blue Acre barely budges (+5%). In the recession, Red Acre drops (−10%) while Blue Acre thrives (+15%). They partially offset each other. The gains in one asset cushion the losses in the other, and the portfolio's overall swings are smaller than you'd expect.</p>
+
+<p>This offsetting behavior — where one asset zigs while the other zags — is what makes <span class="key-term">diversification</span> valuable. The principle of diversification states that combining assets whose returns are not perfectly positively correlated will reduce portfolio risk below the weighted average of individual risks. The less correlated the assets' returns are — and especially if they're negatively correlated — the greater the risk reduction.</p>
+
+<p>Importantly, diversification reduces risk without requiring you to accept a lower expected return (relative to the weighted average). The portfolio in Example 10 has an expected return of 10.20%, which is exactly the weighted average of 11% and 9%. Expected return blends linearly. Risk does not. That gap between the linear blend and the actual outcome is the free lunch of finance — one of the very few genuine free lunches the field has to offer.</p>
+
+<div class="example-embed" data-label="Example 11 — How Weights Affect Portfolio Risk">
+  <p class="scenario">
+    Consider two alternative portfolios using Red Acre and Blue Acre:<br>
+    Portfolio A: 80% Red Acre, 20% Blue Acre<br>
+    Portfolio B: 20% Red Acre, 80% Blue Acre<br>
+    Compute the expected return and standard deviation of each. Which portfolio offers a better risk-return tradeoff?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Portfolio A expected return: <span class="calc">0.80 × 0.11 + 0.20 × 0.09 = 0.088 + 0.018 = 0.1060 = 10.60%</span></li>
+      <li data-step="2.">Portfolio A state returns:<br>
+        <span class="calc">Boom: 0.80 × 0.30 + 0.20 × 0.05 = 0.2500</span><br>
+        <span class="calc">Normal: 0.80 × 0.12 + 0.20 × 0.08 = 0.1120</span><br>
+        <span class="calc">Recession: 0.80 × (−0.10) + 0.20 × 0.15 = −0.0500</span>
+      </li>
+      <li data-step="3.">Portfolio A variance:<br>
+        <span class="calc">σ² = 0.25(0.2500 − 0.1060)² + 0.50(0.1120 − 0.1060)² + 0.25(−0.0500 − 0.1060)²</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;= 0.25(0.020736) + 0.50(0.000036) + 0.25(0.024336) = 0.011286</span><br>
+        <span class="calc">σ<sub>A</sub> = √0.011286 = 10.62%</span>
+      </li>
+      <li data-step="4.">Portfolio B expected return: <span class="calc">0.20 × 0.11 + 0.80 × 0.09 = 0.022 + 0.072 = 0.0940 = 9.40%</span></li>
+      <li data-step="5.">Portfolio B state returns:<br>
+        <span class="calc">Boom: 0.20 × 0.30 + 0.80 × 0.05 = 0.1000</span><br>
+        <span class="calc">Normal: 0.20 × 0.12 + 0.80 × 0.08 = 0.0880</span><br>
+        <span class="calc">Recession: 0.20 × (−0.10) + 0.80 × 0.15 = 0.1000</span>
+      </li>
+      <li data-step="6.">Portfolio B variance:<br>
+        <span class="calc">σ² = 0.25(0.1000 − 0.0940)² + 0.50(0.0880 − 0.0940)² + 0.25(0.1000 − 0.0940)²</span><br>
+        <span class="calc">&nbsp;&nbsp;&nbsp;= 0.25(0.000036) + 0.50(0.000036) + 0.25(0.000036) = 0.000036</span><br>
+        <span class="calc">σ<sub>B</sub> = √0.000036 = 0.60%</span>
+      </li>
+    </ul>
+    <div class="answer-line">Portfolio A: E(R) = 10.60%, σ = 10.62%. Portfolio B: E(R) = 9.40%, σ = 0.60%. Portfolio B has nearly eliminated risk — its standard deviation is less than 1%! By heavily weighting the counter-cyclical Blue Acre, the portfolio's returns barely vary across states. The tradeoff is a lower expected return. Which is "better" depends on how much risk you're willing to bear.</div>
+  </details>
+</div>
+
+<p>Example 11 is a striking illustration. Portfolio B has almost zero risk — less than a percentage point of standard deviation — because the heavy Blue Acre weighting nearly perfectly offsets Red Acre's cyclicality. In the real world, you won't find assets that offset <em>this</em> cleanly, but the principle holds: the more assets you combine, and the less correlated they are, the more risk you can diversify away.</p>
+
+<div class="figure">
+  <span class="figure-label">Figure 1 — Portfolio Risk vs. Weight in Red Acre</span>
+  <svg viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Chart showing portfolio standard deviation versus weight in Red Acre. Risk reaches a minimum near 20% Red Acre.">
+    <!-- Background -->
+    <rect x="70" y="20" width="520" height="280" fill="#ffffff" stroke="#d4d0c8" stroke-width="0.5" rx="2"/>
+
+    <!-- Grid lines -->
+    <g stroke="#e8e4dc" stroke-width="0.5">
+      <line x1="70" y1="76" x2="590" y2="76"/>
+      <line x1="70" y1="132" x2="590" y2="132"/>
+      <line x1="70" y1="188" x2="590" y2="188"/>
+      <line x1="70" y1="244" x2="590" y2="244"/>
+    </g>
+
+    <!-- Y-axis labels -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="end">
+      <text x="64" y="24">16%</text>
+      <text x="64" y="80">12%</text>
+      <text x="64" y="136">8%</text>
+      <text x="64" y="192">4%</text>
+      <text x="64" y="248">0%</text>
+      <text x="64" y="304">−4%</text>
+    </g>
+
+    <!-- X-axis labels -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="middle">
+      <text x="70" y="315">0%</text>
+      <text x="174" y="315">20%</text>
+      <text x="278" y="315">40%</text>
+      <text x="382" y="315">60%</text>
+      <text x="486" y="315">80%</text>
+      <text x="590" y="315">100%</text>
+    </g>
+
+    <!-- Axis titles -->
+    <text x="330" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Weight in Red Acre</text>
+    <text x="16" y="160" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 16 160)">Portfolio Std Dev (σ)</text>
+
+    <!-- Weighted-average line (linear, from Blue Acre SD to Red Acre SD) -->
+    <!-- Blue Acre SD=3.67% at w=0, Red Acre SD=14.18% at w=100% -->
+    <!-- y scale: 16% = y20, 0% = y244, so 1% = 14px. -4% = y300 -->
+    <!-- y(pct) = 244 - pct * 14 -->
+    <!-- x(w) = 70 + w/100 * 520 -->
+    <line x1="70" y1="192.62" x2="590" y2="45.48" stroke="#d4d0c8" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+    <!-- Portfolio risk curve (actual) -->
+    <!-- Data points computed: w -> SD% -> (x, y) -->
+    <!-- y(sd) = 244 - sd * 14 -->
+    <path d="
+      M 70,192.62
+      L 96,204.80
+      L 122,216.84
+      L 148,228.18
+      L 174,235.60
+      L 200,229.72
+      L 226,218.66
+      L 252,206.62
+      L 278,194.44
+      L 304,182.12
+      L 330,169.80
+      L 356,157.34
+      L 382,145.02
+      L 408,132.56
+      L 434,120.10
+      L 460,107.64
+      L 486,95.32
+      L 512,82.86
+      L 538,70.40
+      L 564,57.94
+      L 590,45.48
+    " fill="none" stroke="#c75000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Legend (upper right, clear space) -->
+    <line x1="420" y1="33" x2="456" y2="33" stroke="#d4d0c8" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="462" y="37" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#6b6560" font-style="italic">Weighted avg of individual SDs</text>
+    <line x1="420" y1="50" x2="456" y2="50" stroke="#c75000" stroke-width="2.5"/>
+    <text x="462" y="54" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#c75000" font-style="italic">Actual portfolio risk</text>
+
+    <!-- Highlighted data points from examples -->
+    <!-- Portfolio B: 20/80, SD=0.60% -->
+    <circle cx="174" cy="235.60" r="5" fill="#c75000"/>
+    <text x="186" y="252" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#c75000" font-weight="500">B: 0.60%</text>
+
+    <!-- 60/40 portfolio (Ex 9): SD=7.07% -->
+    <circle cx="382" cy="145.02" r="5" fill="#c75000"/>
+    <text x="394" y="159" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#c75000" font-weight="500">Ex 9: 7.07%</text>
+
+    <!-- Portfolio A: 80/20, SD=10.62% -->
+    <circle cx="486" cy="95.32" r="5" fill="#c75000"/>
+    <text x="486" y="114" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#c75000" font-weight="500" text-anchor="middle">A: 10.62%</text>
+
+    <!-- Minimum-variance point (near w=20%, SD≈0.60%) -->
+    <line x1="174" y1="235.60" x2="174" y2="270" stroke="#c75000" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <text x="174" y="282" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#c75000" text-anchor="middle" font-style="italic">min variance</text>
+
+    <!-- Diversification benefit bracket at w=35% -->
+    <!-- Weighted avg at 35%: 0.35*14.18 + 0.65*3.67 = 7.349%, y = 244 - 7.349*14 = 141.11 -->
+    <!-- Actual at 35%: 2.67%, y = 206.62 -->
+    <line x1="245" y1="141" x2="245" y2="207" stroke="#6b6560" stroke-width="1" marker-start="url(#arrowUp)" marker-end="url(#arrowDown)"/>
+    <text x="256" y="170" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#6b6560" font-style="italic">diversification</text>
+    <text x="256" y="180" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#6b6560" font-style="italic">benefit</text>
+
+    <defs>
+      <marker id="arrowUp" markerWidth="6" markerHeight="6" refX="3" refY="6" orient="auto"><path d="M0,6 L3,0 L6,6" fill="none" stroke="#6b6560" stroke-width="1"/></marker>
+      <marker id="arrowDown" markerWidth="6" markerHeight="6" refX="3" refY="0" orient="auto"><path d="M0,0 L3,6 L6,0" fill="none" stroke="#6b6560" stroke-width="1"/></marker>
+    </defs>
+  </svg>
+  <p class="figure-caption">The solid curve shows the actual portfolio standard deviation as the allocation shifts from 100% Blue Acre (left) to 100% Red Acre (right). The dashed line shows what risk <em>would</em> be if it blended linearly. The gap between them is the diversification benefit. Risk reaches a minimum near 20% Red Acre — the minimum-variance portfolio.</p>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PART E — Systematic vs. Unsystematic Risk -->
+<!-- ============================================================ -->
+
+<h2>Part E — Systematic and Unsystematic Risk</h2>
+
+<h3>What You Can and Cannot Diversify Away</h3>
+
+<p>If diversification is so powerful, why doesn't it eliminate <em>all</em> risk? Because there are two fundamentally different types of risk, and diversification only works on one of them.</p>
+
+<p><span class="key-term">Unsystematic risk</span> (also called diversifiable risk or firm-specific risk) is risk that is unique to a particular company or industry. A product recall at one firm, a labor strike at another, a CEO departure, a patent dispute — these events affect specific companies but don't ripple through the entire economy. When you hold many different assets, the bad luck at one firm tends to be offset by good luck at another. More assets means more opportunities for cancellation, and the unsystematic risk of the portfolio approaches zero.</p>
+
+<p><span class="key-term">Systematic risk</span> (also called non-diversifiable risk) is risk that affects the entire market simultaneously. Recessions, interest rate changes, inflation, geopolitical crises, pandemics — these events hit virtually all assets at once, so there's no offsetting. You can hold a thousand stocks and still be exposed to systematic risk because a recession drags down most of them together.</p>
+
+<p>Think of it this way: if Red Acre's factory burns down, that's bad for Red Acre but has no effect on Blue Acre or Green Acre. In a well-diversified portfolio, this kind of event barely moves the needle. But if the entire economy enters a recession, all three Acre companies feel it (even though they feel it differently). No amount of diversification eliminates the economy-wide downturn.</p>
+
+<h3>The Market Rewards Systematic Risk Only</h3>
+
+<p>This distinction has a profound implication for how assets are priced. Because unsystematic risk can be eliminated through diversification — and since diversification is essentially free (you just hold more assets) — the market doesn't reward you for bearing unsystematic risk. If you concentrate your portfolio in a single stock and endure sleepless nights over that company's idiosyncratic fortunes, the market shrugs. You could have diversified away that anxiety at no cost.</p>
+
+<p>Systematic risk, on the other hand, cannot be diversified away. It's the irreducible risk of participating in the market at all. Because investors bear this risk unavoidably, they demand compensation for it — a higher expected return. This is the core logic behind asset pricing: <strong>the risk that matters for determining an asset's expected return is its systematic risk, not its total risk.</strong></p>
+
+<p>Recall from Week 7 that the equity risk premium — the extra return stocks earn over risk-free Treasury bills — compensates investors for bearing the systematic risk of the stock market. We'll formalize this idea in Week 9 when we study the Capital Asset Pricing Model (CAPM), which provides a precise formula linking an asset's systematic risk to its expected return.</p>
+
+<div class="example-embed" data-label="Example 12 — Classifying Risks">
+  <p class="scenario">
+    For each of the following events, classify the risk as primarily systematic or unsystematic, and explain whether diversification would help reduce its impact on your portfolio:<br><br>
+    (a) The Federal Reserve unexpectedly raises interest rates by 0.75%.<br>
+    (b) Green Acre Agriculture's largest grain silo is destroyed by a tornado.<br>
+    (c) Congress passes a surprise corporate tax increase from 21% to 28%.<br>
+    (d) Red Acre Industries' CFO is indicted for securities fraud.<br>
+    (e) A new technology renders Blue Acre Financial's core product obsolete.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="a."><strong>Systematic.</strong> An unexpected rate hike affects the cost of borrowing across the entire economy, impacting virtually all firms. Bond prices fall, discount rates rise, and stock valuations decline broadly. Diversification does not help — you'd need to exit the market entirely to avoid this.</li>
+      <li data-step="b."><strong>Unsystematic.</strong> This is a firm-specific disaster. It affects Green Acre's operations and stock price, but it has no bearing on other companies. A diversified portfolio absorbs this with minimal impact.</li>
+      <li data-step="c."><strong>Systematic.</strong> A corporate tax increase reduces after-tax earnings for virtually all companies. This is an economy-wide policy change. Diversification across stocks doesn't help because nearly all stocks are affected.</li>
+      <li data-step="d."><strong>Unsystematic.</strong> This is specific to Red Acre. Other firms' management is unaffected. In a diversified portfolio, this event is a minor ripple.</li>
+      <li data-step="e."><strong>Unsystematic.</strong> Technological disruption to a single firm or product line is firm-specific risk. Other companies in the portfolio aren't exposed to this particular obsolescence.</li>
+    </ul>
+    <div class="answer-line">Events (a) and (c) are systematic — they affect the whole market and can't be diversified away. Events (b), (d), and (e) are unsystematic — they're company-specific and wash out in a diversified portfolio.</div>
+  </details>
+</div>
+
+<h3>The Diversification Curve</h3>
+
+<p>If you start with a single stock, your portfolio's total risk includes both systematic and unsystematic components. As you add more stocks — especially stocks from different industries and sectors — the unsystematic component shrinks. Research suggests that a portfolio of around 25–30 randomly selected stocks eliminates most unsystematic risk. Beyond that, adding more stocks provides diminishing returns in terms of risk reduction.</p>
+
+<p>The risk that remains after full diversification is the portfolio's systematic risk — the portion that moves with the overall market. This residual risk is what determines the portfolio's expected return in equilibrium. We'll quantify systematic risk precisely in Week 9 using a measure called <em>beta</em>.</p>
+
+<div class="figure">
+  <span class="figure-label">Figure 2 — The Diversification Curve</span>
+  <svg viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Chart showing how portfolio standard deviation decreases as the number of stocks increases, approaching a floor of systematic risk around 20%.">
+    <!-- Background -->
+    <rect x="80" y="20" width="510" height="280" fill="#ffffff" stroke="#d4d0c8" stroke-width="0.5" rx="2"/>
+
+    <!-- Grid lines -->
+    <g stroke="#e8e4dc" stroke-width="0.5">
+      <line x1="80" y1="76" x2="590" y2="76"/>
+      <line x1="80" y1="132" x2="590" y2="132"/>
+      <line x1="80" y1="188" x2="590" y2="188"/>
+      <line x1="80" y1="244" x2="590" y2="244"/>
+    </g>
+
+    <!-- Y-axis labels (0% to 50%) -->
+    <!-- y scale: 50% = y20, 0% = y300, so 1% = 5.6 -->
+    <!-- y(pct) = 300 - pct * 5.6 -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="end">
+      <text x="74" y="24">50%</text>
+      <text x="74" y="80">40%</text>
+      <text x="74" y="136">30%</text>
+      <text x="74" y="192">20%</text>
+      <text x="74" y="248">10%</text>
+      <text x="74" y="304">0%</text>
+    </g>
+
+    <!-- X-axis labels (number of stocks) -->
+    <!-- x scale: 1 stock = x80, 50 stocks = x590. Per stock = 510/49 ≈ 10.408 -->
+    <!-- x(n) = 80 + (n-1) * 10.408 -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="middle">
+      <text x="80" y="315">1</text>
+      <text x="174" y="315">10</text>
+      <text x="278" y="315">20</text>
+      <text x="382" y="315">30</text>
+      <text x="486" y="315">40</text>
+      <text x="590" y="315">50</text>
+    </g>
+
+    <!-- Axis titles -->
+    <text x="335" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Number of Stocks in Portfolio</text>
+    <text x="22" y="160" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 22 160)">Portfolio Std Dev (σ)</text>
+
+    <!-- Systematic risk floor (dashed line at 20%) -->
+    <!-- y(20) = 300 - 20*5.6 = 188 -->
+    <line x1="80" y1="188" x2="590" y2="188" stroke="#c75000" stroke-width="1.2" stroke-dasharray="6 4"/>
+    <text x="585" y="202" font-family="'Source Serif 4', Georgia, serif" font-size="9.5" fill="#c75000" text-anchor="end" font-style="italic">Systematic risk (market risk) ≈ 20%</text>
+
+    <!-- Diversification curve -->
+    <!-- x(n) = 80 + (n-1) * 10.408 -->
+    <!-- y(sd) = 300 - sd * 5.6 -->
+    <!-- n=1: x=80, sd=49, y=25.6 -->
+    <!-- n=2: x=90.4, sd=37.42, y=90.45 -->
+    <!-- n=3: x=100.8, sd=32.66, y=117.10 -->
+    <!-- n=4: x=111.2, sd=30.00, y=132 -->
+    <!-- n=5: x=121.6, sd=28.29, y=141.58 -->
+    <!-- n=6: x=132.0, sd=27.08, y=148.35 -->
+    <!-- n=8: x=152.9, sd=25.50, y=157.20 -->
+    <!-- n=10: x=173.7, sd=24.50, y=162.80 -->
+    <!-- n=12: x=194.5, sd=23.81, y=166.67 -->
+    <!-- n=15: x=225.7, sd=23.10, y=170.64 -->
+    <!-- n=20: x=277.8, sd=22.36, y=174.78 -->
+    <!-- n=25: x=329.8, sd=21.91, y=177.30 -->
+    <!-- n=30: x=381.8, sd=21.60, y=179.04 -->
+    <!-- n=35: x=433.9, sd=21.38, y=180.27 -->
+    <!-- n=40: x=485.9, sd=21.21, y=181.22 -->
+    <!-- n=50: x=590.0, sd=20.98, y=182.51 -->
+    <path d="
+      M 80,25.6
+      L 90.4,90.4
+      L 100.8,117.1
+      L 111.2,132
+      L 121.6,141.6
+      L 132,148.4
+      L 152.9,157.2
+      L 173.7,162.8
+      L 194.5,166.7
+      L 225.7,170.6
+      L 277.8,174.8
+      L 329.8,177.3
+      L 381.8,179.0
+      L 433.9,180.3
+      L 485.9,181.2
+      L 590,182.5
+    " fill="none" stroke="#c75000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Unsystematic risk region (shaded) -->
+    <path d="
+      M 80,25.6
+      L 90.4,90.4
+      L 100.8,117.1
+      L 111.2,132
+      L 121.6,141.6
+      L 132,148.4
+      L 152.9,157.2
+      L 173.7,162.8
+      L 194.5,166.7
+      L 225.7,170.6
+      L 277.8,174.8
+      L 329.8,177.3
+      L 381.8,179.0
+      L 433.9,180.3
+      L 485.9,181.2
+      L 590,182.5
+      L 590,188
+      L 80,188
+      Z
+    " fill="#fff3ec" opacity="0.7"/>
+
+    <!-- Systematic risk region label -->
+    <text x="335" y="218" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#6b6560" text-anchor="middle" font-style="italic">Systematic risk — cannot be diversified away</text>
+
+    <!-- Unsystematic risk region label -->
+    <text x="200" y="112" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#c75000" text-anchor="start" font-style="italic">Unsystematic risk</text>
+    <text x="200" y="126" font-family="'Source Serif 4', Georgia, serif" font-size="10" fill="#c75000" text-anchor="start" font-style="italic">(diversifiable)</text>
+
+    <!-- Annotation at ~25 stocks -->
+    <circle cx="329.8" cy="177.3" r="4" fill="#c75000"/>
+    <line x1="329.8" y1="177.3" x2="340" y2="152" stroke="#6b6560" stroke-width="0.8"/>
+    <text x="344" y="150" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#6b6560">~25 stocks: most</text>
+    <text x="344" y="161" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#6b6560">diversification gained</text>
+
+    <!-- Single stock point -->
+    <circle cx="80" cy="25.6" r="4" fill="#c75000"/>
+    <text x="92" y="30" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#6b6560">1 stock: ~49%</text>
+  </svg>
+  <p class="figure-caption">As stocks are added to a portfolio, unsystematic (firm-specific) risk is diversified away. The curve flattens around 25–30 stocks, leaving only systematic (market) risk — the portion that cannot be eliminated through diversification.</p>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- KEY FORMULAS REFERENCE -->
+<!-- ============================================================ -->
+
+<h2>Key Formulas Reference</h2>
+
+<table class="formula-ref">
+  <tr><th>Concept</th><th>Formula</th><th>Notes</th></tr>
+  <tr>
+    <td>Expected Return</td>
+    <td>E(R) = Σ [p<sub>i</sub> × R<sub>i</sub>]</td>
+    <td>Probability-weighted average of state returns</td>
+  </tr>
+  <tr>
+    <td>Variance</td>
+    <td>σ² = Σ [p<sub>i</sub> × (R<sub>i</sub> − E(R))²]</td>
+    <td>Probability-weighted average of squared deviations</td>
+  </tr>
+  <tr>
+    <td>Standard Deviation</td>
+    <td>σ = √σ²</td>
+    <td>Same units as returns (%)</td>
+  </tr>
+  <tr>
+    <td>Portfolio Expected Return</td>
+    <td>E(R<sub>p</sub>) = Σ [w<sub>i</sub> × E(R<sub>i</sub>)]</td>
+    <td>Weighted average; weights = portfolio fractions</td>
+  </tr>
+  <tr>
+    <td>Portfolio Variance<br>(state-by-state)</td>
+    <td>Compute R<sub>p</sub> in each state,<br>then apply σ² formula</td>
+    <td>Not a simple weighted avg of individual variances</td>
+  </tr>
+</table>
+
+
+<!-- ============================================================ -->
+<!-- PRACTICE PROBLEMS -->
+<!-- ============================================================ -->
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<h2>Practice Problems</h2>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W8.1]</span>
+  </div>
+  <p>Copper Acre Mining has the following projected returns across three economic states: Boom (probability 15%) = 25%, Normal (probability 60%) = 10%, Recession (probability 25%) = −8%. Compute Copper Acre's expected return.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W8.1, W8.2]</span>
+  </div>
+  <p>Using the Copper Acre data from Problem 1, compute the variance and standard deviation of Copper Acre's returns. How does the standard deviation compare to that of Red Acre Industries (σ = 14.18%)? What does the comparison tell you about relative risk?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W8.3]</span>
+  </div>
+  <p>You invest 50% of your portfolio in Asset X (E(R) = 12%) and 50% in Asset Y (E(R) = 8%). What is the expected return of the portfolio?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W8.1, W8.2, W8.3, W8.4]</span>
+  </div>
+  <p>Orange Acre Technology and Silver Acre Utilities have the following projected returns:</p>
+  <table class="state-table">
+    <tr><th>State</th><th>Probability</th><th>Orange Acre</th><th>Silver Acre</th></tr>
+    <tr><td>Boom</td><td>30%</td><td>22%</td><td>2%</td></tr>
+    <tr><td>Normal</td><td>45%</td><td>10%</td><td>7%</td></tr>
+    <tr><td>Recession</td><td>25%</td><td>−5%</td><td>14%</td></tr>
+  </table>
+  <p>(a) Compute the expected return and standard deviation for each stock individually.<br>
+  (b) Compute the expected return and standard deviation of a 50/50 portfolio.<br>
+  (c) Compare the portfolio's actual σ to the weighted average of the individual σ values. How large is the diversification benefit?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W8.3]</span>
+  </div>
+  <p>A portfolio consists of three assets: Asset A (weight 50%, E(R) = 14%), Asset B (weight 30%, E(R) = 9%), and Asset C (weight 20%, E(R) = 6%). Compute the portfolio's expected return.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W8.5]</span>
+  </div>
+  <p>Classify each of the following as primarily systematic or unsystematic risk. For each, explain whether holding a diversified portfolio of 30 stocks would substantially reduce the impact of the event on your portfolio's return:<br><br>
+  (a) A nationwide increase in the minimum wage.<br>
+  (b) A data breach at one specific retailer.<br>
+  (c) A sharp and unexpected rise in crude oil prices.<br>
+  (d) The resignation of a company's entire board of directors.<br>
+  (e) A global pandemic that shuts down international supply chains.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 7</span>
+    <span class="skill-tag">[W8.3, W8.4]</span>
+  </div>
+  <p>Using the Orange Acre and Silver Acre data from Problem 4, compare two portfolios: Portfolio X (70% Orange Acre, 30% Silver Acre) and Portfolio Y (30% Orange Acre, 70% Silver Acre). Compute the expected return and standard deviation of each. Which portfolio has the better risk-return tradeoff, and why?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 8</span>
+    <span class="skill-tag">[W8.4, W8.5]</span>
+  </div>
+  <p>Your classmate argues: "Diversification always reduces risk, so the best strategy is to hold as many different stocks as possible — the more stocks, the lower the risk, and eventually the risk goes to zero." Write a short paragraph explaining what's right and what's wrong about this statement. Be specific about the types of risk involved.</p>
+</div>
+
+</body>
+</html>

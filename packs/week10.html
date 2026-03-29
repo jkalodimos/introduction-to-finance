@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Finance — Week 10</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+/* Formula reference table */
+.formula-ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+.formula-ref-table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.formula-ref-table td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.formula-ref-table td:nth-child(2) {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+/* ---- Nav Link ---- */
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-block;
+}
+.nav-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-link a:hover {
+  text-decoration: underline;
+}
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<div class="course-header">
+  <div class="course-id">Introduction to Finance &middot; Jonathan Kalodimos</div>
+  <h1>Week 10 Course Pack</h1>
+  <div class="subtitle">Weighted Average Cost of Capital</div>
+</div>
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W10.1</span> Calculate the after-tax cost of debt</li>
+    <li><span class="skill-code">W10.2</span> Calculate WACC</li>
+    <li><span class="skill-code">W10.3</span> Explain why WACC is the appropriate discount rate for projects of similar risk</li>
+    <li><span class="skill-code">W10.4</span> Describe the limitations of using firm-wide WACC</li>
+    <li><span class="skill-code">W10.5</span> Integrate cost of capital with NPV analysis</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART A — After-Tax Cost of Debt                              -->
+<!-- ============================================================ -->
+
+<h2>Part A — The After-Tax Cost of Debt</h2>
+
+<p>
+In Week 9, you learned to estimate the cost of equity — the return shareholders require for bearing the risk of owning the firm's stock. You used two approaches: the CAPM (which links expected return to systematic risk via beta) and the dividend discount model (which backs out the required return from the stock price, dividend, and growth rate). Both methods give you <em>r<sub>E</sub></em>, the cost of equity capital.
+</p>
+
+<p>
+Now we turn to the other major source of financing: debt. The <span class="key-term">cost of debt</span> is the return that lenders require to provide financing to the firm. Conceptually, it's the interest rate the firm pays on new borrowing. In practice, you estimate it as the <span class="key-term">yield to maturity (YTM)</span> on the firm's existing publicly traded bonds — the market's current required return on the firm's debt, reflecting both the general level of interest rates and the firm's specific credit risk. Recall from Week 3 that YTM is the discount rate that sets a bond's market price equal to the present value of its remaining coupon and principal cash flows.
+</p>
+
+<p>
+But there's a critical twist that doesn't apply to equity: interest payments on debt are <em>tax-deductible</em>. When a firm pays $1 in interest, its taxable income falls by $1, reducing its tax bill by $1 × <em>T<sub>C</sub></em>, where <em>T<sub>C</sub></em> is the corporate tax rate. The government, in effect, subsidizes part of the firm's borrowing cost. This means the <em>true</em> cost of debt to the firm — the <span class="key-term">after-tax cost of debt</span> — is lower than the YTM.
+</p>
+
+<div class="formula-box">
+  <span class="label">After-Tax Cost of Debt</span>
+  <span class="formula"><em>r</em><sub>D</sub>(1 − <em>T</em><sub>C</sub>)</span>
+  <div class="note">
+    where <em>r</em><sub>D</sub> = yield to maturity (pre-tax cost of debt), <em>T</em><sub>C</sub> = corporate marginal tax rate
+  </div>
+</div>
+
+<p>
+The intuition is straightforward: if a firm borrows at 6% and faces a 21% tax rate, the after-tax cost is only 6% × (1 − 0.21) = 4.74%. The IRS absorbs 21% of the interest expense through the tax deduction. This tax shield is one of the fundamental reasons firms use debt in their capital structure — it lowers the effective cost of financing compared to equity, which receives no such tax subsidy. (Dividends are paid from after-tax income.)
+</p>
+
+<p>
+A few practical notes. First, the relevant tax rate is the firm's <em>marginal</em> corporate tax rate — the rate applied to the next dollar of income. For most U.S. C-corporations, this is the federal statutory rate of 21%, though state taxes can push the effective marginal rate modestly higher. Second, the tax shield only has value if the firm has enough taxable income to use it. A firm with large tax losses carried forward may not benefit from the deduction immediately. For this course, we'll assume firms are profitable enough to fully use the interest tax shield unless stated otherwise.
+</p>
+
+<div class="example-embed" data-label="Example 1 — After-Tax Cost of Debt (Basic)">
+  <p class="scenario">
+    Red Acre Industries has bonds outstanding with a yield to maturity of 6.80%. The corporate tax rate is 21%. What is Red Acre's after-tax cost of debt?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>r</em><sub>D</sub> = 6.80%, <em>T</em><sub>C</sub> = 21%</li>
+      <li data-step="2.">Apply formula: <span class="calc">r<sub>D</sub>(1 − T<sub>C</sub>) = 0.068 × (1 − 0.21)</span></li>
+      <li data-step="3.">Calculate: <span class="calc">0.068 × 0.79 = 0.0537</span></li>
+    </ul>
+    <div class="answer-line">Red Acre's after-tax cost of debt is 5.37%.</div>
+  </details>
+</div>
+
+<p>
+Notice how much the tax shield matters. Red Acre's lenders require 6.80%, but the firm's true cost is only 5.37% — a reduction of 1.43 percentage points courtesy of the tax deduction. The bigger the tax rate, the bigger the subsidy.
+</p>
+
+<h3>Finding the Pre-Tax Cost of Debt</h3>
+
+<p>
+In practice, you often need to work a bit harder to find <em>r</em><sub>D</sub>. If the firm has publicly traded bonds, you estimate YTM from the bond's current market price, coupon rate, and maturity — exactly the bond pricing exercise from Week 3, solved in reverse. If the firm doesn't have traded bonds, you might use the yield on bonds with a similar credit rating and maturity, or look at the interest rate on the firm's most recent bank borrowing.
+</p>
+
+<div class="example-embed" data-label="Example 2 — Cost of Debt from Bond Market Data">
+  <p class="scenario">
+    Blue Acre Financial has a bond outstanding with a $1,000 face value, a 5.50% coupon rate (paid semiannually), and 12 years to maturity. The bond is currently trading at $965. Blue Acre's marginal tax rate is 25%. What is Blue Acre's after-tax cost of debt?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify bond data: Face = $1,000, coupon = 5.50% (semiannual → $27.50 every 6 months), <em>n</em> = 24 semiannual periods, price = $965</li>
+      <li data-step="2.">Find YTM: Solve for the semiannual yield <em>y</em> such that $965 = $27.50 × [1 − (1 + <em>y</em>)<sup>−24</sup>] / <em>y</em> + $1,000 × (1 + <em>y</em>)<sup>−24</sup>. Using a financial calculator or trial-and-error: <span class="calc">y ≈ 2.9557%</span> per half-year.</li>
+      <li data-step="3.">Annualize: <span class="calc">YTM = 2 × 2.9557% = 5.91%</span> (bond-equivalent yield)</li>
+      <li data-step="4.">After-tax cost: <span class="calc">r<sub>D</sub>(1 − T<sub>C</sub>) = 0.0591 × (1 − 0.25) = 0.0591 × 0.75 = 0.0443</span></li>
+    </ul>
+    <div class="answer-line">Blue Acre's after-tax cost of debt is 4.43%.</div>
+  </details>
+</div>
+
+<p>
+This example reinforces the Week 3 skill of extracting YTM from bond pricing data and then applies the after-tax adjustment. In practice, financial data providers (Bloomberg, FINRA TRACE) report bond yields directly, so you don't always need to solve for YTM by hand — but you do need to understand what the number means and how to apply the tax adjustment.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART B — The Weighted Average Cost of Capital                -->
+<!-- ============================================================ -->
+
+<h2>Part B — The Weighted Average Cost of Capital</h2>
+
+<p>
+A typical firm uses a mix of equity and debt. The firm's overall cost of capital must reflect <em>both</em> sources, weighted by how much of each the firm uses. This blended rate is the <span class="key-term">weighted average cost of capital (WACC)</span>.
+</p>
+
+<p>
+The logic is simple: if a firm is financed 70% by equity costing 12% and 30% by debt costing 5% after tax, then the firm's overall cost of capital is a weighted blend of those two rates. Each dollar the firm invests must earn enough to satisfy both its shareholders and its lenders in proportion to their claims.
+</p>
+
+<div class="formula-box">
+  <span class="label">Weighted Average Cost of Capital (WACC)</span>
+  <span class="formula">WACC = (<em>E</em> / <em>V</em>) × <em>r</em><sub>E</sub> + (<em>D</em> / <em>V</em>) × <em>r</em><sub>D</sub> × (1 − <em>T</em><sub>C</sub>)</span>
+  <div class="note">
+    where <em>E</em> = market value of equity, <em>D</em> = market value of debt, <em>V</em> = <em>E</em> + <em>D</em> = total firm value,<br>
+    <em>r</em><sub>E</sub> = cost of equity, <em>r</em><sub>D</sub> = cost of debt (YTM), <em>T</em><sub>C</sub> = corporate tax rate
+  </div>
+</div>
+
+<p>
+Several important details deserve emphasis:
+</p>
+
+<p>
+<strong>Use market values, not book values.</strong> The weights <em>E</em>/<em>V</em> and <em>D</em>/<em>V</em> must be based on current market values, not the balance sheet. Why? Because WACC represents the return the firm must earn going forward on new investment. Market values reflect what investors would actually pay for the firm's securities today — they capture current expectations about risk and return. Book values, on the other hand, are historical artifacts that may bear little resemblance to what the securities are actually worth. For equity, the market value is the current stock price times the number of shares outstanding. For debt, it's the market price of the bonds (or a reasonable approximation if bonds don't trade frequently).
+</p>
+
+<p>
+<strong>The tax adjustment applies only to debt.</strong> The <em>(1 − T<sub>C</sub>)</em> term appears in the debt component because interest is tax-deductible. Equity returns (dividends and capital gains) come from after-tax income — there's no additional tax shield.
+</p>
+
+<p>
+<strong>WACC is a marginal cost.</strong> It reflects the cost of raising the <em>next</em> dollar of capital, assuming the firm maintains its current capital structure proportions. If the firm dramatically changes its financing mix, WACC will change too.
+</p>
+
+<div class="example-embed" data-label="Example 3 — WACC (Basic)">
+  <p class="scenario">
+    Blue Acre Financial has a market value of equity of $500 million and a market value of debt of $200 million. The cost of equity is 11.50%, the pre-tax cost of debt is 6.00%, and the corporate tax rate is 21%. What is Blue Acre's WACC?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Compute total value and weights: <span class="calc"><em>V</em> = $500M + $200M = $700M</span>. <span class="calc"><em>E</em>/<em>V</em> = 500/700 = 0.7143</span>, <span class="calc"><em>D</em>/<em>V</em> = 200/700 = 0.2857</span></li>
+      <li data-step="2.">Apply WACC formula: <span class="calc">WACC = 0.7143 × 0.1150 + 0.2857 × 0.0600 × (1 − 0.21)</span></li>
+      <li data-step="3.">Calculate each component: Equity component = <span class="calc">0.0821</span>; Debt component = <span class="calc">0.2857 × 0.0474 = 0.0135</span></li>
+      <li data-step="4.">Sum: <span class="calc">WACC = 0.0821 + 0.0135 = 0.0957</span></li>
+    </ul>
+    <div class="answer-line">Blue Acre's WACC is 9.57%.</div>
+  </details>
+</div>
+
+<p>
+Let's pause and interpret this result. Blue Acre needs to earn at least 9.57% on any new investment of average risk for the firm. Earning less than 9.57% means the project doesn't generate enough return to satisfy both the shareholders (who demand 11.50%) and the bondholders (who demand 6.00% pre-tax) in proportion to their financing contributions. The project would destroy value.
+</p>
+
+<h3>Computing WACC from Market Data</h3>
+
+<p>
+In textbook problems, you're often handed the cost of equity and cost of debt directly. In practice, you need to assemble these from market data — share prices, shares outstanding, bond prices, yields, betas, and so on. This next example walks through the full computation from raw inputs.
+</p>
+
+<div class="example-embed" data-label="Example 4 — WACC from Market Data">
+  <p class="scenario">
+    Green Acre Agriculture has 2 million shares outstanding, currently trading at $45 per share. The company has $30 million face value of bonds outstanding, currently trading at 102% of par. The cost of equity is 13.00%, the bonds' yield to maturity is 5.80%, and the corporate tax rate is 21%. Compute Green Acre's WACC.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Market value of equity: <span class="calc"><em>E</em> = 2,000,000 × $45 = $90.0M</span></li>
+      <li data-step="2.">Market value of debt: <span class="calc"><em>D</em> = $30M × 1.02 = $30.6M</span></li>
+      <li data-step="3.">Total firm value: <span class="calc"><em>V</em> = $90.0M + $30.6M = $120.6M</span></li>
+      <li data-step="4.">Weights: <span class="calc"><em>E</em>/<em>V</em> = 90.0/120.6 = 0.7463</span>, <span class="calc"><em>D</em>/<em>V</em> = 30.6/120.6 = 0.2537</span></li>
+      <li data-step="5.">WACC: <span class="calc">0.7463 × 0.1300 + 0.2537 × 0.0580 × (1 − 0.21)</span></li>
+      <li data-step="6.">Calculate: <span class="calc">0.0970 + 0.0116 = 0.1086</span></li>
+    </ul>
+    <div class="answer-line">Green Acre's WACC is 10.86%.</div>
+  </details>
+</div>
+
+<p>
+Note the market value of debt. The bonds trade at 102% of par — a premium — so the market value ($30.6M) exceeds the face value ($30M). Always use the market price, not the face value. This distinction matters more when bonds trade at a significant premium or discount to par.
+</p>
+
+<h3>Capital Structure and WACC: A Sensitivity Perspective</h3>
+
+<p>
+How does the mix of debt and equity affect WACC? Since the after-tax cost of debt is almost always lower than the cost of equity (debt is senior, less risky for investors, and tax-deductible), adding more debt to the capital structure generally lowers WACC — up to a point. Beyond some level of leverage, the increased risk of financial distress pushes both the cost of debt and the cost of equity higher, eventually outweighing the tax benefit.
+</p>
+
+<p>
+The following example holds the component costs constant and varies only the weights to illustrate the mechanical relationship. In reality, changing the capital structure would also change the component costs — more leverage means more risk for both equity and debt holders — but this simplified comparison builds intuition.
+</p>
+
+<div class="example-embed" data-label="Example 5 — Capital Structure Sensitivity">
+  <p class="scenario">
+    Suppose a firm has a cost of equity of 13.00% and an after-tax cost of debt of 4.58%. Compare the WACC under two capital structures: (a) 70% equity / 30% debt, and (b) 50% equity / 50% debt.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Structure A (70/30): <span class="calc">WACC = 0.70 × 0.1300 + 0.30 × 0.0458 = 0.0910 + 0.0137 = 0.1047</span></li>
+      <li data-step="2.">Structure B (50/50): <span class="calc">WACC = 0.50 × 0.1300 + 0.50 × 0.0458 = 0.0650 + 0.0229 = 0.0879</span></li>
+    </ul>
+    <div class="answer-line">WACC falls from 10.47% (70/30) to 8.79% (50/50) as the firm shifts toward cheaper debt financing.</div>
+  </details>
+</div>
+
+<p>
+The WACC drops by nearly 1.7 percentage points when the firm shifts from 70/30 to 50/50, because a larger share of the cheaper financing source (after-tax debt at 4.58%) pulls the weighted average down. But remember — this is mechanical. In practice, pushing leverage from 30% to 50% would likely raise both <em>r</em><sub>E</sub> and <em>r</em><sub>D</sub>, because the firm's financial risk increases. The net effect depends on where the firm sits relative to its optimal capital structure, a question we leave for more advanced courses.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART C — Why WACC Is the Right Discount Rate                 -->
+<!-- ============================================================ -->
+
+<h2>Part C — Why WACC Is the Appropriate Discount Rate</h2>
+
+<p>
+Recall from Week 6 that the NPV rule tells you to accept a project if its present value exceeds its cost — that is, if discounting the project's expected cash flows at the appropriate rate yields a positive NPV. But what is the "appropriate rate"?
+</p>
+
+<p>
+The answer hinges on <span class="key-term">opportunity cost</span>. When a firm invests $1 in a project, that dollar could instead have been returned to the firm's investors — the shareholders and bondholders who supplied the capital. Those investors have alternatives: they could invest in other assets of comparable risk. The return they'd earn on those alternatives is the opportunity cost of the firm using their capital.
+</p>
+
+<p>
+WACC captures exactly this opportunity cost. It's the blended return the firm's investors could earn elsewhere on investments of similar risk, weighted by their proportional claims on the firm. If a project earns more than the WACC, it generates value above and beyond what investors require — it makes shareholders richer. If it earns less, investors would have been better off if the firm had simply returned their money.
+</p>
+
+<p>
+Think of it this way: the firm is a financial intermediary standing between its investors and real investment opportunities. It raises capital from shareholders and bondholders (at a blended cost of WACC) and deploys that capital into projects. For the intermediation to create value, the projects must earn more than the capital costs. WACC is the <span class="key-term">hurdle rate</span> — the minimum acceptable return on a new project.
+</p>
+
+<div class="example-embed" data-label="Example 6 — WACC as a Hurdle Rate">
+  <p class="scenario">
+    White Acre Manufacturing has a WACC of 9.50%. The firm is evaluating two projects. Project X is expected to earn 11.00%. Project Y is expected to earn 8.00%. Which projects should the firm accept, and why?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Compare each project's return to the WACC hurdle rate of 9.50%.</li>
+      <li data-step="2.">Project X: Expected return of 11.00% > WACC of 9.50%. The project earns more than the cost of the capital used to fund it. <strong>Accept.</strong></li>
+      <li data-step="3.">Project Y: Expected return of 8.00% < WACC of 9.50%. The project earns less than what investors require. The firm would destroy value by investing. <strong>Reject.</strong></li>
+    </ul>
+    <div class="answer-line">Accept Project X (return exceeds WACC); reject Project Y (return falls short of WACC).</div>
+  </details>
+</div>
+
+<p>
+This is the same logic as the NPV rule expressed in terms of rates rather than dollars. A project with a return above WACC will have a positive NPV when you discount its cash flows at WACC. A project with a return below WACC will have a negative NPV. They always agree.
+</p>
+
+<p>
+<strong>The critical assumption:</strong> WACC is the correct discount rate only if the project being evaluated has <em>the same risk</em> as the firm's existing assets and the firm maintains its current capital structure. If either condition fails — the project is riskier (or safer) than average, or the firm is changing its financing mix — then WACC must be adjusted. We'll address this limitation next.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART D — Limitations of Firm-Wide WACC                       -->
+<!-- ============================================================ -->
+
+<h2>Part D — Limitations of Firm-Wide WACC</h2>
+
+<p>
+A firm-wide WACC works perfectly when every project the firm considers has the same systematic risk as the firm overall. In practice, many firms operate in multiple lines of business — a conglomerate might have a stable consumer products division and a volatile technology venture. Using a single WACC for both leads to systematic errors.
+</p>
+
+<p>
+The problem is straightforward. If the firm's overall WACC is 10%, but Division A (low risk) should face an 8% hurdle and Division B (high risk) should face a 14% hurdle, then applying 10% across the board will:
+</p>
+
+<p>
+(a) <strong>Reject good projects in the low-risk division.</strong> A project earning 9% in Division A creates value (it exceeds the 8% rate appropriate for its risk), but gets rejected because 9% < 10% (the firm-wide WACC).
+</p>
+
+<p>
+(b) <strong>Accept bad projects in the high-risk division.</strong> A project earning 12% in Division B destroys value (it falls short of the 14% rate appropriate for its risk), but gets accepted because 12% > 10%.
+</p>
+
+<p>
+Over time, this bias pushes the firm toward riskier and riskier assets — it systematically overinvests in high-risk ventures and underinvests in stable ones. The firm's overall risk profile drifts upward without anyone intending it to.
+</p>
+
+<div class="example-embed" data-label="Example 7 — The Divisional Cost of Capital Problem">
+  <p class="scenario">
+    Red Acre Industries has two divisions. Division A (consumer staples) has an estimated beta of 0.60. Division B (technology) has an estimated beta of 1.40. The risk-free rate is 4.00% and the market risk premium is 7.00%. Red Acre's overall firm WACC is 10.00%. Division A is considering a project with an expected return of 9.00%. Division B is considering a project with an expected return of 12.00%. Using divisional costs of capital from CAPM, evaluate each project. Then show what would happen if the firm used its overall WACC instead.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Divisional cost of capital for A: <span class="calc">r<sub>A</sub> = 4.00% + 0.60 × 7.00% = 4.00% + 4.20% = 8.20%</span></li>
+      <li data-step="2.">Divisional cost of capital for B: <span class="calc">r<sub>B</sub> = 4.00% + 1.40 × 7.00% = 4.00% + 9.80% = 13.80%</span></li>
+      <li data-step="3.">Using correct divisional rates: Division A project (9.00% > 8.20%) → <strong>Accept</strong>. Division B project (12.00% < 13.80%) → <strong>Reject</strong>.</li>
+      <li data-step="4.">Using firm-wide WACC (10.00%): Division A project (9.00% < 10.00%) → Rejected (incorrectly — the project creates value at its appropriate risk level). Division B project (12.00% > 10.00%) → Accepted (incorrectly — the project destroys value at its appropriate risk level).</li>
+    </ul>
+    <div class="answer-line">Divisional WACCs give the right decisions: accept A's project (9.00% > 8.20%), reject B's project (12.00% < 13.80%). Using the firm-wide 10.00% gets both decisions wrong.</div>
+  </details>
+</div>
+
+<p>
+The solution, conceptually, is to use a <span class="key-term">divisional cost of capital</span> (or <span class="key-term">project-specific discount rate</span>) that reflects the risk of the specific investment, not the firm average. In practice, firms estimate divisional betas by looking at comparable "pure-play" companies — publicly traded firms that operate primarily in one line of business similar to the division in question. The pure-play beta serves as a proxy for the division's systematic risk, which then feeds into the CAPM to produce a division-appropriate hurdle rate.
+</p>
+
+<p>
+For this course, the key takeaway is to recognize <em>when</em> firm-wide WACC is appropriate and when it isn't. If the firm is reasonably homogeneous — all its projects look roughly like its existing operations — then WACC is a fine hurdle rate. If the firm operates across very different risk profiles, you need to think more carefully.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART E — Integrating WACC with NPV                           -->
+<!-- ============================================================ -->
+
+<h2>Part E — Putting It All Together: WACC Meets NPV</h2>
+
+<p>
+This section brings the full toolkit together. Given a firm's capital structure, you'll compute the cost of equity (from CAPM or DDM, as in Week 9), determine the after-tax cost of debt, calculate the WACC, and then use that WACC as the discount rate in an NPV analysis. This is the complete chain from firm financing to project evaluation — the capstone of the cost of capital framework.
+</p>
+
+<div class="example-embed" data-label="Example 8 — Full Integration: WACC → NPV">
+  <p class="scenario">
+    White Acre Manufacturing has 5 million shares outstanding at $32 per share. The firm also has $50 million in market value of outstanding bonds with a yield to maturity of 6.20%. White Acre's equity beta is 1.15, the risk-free rate is 3.50%, the market risk premium is 7.00%, and the corporate tax rate is 21%. The firm is evaluating a project that costs $18 million and will generate cash flows of $5.2 million per year for 5 years. The project has similar risk to the firm's existing operations. Should White Acre accept the project?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Market value of equity: <span class="calc"><em>E</em> = 5,000,000 × $32 = $160M</span></li>
+      <li data-step="2.">Market value of debt: <span class="calc"><em>D</em> = $50M</span></li>
+      <li data-step="3.">Total value and weights: <span class="calc"><em>V</em> = $210M</span>; <span class="calc"><em>E</em>/<em>V</em> = 160/210 = 0.7619</span>; <span class="calc"><em>D</em>/<em>V</em> = 50/210 = 0.2381</span></li>
+      <li data-step="4.">Cost of equity (CAPM): <span class="calc"><em>r</em><sub>E</sub> = 3.50% + 1.15 × 7.00% = 3.50% + 8.05% = 11.55%</span></li>
+      <li data-step="5.">After-tax cost of debt: <span class="calc"><em>r</em><sub>D</sub>(1 − T<sub>C</sub>) = 6.20% × (1 − 0.21) = 6.20% × 0.79 = 4.90%</span></li>
+      <li data-step="6.">WACC: <span class="calc">0.7619 × 11.55% + 0.2381 × 4.90% = 8.80% + 1.17% = 9.97%</span></li>
+      <li data-step="7.">NPV of project: Discount the annuity of $5.2M/year for 5 years at 9.97%.</li>
+      <li data-step="8."><span class="calc">PV = $5.2M × [1 − (1.0997)<sup>−5</sup>] / 0.0997 = $5.2M × 3.7941 = $19.73M</span></li>
+      <li data-step="9."><span class="calc">NPV = −$18.00M + $19.73M = $1.73M</span></li>
+    </ul>
+    <div class="answer-line">NPV = +$1.73 million. The project earns more than the firm's 9.97% WACC. Accept.</div>
+  </details>
+</div>
+
+<p>
+This example is the payoff for everything you've built across the second half of the course: beta and CAPM (Week 9) give you the cost of equity; bond pricing (Week 3) and the tax adjustment (this week) give you the after-tax cost of debt; capital structure weights combine them into WACC; and NPV analysis (Week 6) tells you whether the project creates value. Each piece depends on the ones before it.
+</p>
+
+<h3>When DDM and CAPM Disagree on the Cost of Equity</h3>
+
+<p>
+Recall from Week 9 that the dividend discount model and CAPM often produce different estimates of the cost of equity. This isn't a failure — they're different models with different inputs and assumptions. In practice, a common approach is to average the two estimates or use professional judgment to weight the one you consider more reliable. The following example illustrates.
+</p>
+
+<div class="example-embed" data-label="Example 9 — Cost of Equity: DDM vs. CAPM">
+  <p class="scenario">
+    Amber Acre Corporation's stock trades at $56 per share. The firm just paid a dividend of $2.80 (D<sub>0</sub> = $2.80) and dividends are expected to grow at 4.00% per year indefinitely. Amber Acre's equity beta is 1.05, the risk-free rate is 3.50%, and the market risk premium is 7.00%. Estimate the cost of equity using both the DDM and CAPM approaches.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">DDM approach: First, compute next year's dividend: <span class="calc">D<sub>1</sub> = $2.80 × (1.04) = $2.912</span></li>
+      <li data-step="2."><span class="calc">r<sub>E</sub> = D<sub>1</sub>/P<sub>0</sub> + g = $2.912/$56 + 0.04 = 0.0520 + 0.0400 = 0.0920 = 9.20%</span> (Note: Using unrounded D<sub>1</sub> = 2.912, the dividend yield is 5.20%.)</li>
+      <li data-step="3.">CAPM approach: <span class="calc">r<sub>E</sub> = 3.50% + 1.05 × 7.00% = 3.50% + 7.35% = 10.85%</span></li>
+      <li data-step="4.">The DDM gives 9.20% and CAPM gives 10.85%. A reasonable point estimate might average the two: <span class="calc">(9.20% + 10.85%) / 2 ≈ 10.03%</span></li>
+    </ul>
+    <div class="answer-line">DDM estimate: 9.20%. CAPM estimate: 10.85%. A blended estimate of roughly 10.03% uses information from both models.</div>
+  </details>
+</div>
+
+<p>
+The 1.65 percentage point gap between the two estimates isn't unusual. The DDM is sensitive to the assumed growth rate — a small change in <em>g</em> can shift the result significantly. CAPM depends on beta, the risk-free rate, and the market risk premium, each of which is estimated with uncertainty. Neither model is "right" in a definitive sense; they're complementary lenses on the same question.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART F — Review: Weeks 6–9 Integrated Problems               -->
+<!-- ============================================================ -->
+
+<h2>Part F — Final Review: Integrating Weeks 6–9</h2>
+
+<p>
+The final exam covers Chapters 9, 12, 13, and 14 — corresponding to Weeks 6 through 10. This section works through examples that integrate multiple concepts from across those weeks, helping you see how the pieces connect. Think of these as the kind of multi-step problems you might encounter on the final.
+</p>
+
+<h3>NPV and IRR Review</h3>
+
+<p>
+From Week 6, remember that NPV discounts all of a project's cash flows at the required return and sums them. A positive NPV means the project creates value. The IRR is the discount rate that makes NPV exactly zero — it's the project's implied rate of return. When you compare IRR to the required return (or WACC), the decision should agree with the NPV rule for conventional projects.
+</p>
+
+<div class="example-embed" data-label="Example 10 — NPV and IRR Review">
+  <p class="scenario">
+    Green Acre Agriculture is considering a new irrigation system that costs $40,000. Expected cash flows are: Year 1: $15,000; Year 2: $18,000; Year 3: $12,000; Year 4: $8,000. The firm's WACC is 11.00%. Calculate the NPV and determine whether the project is acceptable. The IRR is approximately 13.79% — verify that this is consistent with your NPV result.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Discount each cash flow at 11.00%:</li>
+      <li data-step="2."><span class="calc">PV(Year 1) = $15,000 / 1.11 = $13,513.51</span></li>
+      <li data-step="3."><span class="calc">PV(Year 2) = $18,000 / (1.11)<sup>2</sup> = $14,609.20</span></li>
+      <li data-step="4."><span class="calc">PV(Year 3) = $12,000 / (1.11)<sup>3</sup> = $8,774.30</span></li>
+      <li data-step="5."><span class="calc">PV(Year 4) = $8,000 / (1.11)<sup>4</sup> = $5,269.85</span></li>
+      <li data-step="6.">Sum of PVs: <span class="calc">$13,513.51 + $14,609.20 + $8,774.30 + $5,269.85 = $42,166.86</span></li>
+      <li data-step="7."><span class="calc">NPV = −$40,000 + $42,166.86 = $2,166.86</span></li>
+      <li data-step="8.">Consistency check: NPV > 0, and IRR (13.79%) > WACC (11.00%). Both say accept. ✓</li>
+    </ul>
+    <div class="answer-line">NPV = +$2,166.86. Accept the project. The IRR of 13.79% exceeds the 11.00% WACC, consistent with the positive NPV.</div>
+  </details>
+</div>
+
+<h3>Portfolio and CAPM Review</h3>
+
+<p>
+From Weeks 8 and 9, recall that a portfolio's expected return is the weighted average of its components' expected returns, and its beta is the weighted average of its components' betas. The Security Market Line (SML) from CAPM plots the relationship between beta and required return — any asset sitting above the SML is undervalued (its expected return exceeds what CAPM says it should earn), and any asset below the SML is overvalued.
+</p>
+
+<div class="example-embed" data-label="Example 11 — Portfolio Expected Return and Beta Review">
+  <p class="scenario">
+    You hold a portfolio consisting of three stocks. Stock A: 40% of portfolio, beta = 0.80, expected return = 9.00%. Stock B: 35% of portfolio, beta = 1.30, expected return = 13.00%. Stock C: 25% of portfolio, beta = 1.60, expected return = 15.50%. Calculate the portfolio's expected return and beta.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Portfolio expected return: <span class="calc">E(R<sub>P</sub>) = 0.40 × 9.00% + 0.35 × 13.00% + 0.25 × 15.50%</span></li>
+      <li data-step="2."><span class="calc">= 3.60% + 4.55% + 3.88% = 12.03%</span></li>
+      <li data-step="3.">Portfolio beta: <span class="calc">β<sub>P</sub> = 0.40 × 0.80 + 0.35 × 1.30 + 0.25 × 1.60</span></li>
+      <li data-step="4."><span class="calc">= 0.32 + 0.455 + 0.40 = 1.18</span></li>
+    </ul>
+    <div class="answer-line">Portfolio expected return = 12.03%. Portfolio beta = 1.18.</div>
+  </details>
+</div>
+
+<h3>Cost of Capital as the Bridge</h3>
+
+<p>
+Notice how cost of capital ties together everything from the second half of the course. The risk-return framework (Weeks 7–8) tells you that investors require higher returns for bearing more systematic risk. CAPM (Week 9) quantifies that relationship and produces the cost of equity. Bond valuation (Week 3) and the tax adjustment (this week) produce the cost of debt. WACC blends them. NPV (Week 6) uses the result to evaluate investments. Each tool depends on the ones that came before.
+</p>
+
+<div class="example-embed" data-label="Example 12 — Multi-Concept Integration">
+  <p class="scenario">
+    Amber Acre Corporation has a WACC of 10.03% (from Example 9's blended cost of equity estimate). The firm is evaluating a project that requires a $500,000 investment and will produce cash flows of $150,000 per year for 5 years. (a) Calculate the project's NPV using the WACC. (b) Suppose the project is riskier than Amber Acre's average operations — its appropriate discount rate is 13.00%. Recalculate NPV and comment on how risk affects the decision.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">(a) At WACC = 10.03%: <span class="calc">PV = $150,000 × [1 − (1.1003)<sup>−5</sup>] / 0.1003</span></li>
+      <li data-step="2."><span class="calc">PV = $150,000 × 3.7879 = $568,182</span></li>
+      <li data-step="3."><span class="calc">NPV = −$500,000 + $568,182 = +$68,182</span></li>
+      <li data-step="4.">(b) At 13.00%: <span class="calc">PV = $150,000 × [1 − (1.13)<sup>−5</sup>] / 0.13</span></li>
+      <li data-step="5."><span class="calc">PV = $150,000 × 3.5172 = $527,585</span></li>
+      <li data-step="6."><span class="calc">NPV = −$500,000 + $527,585 = +$27,585</span></li>
+      <li data-step="7.">At the higher discount rate reflecting the project's true risk, the NPV is still positive but much smaller ($27,585 vs. $68,182). Using the wrong (lower) rate would overstate the project's value by about $41,000 — potentially leading to acceptance of a project whose true value creation is marginal.</li>
+    </ul>
+    <div class="answer-line">(a) NPV at WACC = +$68,182. (b) NPV at risk-adjusted 13% = +$27,585. Higher risk requires a higher discount rate, which reduces NPV — using the wrong rate overstates value.</div>
+  </details>
+</div>
+
+<!-- ============================================================ -->
+<!-- KEY FORMULAS REFERENCE                                       -->
+<!-- ============================================================ -->
+
+<h2>Key Formulas Reference</h2>
+
+<table class="formula-ref-table">
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Formula</th>
+      <th>Variables</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>After-Tax Cost of Debt</td>
+      <td>r<sub>D</sub>(1 − T<sub>C</sub>)</td>
+      <td>r<sub>D</sub> = YTM, T<sub>C</sub> = tax rate</td>
+    </tr>
+    <tr>
+      <td>WACC</td>
+      <td>(E/V) × r<sub>E</sub> + (D/V) × r<sub>D</sub> × (1 − T<sub>C</sub>)</td>
+      <td>E, D = market values; V = E + D</td>
+    </tr>
+    <tr>
+      <td>Cost of Equity (CAPM)</td>
+      <td>r<sub>E</sub> = R<sub>f</sub> + β × (R<sub>M</sub> − R<sub>f</sub>)</td>
+      <td>R<sub>f</sub> = risk-free rate, β = equity beta, (R<sub>M</sub> − R<sub>f</sub>) = market risk premium</td>
+    </tr>
+    <tr>
+      <td>Cost of Equity (DDM)</td>
+      <td>r<sub>E</sub> = D<sub>1</sub>/P<sub>0</sub> + g</td>
+      <td>D<sub>1</sub> = next dividend, P<sub>0</sub> = current price, g = growth rate</td>
+    </tr>
+    <tr>
+      <td>NPV</td>
+      <td>NPV = −C<sub>0</sub> + Σ [CF<sub>t</sub> / (1 + r)<sup>t</sup>]</td>
+      <td>C<sub>0</sub> = initial cost, CF<sub>t</sub> = cash flow in year t, r = discount rate</td>
+    </tr>
+    <tr>
+      <td>PV of Annuity</td>
+      <td>PV = PMT × [1 − (1 + r)<sup>−t</sup>] / r</td>
+      <td>PMT = payment, r = rate per period, t = number of periods</td>
+    </tr>
+    <tr>
+      <td>Portfolio Expected Return</td>
+      <td>E(R<sub>P</sub>) = Σ w<sub>i</sub> × E(R<sub>i</sub>)</td>
+      <td>w<sub>i</sub> = weight, E(R<sub>i</sub>) = expected return</td>
+    </tr>
+    <tr>
+      <td>Portfolio Beta</td>
+      <td>β<sub>P</sub> = Σ w<sub>i</sub> × β<sub>i</sub></td>
+      <td>w<sub>i</sub> = weight, β<sub>i</sub> = asset beta</td>
+    </tr>
+    <tr>
+      <td>Security Market Line</td>
+      <td>E(R<sub>i</sub>) = R<sub>f</sub> + β<sub>i</sub> × (R<sub>M</sub> − R<sub>f</sub>)</td>
+      <td>Same as CAPM — plots required return vs. beta</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!-- PRACTICE PROBLEMS                                            -->
+<!-- ============================================================ -->
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<h2>Practice Problems</h2>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W10.1]</span>
+  </div>
+  <p>Red Acre Industries has bonds with a yield to maturity of 7.20%. The corporate tax rate is 21%. Calculate Red Acre's after-tax cost of debt.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W10.2]</span>
+  </div>
+  <p>Blue Acre Financial has a market value of equity of $300 million and a market value of debt of $120 million. The cost of equity is 12.40%, the pre-tax cost of debt is 5.50%, and the corporate tax rate is 21%. Calculate Blue Acre's WACC.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W10.1, W10.2]</span>
+  </div>
+  <p>Green Acre Agriculture has 3.5 million shares outstanding, currently trading at $28 per share. The company has $40 million face value of bonds outstanding, currently trading at 97% of par. The cost of equity is 14.00%, the bonds' yield to maturity is 6.80%, and the corporate tax rate is 21%. Compute Green Acre's WACC.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W10.2, W10.5, W9.4]</span>
+  </div>
+  <p>White Acre Manufacturing has 4 million shares outstanding at $38 per share and $60 million in bonds outstanding at par. The equity beta is 1.20, the risk-free rate is 3.50%, the market risk premium is 7.00%, the bonds' yield to maturity is 5.50%, and the corporate tax rate is 21%. White Acre is evaluating a project that costs $25 million and will generate $7.5 million per year for 5 years. The project has risk similar to the firm's existing operations. Should White Acre accept this project?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W10.3, W10.4]</span>
+  </div>
+  <p>Explain in your own words why a firm uses WACC — rather than just the cost of equity or just the cost of debt — as the discount rate for evaluating new projects. Then describe a situation where using the firm-wide WACC would lead to incorrect investment decisions, and explain what should be done instead.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W9.4, W9.5]</span>
+  </div>
+  <p>Amber Acre Corporation's stock trades at $62 per share. The firm just paid a dividend of $3.10 (D<sub>0</sub> = $3.10), and dividends are expected to grow at 3.50% per year indefinitely. Amber Acre's equity beta is 0.95, the risk-free rate is 4.00%, and the market risk premium is 6.50%. Estimate the cost of equity using both the DDM and CAPM approaches. Comment on why the two estimates differ and how you might reconcile them.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 7</span>
+    <span class="skill-tag">[W10.5, W6.1]</span>
+  </div>
+  <p>A firm with a WACC of 9.50% is evaluating a project that costs $50,000 and will generate cash flows of $14,000 per year for 5 years. Calculate the NPV. Should the firm accept the project?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 8</span>
+    <span class="skill-tag">[W9.2, W9.3]</span>
+  </div>
+  <p>The risk-free rate is 3.50% and the market risk premium is 7.00%. Stock X has a beta of 1.10 and an expected return of 14.00%. Stock Y has a beta of 0.70 and an expected return of 9.00%. For each stock, calculate the required return using the Security Market Line. Is each stock undervalued, overvalued, or fairly valued? Explain your reasoning.</p>
+</div>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BA 240 — Week 4 Course Pack</title>
+  <title>Introduction to Finance — Week 4</title>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -260,10 +260,67 @@ table.formula-ref td:nth-child(2) {
   font-size: 0.93rem;
 }
 
+/* ---- Figures / Charts ---- */
+.figure {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1.2rem 1rem 0.6rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.figure svg {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.figure-caption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.figure-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+  text-align: left;
+  padding-left: 0.4rem;
+}
+@media (max-width: 600px) {
+  body { padding: 1.5rem 1.2rem 3rem; }
+  .figure { padding: 0.8rem 0.5rem 0.4rem; }
+  .figure svg { max-width: 100%; }
+}
+
+/* ---- Nav Link ---- */
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-block;
+}
+.nav-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-link a:hover {
+  text-decoration: underline;
+}
 @media print {
   body { padding: 0.5in; max-width: none; font-size: 10pt; }
   .course-header { page-break-after: avoid; }
-  .example-embed, .problem, .formula-box { page-break-inside: avoid; }
+  .example-embed, .problem, .formula-box, .figure { page-break-inside: avoid; }
   details { display: block; }
   details > summary { display: none; }
   details > *:not(summary) { display: block; }
@@ -276,10 +333,12 @@ table.formula-ref td:nth-child(2) {
 <!-- HEADER -->
 <!-- ============================================================ -->
 <div class="course-header">
-  <div class="course-id">BA 240 · Spring 2026 · Oregon State University</div>
+  <div class="course-id">Introduction to Finance &middot; Jonathan Kalodimos</div>
   <h1>Week 4 Course Pack</h1>
-  <div class="subtitle">Stock Valuation — Chapters 7 (cont.) &amp; 8</div>
+  <div class="subtitle">Stock Valuation</div>
 </div>
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
 
 <div class="skills-list">
   <div class="skills-label">This week's demonstrable skills:</div>
@@ -471,6 +530,62 @@ table.formula-ref td:nth-child(2) {
 </div>
 
 <p>This example illustrates one of the most important practical lessons in stock valuation: the growth rate assumption is enormously powerful. A four-percentage-point increase in <em>g</em> nearly doubled the price. This happens because the denominator (<em>r</em> − <em>g</em>) is small and getting smaller — you're dividing by a shrinking number, so the price accelerates upward. This is why analysts spend so much time debating growth forecasts: small disagreements about <em>g</em> translate into large disagreements about what a stock should be worth.</p>
+
+<div class="figure">
+  <span class="figure-label">Figure 1 — Stock Price Sensitivity to Growth Rate</span>
+  <svg viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Chart showing stock price rising sharply as growth rate approaches the required return, illustrating the asymptotic behavior of the Gordon Growth Model.">
+    <rect x="80" y="30" width="480" height="260" fill="#ffffff" stroke="#d4d0c8" stroke-width="0.5" rx="2"/>
+    <g stroke="#e8e4dc" stroke-width="0.5">
+      <line x1="80" y1="252.9" x2="560" y2="252.9"/>
+      <line x1="80" y1="215.7" x2="560" y2="215.7"/>
+      <line x1="80" y1="178.6" x2="560" y2="178.6"/>
+      <line x1="80" y1="141.4" x2="560" y2="141.4"/>
+      <line x1="80" y1="104.3" x2="560" y2="104.3"/>
+      <line x1="80" y1="67.1" x2="560" y2="67.1"/>
+      <line x1="176" y1="30" x2="176" y2="290"/>
+      <line x1="272" y1="30" x2="272" y2="290"/>
+      <line x1="368" y1="30" x2="368" y2="290"/>
+      <line x1="464" y1="30" x2="464" y2="290"/>
+    </g>
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="end">
+      <text x="74" y="294">$0</text>
+      <text x="74" y="257">$50</text>
+      <text x="74" y="219">$100</text>
+      <text x="74" y="182">$150</text>
+      <text x="74" y="145">$200</text>
+      <text x="74" y="108">$250</text>
+      <text x="74" y="71">$300</text>
+      <text x="74" y="34">$350</text>
+    </g>
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="middle">
+      <text x="80" y="308">0%</text>
+      <text x="176" y="308">2%</text>
+      <text x="272" y="308">4%</text>
+      <text x="368" y="308">6%</text>
+      <text x="464" y="308">8%</text>
+      <text x="560" y="308">10%</text>
+    </g>
+    <text x="320" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Growth Rate (g)</text>
+    <text x="22" y="165" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 22 165)">Stock Price (P₀)</text>
+    <!-- Asymptote at g = r = 10% -->
+    <line x1="560" y1="30" x2="560" y2="290" stroke="#b82020" stroke-width="1.2" stroke-dasharray="6 4"/>
+    <text x="548" y="45" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#b82020" text-anchor="end" font-style="italic">g = r (asymptote)</text>
+    <!-- Price curve -->
+    <path d="M 80,278.9 L 128,277.6 L 176,276.1 L 224,274.1 L 272,271.4 L 320,267.7 L 368,262.1 L 416,252.9 L 464,234.3 L 512,178.6 L 536,67.1" fill="none" stroke="#c75000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Key data points -->
+    <circle cx="224" cy="274.1" r="4" fill="#c75000"/>
+    <text x="236" y="269" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#6b6560">$21.43</text>
+    <circle cx="368" cy="262.1" r="4" fill="#c75000"/>
+    <text x="356" y="255" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#6b6560" text-anchor="end">$37.50</text>
+    <circle cx="464" cy="234.3" r="4" fill="#c75000"/>
+    <text x="452" y="227" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#6b6560" text-anchor="end">$75.00</text>
+    <circle cx="512" cy="178.6" r="4" fill="#c75000"/>
+    <text x="500" y="172" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#6b6560" text-anchor="end">$150.00</text>
+    <!-- Annotation (inside plot area) -->
+    <text x="200" y="50" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#6b6560" font-style="italic" text-anchor="middle">D₁ = $1.50, r = 10%</text>
+  </svg>
+  <p class="figure-caption">As the assumed growth rate approaches the required return, the stock price accelerates toward infinity. This non-linearity explains why small changes in growth forecasts produce large changes in valuation — the denominator (r − g) is shrinking toward zero.</p>
+</div>
 
 <!-- ============================================================ -->
 <!-- PART D — SOLVING FOR r AND g -->
@@ -698,6 +813,8 @@ table.formula-ref td:nth-child(2) {
 <!-- ============================================================ -->
 <!-- PRACTICE PROBLEMS -->
 <!-- ============================================================ -->
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
 <h2>Practice Problems</h2>
 
 <div class="problem">

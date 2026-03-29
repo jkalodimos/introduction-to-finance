@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Finance — Week 6</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+/* Formula reference table */
+.formula-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+.formula-table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.formula-table td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.formula-table td:nth-child(2) {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.92rem;
+}
+
+/* ---- Figures / Charts ---- */
+.figure {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1.2rem 1rem 0.6rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.figure svg {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.figure-caption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.figure-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+  text-align: left;
+  padding-left: 0.4rem;
+}
+@media (max-width: 600px) {
+  body { padding: 1.5rem 1.2rem 3rem; }
+  .figure { padding: 0.8rem 0.5rem 0.4rem; }
+  .figure svg { max-width: 100%; }
+}
+
+/* ---- Nav Link ---- */
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-block;
+}
+.nav-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-link a:hover {
+  text-decoration: underline;
+}
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box, .figure { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<div class="course-header">
+  <div class="course-id">Introduction to Finance &middot; Jonathan Kalodimos</div>
+  <h1>Week 6 Course Pack</h1>
+  <div class="subtitle">Net Present Value and Other Investment Criteria</div>
+</div>
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W6.1</span> Calculate NPV of a project and make an accept/reject decision</li>
+    <li><span class="skill-code">W6.2</span> Calculate IRR of a project</li>
+    <li><span class="skill-code">W6.3</span> Apply the payback period rule and discuss its limitations</li>
+    <li><span class="skill-code">W6.4</span> Apply the profitability index</li>
+  </ul>
+</div>
+
+<p><em>Note: Day 1 this week is the Midterm MC Exam. This pack covers the Day 2 session, which introduces Chapter 9 — Net Present Value and Other Investment Criteria.</em></p>
+
+<!-- ============================================================ -->
+<h2>Part A — The Capital Budgeting Decision</h2>
+<!-- ============================================================ -->
+
+<p>For the first half of this course, you've been building a toolkit for valuing cash flows across time — computing present values, pricing bonds, valuing stocks. All of that machinery was preparing you for the question at the heart of corporate finance: <em>Should a firm invest in this project?</em></p>
+
+<p>Recall from Week 1 that <span class="key-term">capital budgeting</span> is the process of planning and managing a firm's long-term investments. A firm's managers constantly face decisions like these: Should we build a new factory? Should we launch a new product line? Should we replace aging equipment? Each of these decisions involves spending money now in exchange for uncertain cash flows in the future — and each one should only be pursued if it creates value for shareholders.</p>
+
+<p>The question is deceptively simple: does the project generate more value than it costs? But answering it requires comparing cash flows that occur at different points in time, which is exactly what discounting does. This week, we'll study four criteria that firms use to evaluate investment projects. One of them — net present value — is the gold standard. The others have intuitive appeal but real limitations. Understanding both the strengths and weaknesses of each method is essential for making good capital budgeting decisions.</p>
+
+<!-- ============================================================ -->
+<h2>Part B — Net Present Value</h2>
+<!-- ============================================================ -->
+
+<h3>The NPV Rule</h3>
+
+<p>The <span class="key-term">net present value (NPV)</span> of a project is the difference between the present value of its future cash flows and the cost of the investment. In plain terms, NPV answers the question: "How much richer does this project make the firm's shareholders, in today's dollars?"</p>
+
+<p>The logic is straightforward. You already know how to discount future cash flows back to the present. If the present value of everything the project will generate exceeds what you have to spend to get it, the project creates value. If it doesn't, the project destroys value.</p>
+
+<div class="formula-box">
+  <span class="label">Net Present Value (NPV)</span>
+  <span class="formula">NPV = −<em>C</em><sub>0</sub> + <em>C</em><sub>1</sub> ÷ (1 + <em>r</em>)<sup>1</sup> + <em>C</em><sub>2</sub> ÷ (1 + <em>r</em>)<sup>2</sup> + … + <em>C</em><sub><em>T</em></sub> ÷ (1 + <em>r</em>)<sup><em>T</em></sup></span>
+  <div class="note">
+    where <em>C</em><sub>0</sub> = initial investment (a cash outflow, entered as a positive number preceded by the minus sign), <em>C</em><sub><em>t</em></sub> = cash flow in period <em>t</em>, <em>r</em> = discount rate (required return), <em>T</em> = number of periods
+  </div>
+</div>
+
+<p>The <span class="key-term">NPV rule</span> is simple: accept a project if its NPV is positive; reject it if its NPV is negative. A positive NPV means the project earns more than the required return — it creates value beyond what shareholders could earn by investing elsewhere at the same level of risk. A negative NPV means the project earns less than the required return — the firm would be better off returning the money to shareholders and letting them invest it on their own.</p>
+
+<p>What about a project with NPV exactly equal to zero? Technically, shareholders break even — the project earns exactly the required return. In practice, NPV = 0 projects are rare, and most firms would be indifferent about them. We'll treat NPV = 0 as marginal: not a clear accept, not a clear reject.</p>
+
+<p>The discount rate <em>r</em> deserves a moment of attention. It represents the <span class="key-term">required return</span> — the minimum rate the project must earn to justify the investment. This rate reflects the riskiness of the project's cash flows. We'll formalize how to determine the appropriate discount rate when we study the cost of capital in Weeks 9 and 10. For now, take the discount rate as given.</p>
+
+<h3>NPV with Equal Cash Flows</h3>
+
+<p>When a project generates the same cash flow every year, the NPV calculation simplifies. The stream of equal payments is an annuity, so you can use the annuity present value formula from Week 2 to find the PV of the future cash flows in one step, then subtract the initial investment.</p>
+
+<div class="example-embed" data-label="Example 1 — NPV with Equal Cash Flows">
+  <p class="scenario">
+    Red Acre Industries is considering purchasing a new stamping machine for its manufacturing line. The machine costs $250,000 and is expected to generate net cash flows of $75,000 per year for 5 years. Red Acre's required return for projects of this risk level is 12%. Should they buy the machine?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify variables: <em>C</em><sub>0</sub> = $250,000, <em>C</em><sub>t</sub> = $75,000/year, <em>r</em> = 0.12, <em>T</em> = 5</li>
+      <li data-step="2.">Discount each cash flow:
+        <br><span class="calc">PV = $75,000 ÷ 1.12<sup>1</sup> + $75,000 ÷ 1.12<sup>2</sup> + $75,000 ÷ 1.12<sup>3</sup> + $75,000 ÷ 1.12<sup>4</sup> + $75,000 ÷ 1.12<sup>5</sup></span>
+        <br><span class="calc">PV = $66,964.29 + $59,789.54 + $53,383.52 + $47,663.86 + $42,557.01 = $270,358.22</span>
+      </li>
+      <li data-step="3.">Compute NPV: <span class="calc">NPV = −$250,000 + $270,358.22 = $20,358.22</span></li>
+      <li data-step="4.">Interpret: NPV is positive, so the project creates $20,358.22 in value for shareholders. Accept.</li>
+    </ul>
+    <div class="answer-line">NPV = $20,358.22 → Accept the project</div>
+  </details>
+</div>
+
+<p>Notice what this result tells us. Red Acre's shareholders are $20,358.22 richer (in present-value terms) if the firm buys this machine than if it doesn't. The project more than compensates for the time value of money and the risk involved.</p>
+
+<h3>NPV with Uneven Cash Flows</h3>
+
+<p>Many real projects don't generate the same cash flow every year. A new product might ramp up slowly, peak, then decline. A branch office might take time to build a client base. When cash flows vary across periods, you have to discount each one individually — there's no annuity shortcut.</p>
+
+<div class="example-embed" data-label="Example 2 — NPV with Uneven Cash Flows">
+  <p class="scenario">
+    Blue Acre Financial Services is evaluating opening a new branch office. The upfront cost is $400,000. The branch is expected to generate the following net cash flows: Year 1: $80,000; Year 2: $120,000; Year 3: $150,000; Year 4: $180,000; Year 5: $100,000. Blue Acre requires a 10% return. Should they open the branch?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify variables: <em>C</em><sub>0</sub> = $400,000, <em>r</em> = 0.10</li>
+      <li data-step="2.">Discount each cash flow individually:
+        <br><span class="calc">PV<sub>1</sub> = $80,000 ÷ 1.10<sup>1</sup> = $72,727.27</span>
+        <br><span class="calc">PV<sub>2</sub> = $120,000 ÷ 1.10<sup>2</sup> = $99,173.55</span>
+        <br><span class="calc">PV<sub>3</sub> = $150,000 ÷ 1.10<sup>3</sup> = $112,697.22</span>
+        <br><span class="calc">PV<sub>4</sub> = $180,000 ÷ 1.10<sup>4</sup> = $122,942.66</span>
+        <br><span class="calc">PV<sub>5</sub> = $100,000 ÷ 1.10<sup>5</sup> = $62,091.90</span>
+      </li>
+      <li data-step="3.">Sum the present values: <span class="calc">PV = $469,632.60</span></li>
+      <li data-step="4.">Compute NPV: <span class="calc">NPV = −$400,000 + $469,632.60 = $69,632.60</span></li>
+      <li data-step="5.">Interpret: NPV is positive. The branch creates roughly $69,633 in shareholder value. Accept.</li>
+    </ul>
+    <div class="answer-line">NPV = $69,632.60 → Accept the project</div>
+  </details>
+</div>
+
+<h3>How NPV Depends on the Discount Rate</h3>
+
+<p>A project's NPV is sensitive to the discount rate you use. Higher discount rates shrink the present value of future cash flows, making it harder for a project to have a positive NPV. Lower discount rates do the opposite. This matters because the discount rate is often estimated — and reasonable people can disagree about the right number. When you're evaluating a project, it's good practice to ask: "How much would the discount rate have to change before my decision flips?"</p>
+
+<div class="example-embed" data-label="Example 3 — NPV Sensitivity to the Discount Rate">
+  <p class="scenario">
+    Green Acre Agricultural Co-op is considering a $180,000 investment in irrigation equipment that will generate $55,000 in net cash flows per year for 5 years. Compute the NPV at a discount rate of 8% and again at 15%. What does the comparison tell you?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">At <em>r</em> = 8%:
+        <br><span class="calc">PV = $55,000 ÷ 1.08<sup>1</sup> + … + $55,000 ÷ 1.08<sup>5</sup> = $219,599.05</span>
+        <br><span class="calc">NPV = −$180,000 + $219,599.05 = $39,599.05</span>
+      </li>
+      <li data-step="2.">At <em>r</em> = 15%:
+        <br><span class="calc">PV = $55,000 ÷ 1.15<sup>1</sup> + … + $55,000 ÷ 1.15<sup>5</sup> = $184,368.53</span>
+        <br><span class="calc">NPV = −$180,000 + $184,368.53 = $4,368.53</span>
+      </li>
+      <li data-step="3.">Interpret: The project has a positive NPV at both rates, but the margin is much thinner at 15%. At 8%, the project creates nearly $40,000 in value. At 15%, it barely breaks even. If Green Acre's managers are uncertain about the right discount rate, this sensitivity should factor into their confidence in the decision.</li>
+    </ul>
+    <div class="answer-line">NPV at 8% = $39,599.05; NPV at 15% = $4,368.53 — both positive, but the cushion shrinks dramatically at higher rates</div>
+  </details>
+</div>
+
+<p>This example illustrates a general principle: for any project with positive cash flows in the future, NPV is a decreasing function of the discount rate. As <em>r</em> rises, future cash flows are worth less in today's terms, and eventually the NPV turns negative. The rate at which NPV crosses zero has a name — it's the internal rate of return, and it's our next topic.</p>
+
+<!-- ============================================================ -->
+<h2>Part C — Internal Rate of Return</h2>
+<!-- ============================================================ -->
+
+<p>The <span class="key-term">internal rate of return (IRR)</span> is the discount rate that makes a project's NPV exactly equal to zero. Put differently, the IRR is the rate of return the project actually earns on the invested capital. If a project costs $100 and generates cash flows whose present value is exactly $100 when discounted at 15%, then the IRR is 15%.</p>
+
+<div class="formula-box">
+  <span class="label">Internal Rate of Return (IRR)</span>
+  <span class="formula">0 = −<em>C</em><sub>0</sub> + <em>C</em><sub>1</sub> ÷ (1 + IRR)<sup>1</sup> + <em>C</em><sub>2</sub> ÷ (1 + IRR)<sup>2</sup> + … + <em>C</em><sub><em>T</em></sub> ÷ (1 + IRR)<sup><em>T</em></sup></span>
+  <div class="note">
+    Solve for IRR — the discount rate that sets NPV = 0. In general this requires trial-and-error or a financial calculator/spreadsheet.
+  </div>
+</div>
+
+<p>The <span class="key-term">IRR rule</span> says: accept a project if its IRR exceeds the required return; reject it if the IRR falls below the required return. The intuition is appealing — if the project earns a higher rate of return than shareholders require, it creates value.</p>
+
+<p>For projects with conventional cash flows (an initial outflow followed by a series of inflows), the IRR rule and the NPV rule will always give the same accept/reject decision for independent projects. This is because, as we saw in Example 3, NPV declines as the discount rate increases. If the IRR exceeds the required return, then evaluating NPV at the required return must yield a positive number.</p>
+
+<p>We'll see in Week 7 that IRR can be misleading when comparing mutually exclusive projects or when cash flows change sign more than once. For now, we'll focus on computing the IRR and applying it to straightforward cases.</p>
+
+<h3>Computing IRR</h3>
+
+<p>Finding the IRR means solving for the unknown rate in the NPV equation — which generally can't be done with algebra alone. For projects with equal annual cash flows, you can narrow it down using annuity tables or a financial calculator. For uneven cash flows, you'll need a financial calculator, spreadsheet (Excel's <span class="calc" style="font-size: 0.95rem;">IRR()</span> function), or trial-and-error. In this course, exam questions will either give you equal cash flows (where you can solve for the annuity factor) or provide enough information to identify the IRR from answer choices.</p>
+
+<div class="example-embed" data-label="Example 4 — IRR with Equal Cash Flows">
+  <p class="scenario">
+    Return to the Red Acre stamping machine from Example 1: cost of $250,000, net cash flows of $75,000 per year for 5 years. What is this project's IRR? Should Red Acre accept if the required return is 12%?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Set NPV = 0 and solve for IRR:
+        <br><span class="calc">0 = −$250,000 + $75,000 × PVIFA(IRR, 5)</span>
+      </li>
+      <li data-step="2.">Rearrange: <span class="calc">PVIFA(IRR, 5) = $250,000 ÷ $75,000 = 3.3333</span></li>
+      <li data-step="3.">Look up (or use a calculator): the rate that gives PVIFA = 3.3333 for 5 periods is approximately <span class="calc">IRR ≈ 15.24%</span></li>
+      <li data-step="4.">Interpret: IRR (15.24%) > required return (12%), so the project earns more than the minimum acceptable rate. Accept.</li>
+    </ul>
+    <div class="answer-line">IRR ≈ 15.24% > 12% required return → Accept</div>
+  </details>
+</div>
+
+<p>Notice the consistency: in Example 1, we found the NPV was positive at a 12% discount rate. Here we find the IRR is 15.24% — above 12%. Both methods agree. They always will for conventional, independent projects.</p>
+
+<div class="example-embed" data-label="Example 5 — IRR with Uneven Cash Flows">
+  <p class="scenario">
+    Return to the Blue Acre branch office from Example 2: cost of $400,000, with cash flows of $80,000, $120,000, $150,000, $180,000, and $100,000 over five years. The required return is 10%. Using a financial calculator or spreadsheet, the IRR for this project is approximately 16.13%. Should Blue Acre proceed?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">The IRR of 16.13% is given (in practice, you'd use a financial calculator or Excel's IRR function with the cash flows −400,000, 80,000, 120,000, 150,000, 180,000, 100,000).</li>
+      <li data-step="2.">Compare: <span class="calc">IRR (16.13%) > required return (10%)</span></li>
+      <li data-step="3.">Interpret: The branch earns well above the hurdle rate. Accept.</li>
+    </ul>
+    <div class="answer-line">IRR ≈ 16.13% > 10% required return → Accept</div>
+  </details>
+</div>
+
+<p>Again, this is consistent with Example 2, where we found a positive NPV of $69,632.60 at a 10% discount rate.</p>
+
+<div class="figure">
+  <span class="figure-label">Figure 1 — NPV Profile</span>
+  <svg viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="NPV profile showing NPV declining as discount rate increases, crossing zero at the IRR of 15.24%.">
+    <rect x="80" y="30" width="480" height="260" fill="#ffffff" stroke="#d4d0c8" stroke-width="0.5" rx="2"/>
+    <g stroke="#e8e4dc" stroke-width="0.5">
+      <line x1="80" y1="58.9" x2="560" y2="58.9"/>
+      <line x1="80" y1="87.8" x2="560" y2="87.8"/>
+      <line x1="80" y1="116.7" x2="560" y2="116.7"/>
+      <line x1="80" y1="145.6" x2="560" y2="145.6"/>
+      <line x1="80" y1="174.4" x2="560" y2="174.4"/>
+      <line x1="80" y1="203.3" x2="560" y2="203.3"/>
+      <line x1="80" y1="261.1" x2="560" y2="261.1"/>
+      <line x1="176" y1="30" x2="176" y2="290"/>
+      <line x1="272" y1="30" x2="272" y2="290"/>
+      <line x1="368" y1="30" x2="368" y2="290"/>
+      <line x1="464" y1="30" x2="464" y2="290"/>
+    </g>
+    <!-- NPV = 0 reference line -->
+    <line x1="80" y1="232.2" x2="560" y2="232.2" stroke="#d4d0c8" stroke-width="1.2" stroke-dasharray="6 4"/>
+    <text x="565" y="229" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#6b6560">NPV = 0</text>
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="end">
+      <text x="74" y="265">−$20k</text>
+      <text x="74" y="236">$0</text>
+      <text x="74" y="207">$25k</text>
+      <text x="74" y="178">$50k</text>
+      <text x="74" y="149">$75k</text>
+      <text x="74" y="120">$100k</text>
+      <text x="74" y="62">$125k</text>
+    </g>
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="middle">
+      <text x="80" y="308">0%</text>
+      <text x="176" y="308">4%</text>
+      <text x="272" y="308">8%</text>
+      <text x="368" y="308">12%</text>
+      <text x="464" y="308">16%</text>
+      <text x="560" y="308">20%</text>
+    </g>
+    <text x="320" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Discount Rate</text>
+    <text x="22" y="165" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 22 165)">Net Present Value</text>
+    <!-- NPV curve -->
+    <path d="M 80,51.7 L 128,82.7 L 176,111.1 L 224,137.0 L 272,160.8 L 320,182.7 L 368,202.8 L 416,221.4 L 445.7,232.2 L 464,238.6 L 512,254.6 L 560,269.4" fill="none" stroke="#c75000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Shaded positive NPV region -->
+    <path d="M 80,51.7 L 128,82.7 L 176,111.1 L 224,137.0 L 272,160.8 L 320,182.7 L 368,202.8 L 416,221.4 L 445.7,232.2 L 80,232.2 Z" fill="#eaf5ea" opacity="0.5"/>
+    <!-- IRR point -->
+    <circle cx="445.7" cy="232.2" r="6" fill="#c75000" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="445.7" y1="232.2" x2="445.7" y2="290" stroke="#c75000" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <text x="445.7" y="305" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#c75000" font-weight="500" text-anchor="middle">IRR = 15.24%</text>
+    <!-- Accept/Reject labels -->
+    <text x="250" y="210" font-family="'Source Serif 4', Georgia, serif" font-size="10" fill="#2a7d2a" font-style="italic" text-anchor="middle">Accept (NPV > 0)</text>
+    <text x="510" y="252" font-family="'Source Serif 4', Georgia, serif" font-size="10" fill="#b82020" font-style="italic" text-anchor="middle">Reject (NPV &lt; 0)</text>
+    <!-- Required return marker at 12% -->
+    <circle cx="368" cy="202.8" r="4" fill="#c75000"/>
+    <text x="356" y="197" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#6b6560" text-anchor="end">NPV at 12% = $20,358</text>
+  </svg>
+  <p class="figure-caption">The NPV profile for the Red Acre stamping machine (Examples 1 and 4). NPV declines as the discount rate rises, crossing zero at the IRR of 15.24%. At any required return below the IRR, the project has positive NPV and should be accepted.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>Part D — Payback Period</h2>
+<!-- ============================================================ -->
+
+<p>The <span class="key-term">payback period</span> is the amount of time it takes for a project's cumulative cash flows to recover the initial investment. If you spend $300,000 on a project and it generates $100,000 per year, the payback period is 3 years.</p>
+
+<p>The appeal of payback is obvious: it's simple, it's intuitive, and it answers a question that managers naturally care about — "How long until I get my money back?" Many firms use a <span class="key-term">payback rule</span> that sets a cutoff: accept projects that pay back within a specified number of years, reject those that take longer.</p>
+
+<div class="formula-box">
+  <span class="label">Payback Period</span>
+  <span class="formula">Payback = Years before full recovery + (Unrecovered cost at start of year ÷ Cash flow during year)</span>
+  <div class="note">
+    When cash flows are uneven, track cumulative cash flows year by year. The payback period is the point where cumulative inflows equal the initial investment.
+  </div>
+</div>
+
+<div class="example-embed" data-label="Example 6 — Payback Period">
+  <p class="scenario">
+    Red Acre Industries is evaluating an equipment upgrade costing $300,000. Expected net cash flows are: Year 1: $90,000; Year 2: $110,000; Year 3: $85,000; Year 4: $120,000; Year 5: $100,000. What is the payback period? If Red Acre requires payback within 3.5 years, should they proceed?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Track cumulative cash flows:
+        <br><span class="calc">After Year 1: $90,000</span>
+        <br><span class="calc">After Year 2: $90,000 + $110,000 = $200,000</span>
+        <br><span class="calc">After Year 3: $200,000 + $85,000 = $285,000</span>
+        <br><span class="calc">After Year 4: $285,000 + $120,000 = $405,000</span>
+      </li>
+      <li data-step="2.">The investment is recovered during Year 4. Unrecovered cost at the start of Year 4: <span class="calc">$300,000 − $285,000 = $15,000</span></li>
+      <li data-step="3.">Fractional year: <span class="calc">$15,000 ÷ $120,000 = 0.125</span></li>
+      <li data-step="4.">Payback = <span class="calc">3 + 0.125 = 3.12 years</span></li>
+      <li data-step="5.">Interpret: Payback of 3.12 years is within the 3.5-year cutoff. Accept under the payback rule.</li>
+    </ul>
+    <div class="answer-line">Payback period = 3.12 years → Accept (within 3.5-year cutoff)</div>
+  </details>
+</div>
+
+<h3>The Problems with Payback</h3>
+
+<p>Payback is widely used in practice, but it has serious flaws that you need to understand. There are three big ones:</p>
+
+<p><strong>1. Payback ignores the time value of money.</strong> A dollar received in Year 1 counts the same as a dollar received in Year 4. We've spent weeks establishing that this is wrong — a dollar today is worth more than a dollar tomorrow. Payback treats them identically.</p>
+
+<p><strong>2. Payback ignores cash flows after the cutoff.</strong> A project that pays back in 2 years and then generates $10 million in Year 3 looks the same as a project that pays back in 2 years and generates nothing afterward. By focusing only on how quickly the initial investment is recovered, the payback rule can reject highly valuable projects that happen to have a slow start.</p>
+
+<p><strong>3. The cutoff is arbitrary.</strong> There's no economic theory behind choosing a 3-year cutoff versus a 4-year cutoff. Different firms use different cutoffs, and none of them are derived from the project's risk or the time value of money.</p>
+
+<p>The next example illustrates why payback can lead you astray.</p>
+
+<div class="example-embed" data-label="Example 7 — Why Payback Can Mislead">
+  <p class="scenario">
+    Consider two projects, both costing $100,000. Project A generates $50,000 in Year 1, $50,000 in Year 2, and $10,000 in Year 3. Project B generates $10,000 in Year 1, $40,000 in Year 2, $50,000 in Year 3, $80,000 in Year 4, and $80,000 in Year 5. If the firm uses a payback cutoff of 2.5 years, which project would it accept? If the discount rate is 10%, which project actually creates more value?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Payback for Project A: <span class="calc">$50,000 + $50,000 = $100,000 after Year 2 → Payback = 2.00 years</span></li>
+      <li data-step="2.">Payback for Project B: <span class="calc">$10,000 + $40,000 + $50,000 = $100,000 after Year 3 → Payback = 3.00 years</span></li>
+      <li data-step="3.">Under the payback rule with a 2.5-year cutoff: Accept A (2.00 < 2.5), Reject B (3.00 > 2.5)</li>
+      <li data-step="4.">NPV of A at 10%:
+        <br><span class="calc">NPV<sub>A</sub> = −$100,000 + $50,000/1.10 + $50,000/1.10² + $10,000/1.10³ = −$5,710.00</span>
+      </li>
+      <li data-step="5.">NPV of B at 10%:
+        <br><span class="calc">NPV<sub>B</sub> = −$100,000 + $10,000/1.10 + $40,000/1.10² + $50,000/1.10³ + $80,000/1.10⁴ + $80,000/1.10⁵ = $84,029.28</span>
+      </li>
+      <li data-step="6.">Interpret: Payback says accept A and reject B. But A actually <em>destroys</em> value (negative NPV), while B creates over $84,000 in value. Payback gets it exactly backwards here because it ignores the large cash flows B generates in Years 4 and 5.</li>
+    </ul>
+    <div class="answer-line">Payback rule chooses A; NPV analysis chooses B. Payback gets it wrong — Project A has NPV = −$5,710.00 while Project B has NPV = $84,029.28</div>
+  </details>
+</div>
+
+<p>This is the core lesson about payback: it can give you a quick sanity check on liquidity — how fast you'll recover your cash — but it should never be the primary basis for investment decisions. NPV is the superior criterion because it accounts for the time value of money, considers all cash flows, and directly measures value creation.</p>
+
+<!-- ============================================================ -->
+<h2>Part E — Profitability Index</h2>
+<!-- ============================================================ -->
+
+<p>The <span class="key-term">profitability index (PI)</span> measures the value created per dollar invested. It's calculated as the ratio of the present value of future cash flows to the initial investment.</p>
+
+<div class="formula-box">
+  <span class="label">Profitability Index (PI)</span>
+  <span class="formula">PI = PV of future cash flows ÷ <em>C</em><sub>0</sub></span>
+  <div class="note">
+    where PV of future cash flows is the sum of discounted cash inflows and <em>C</em><sub>0</sub> is the initial investment. Accept if PI > 1; reject if PI < 1.
+  </div>
+</div>
+
+<p>The PI rule is closely related to NPV. If the PV of future cash flows exceeds the initial investment, PI > 1, and NPV is positive. If PI < 1, NPV is negative. For a single project, PI and NPV will always agree on the accept/reject decision.</p>
+
+<p>Where PI adds value is when a firm faces <span class="key-term">capital rationing</span> — a situation where the firm has more positive-NPV projects than it can fund. In that case, PI helps rank projects by their efficiency: how much value each project generates per dollar of scarce capital. We'll briefly touch on this idea in Week 7 when we discuss conflicts between investment criteria.</p>
+
+<div class="example-embed" data-label="Example 8 — Profitability Index">
+  <p class="scenario">
+    Return to the Green Acre irrigation equipment from Example 3: cost of $180,000, cash flows of $55,000 per year for 5 years, discount rate of 8%. We found the PV of future cash flows was $219,599.05. What is the profitability index, and what does it tell you?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">We already computed: <span class="calc">PV of future cash flows = $219,599.05</span></li>
+      <li data-step="2.">Apply formula: <span class="calc">PI = $219,599.05 ÷ $180,000 = 1.22</span></li>
+      <li data-step="3.">Interpret: For every $1.00 invested, the project generates $1.22 in present value — or equivalently, $0.22 in net value per dollar. PI > 1, so accept.</li>
+    </ul>
+    <div class="answer-line">PI = 1.22 → Accept. Each dollar invested creates $0.22 in net present value.</div>
+  </details>
+</div>
+
+<p>Notice the link to NPV: the NPV we computed in Example 3 was $39,599.05 at the 8% rate. Dividing that by the $180,000 investment gives $0.22 per dollar — the same net value per dollar that PI tells us. PI is just NPV rescaled to a per-dollar basis.</p>
+
+<!-- ============================================================ -->
+<h2>Part F — Putting It All Together</h2>
+<!-- ============================================================ -->
+
+<p>You now have four tools for evaluating investment projects. Here's how they stack up:</p>
+
+<p><strong>NPV</strong> is the gold standard. It directly measures value creation in dollar terms, accounts for the time value of money, and considers all cash flows. Use it as your primary criterion.</p>
+
+<p><strong>IRR</strong> gives you the project's rate of return, which is intuitive and easy to communicate ("This project earns 15%"). For conventional, independent projects, IRR and NPV always agree. But IRR has limitations with non-conventional cash flows and mutually exclusive projects — we'll study these in Week 7.</p>
+
+<p><strong>Payback</strong> tells you how quickly you'll recover your investment, which is useful as a liquidity measure. But it ignores the time value of money, ignores cash flows after the cutoff, and uses an arbitrary benchmark. Don't rely on it as a primary decision tool.</p>
+
+<p><strong>PI</strong> tells you the value per dollar invested, which is useful when capital is scarce. For independent projects, it always agrees with NPV on accept/reject decisions.</p>
+
+<p>In practice, most well-managed firms compute NPV as their primary criterion and use IRR and payback as supplementary information. You should do the same on exams: when asked to evaluate a project, lead with NPV unless the question specifically asks for another criterion.</p>
+
+<!-- ============================================================ -->
+<h2>Key Formulas Reference</h2>
+<!-- ============================================================ -->
+
+<table class="formula-table">
+  <thead>
+    <tr>
+      <th>Criterion</th>
+      <th>Formula</th>
+      <th>Decision Rule</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Net Present Value</td>
+      <td>NPV = −C₀ + Σ Cₜ ÷ (1+r)ᵗ</td>
+      <td>Accept if NPV > 0</td>
+    </tr>
+    <tr>
+      <td>Internal Rate of Return</td>
+      <td>0 = −C₀ + Σ Cₜ ÷ (1+IRR)ᵗ</td>
+      <td>Accept if IRR > required return</td>
+    </tr>
+    <tr>
+      <td>Payback Period</td>
+      <td>Years to recover C₀ from cumulative CFs</td>
+      <td>Accept if payback < cutoff</td>
+    </tr>
+    <tr>
+      <td>Profitability Index</td>
+      <td>PI = PV of future CFs ÷ C₀</td>
+      <td>Accept if PI > 1</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<h2>Practice Problems</h2>
+<!-- ============================================================ -->
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W6.1]</span>
+  </div>
+  <p>White Acre Technologies is considering a server upgrade costing $320,000. The upgrade is expected to generate net cash flows of $95,000 per year for 5 years. White Acre's required return is 11%. Calculate the NPV and make an accept/reject recommendation.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W6.2]</span>
+  </div>
+  <p>A project requires an initial investment of $150,000 and is expected to produce the following cash flows: Year 1: $45,000; Year 2: $55,000; Year 3: $65,000; Year 4: $40,000. If the required return is 9%, compute the IRR (using a financial calculator or trial-and-error) and determine whether the project should be accepted.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W6.3]</span>
+  </div>
+  <p>A project costs $200,000 and produces net cash flows of $60,000, $70,000, $80,000, and $50,000 over four years. What is the payback period? If the firm's payback cutoff is 3 years, should the project be accepted under the payback rule?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W6.4]</span>
+  </div>
+  <p>A project costs $275,000 and will generate net cash flows of $80,000 per year for 5 years. The discount rate is 10%. Calculate the profitability index and the NPV. Verify that both criteria give the same accept/reject decision.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W6.1] [W6.3]</span>
+  </div>
+  <p>Your firm is choosing between two independent projects, each costing $500,000. Project X generates cash flows of $200,000, $200,000, $150,000, and $100,000 over four years. Project Y generates cash flows of $50,000, $100,000, $200,000, $300,000, and $200,000 over five years. The required return is 12%. (a) Compute the payback period for each project. (b) Compute the NPV of each project. (c) If the firm uses a 3-year payback cutoff, which project(s) would it accept? Does NPV agree? Explain any discrepancy.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W6.3]</span>
+  </div>
+  <p>A colleague argues that payback is a perfectly good investment criterion because "if a project pays for itself quickly, it must be a good investment." Identify and explain three specific weaknesses of the payback rule that undermine this argument. For each weakness, give a brief example of how payback could lead to a poor decision.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Finance — Week 9</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+table.formula-ref {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+}
+table.formula-ref th {
+  text-align: left;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding: 0.4rem 0.6rem;
+}
+table.formula-ref td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+table.formula-ref td:nth-child(2) {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+/* ---- Figures / Charts ---- */
+.figure {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1.2rem 1rem 0.6rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.figure svg {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.figure-caption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.figure-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+  text-align: left;
+  padding-left: 0.4rem;
+}
+@media (max-width: 600px) {
+  body { padding: 1.5rem 1.2rem 3rem; }
+  .figure { padding: 0.8rem 0.5rem 0.4rem; }
+  .figure svg { max-width: 100%; }
+}
+/* ---- Nav Link ---- */
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-block;
+}
+.nav-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-link a:hover {
+  text-decoration: underline;
+}
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box, .figure { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER -->
+<!-- ============================================================ -->
+
+<div class="course-header">
+  <div class="course-id">Introduction to Finance &middot; Jonathan Kalodimos</div>
+  <h1>Week 9 Course Pack</h1>
+  <div class="subtitle">The Capital Asset Pricing Model &amp; Cost of Equity</div>
+</div>
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W9.1</span> Define beta and calculate portfolio beta from component betas and weights</li>
+    <li><span class="skill-code">W9.2</span> Apply the Security Market Line (CAPM) to compute expected returns</li>
+    <li><span class="skill-code">W9.3</span> Determine whether an asset is mispriced by comparing its expected return to the SML</li>
+    <li><span class="skill-code">W9.4</span> Calculate a firm's cost of equity using the CAPM approach</li>
+    <li><span class="skill-code">W9.5</span> Calculate a firm's cost of equity using the dividend discount model approach</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART A — BETA AND SYSTEMATIC RISK -->
+<!-- ============================================================ -->
+
+<h2>Part A — Beta: Measuring Systematic Risk</h2>
+
+<p>
+Last week, you drew a critical distinction: <span class="key-term">systematic risk</span> is the risk that remains in a well-diversified portfolio — the economy-wide shocks that affect every firm — while <span class="key-term">unsystematic risk</span> is the firm-specific noise that disappears as you add more stocks. The market doesn't reward you for bearing unsystematic risk because you can eliminate it for free by diversifying. The logical next question is: if only systematic risk matters, how do we <em>measure</em> it?
+</p>
+
+<h3>What Beta Tells You</h3>
+
+<p>
+The answer is <span class="key-term">beta</span> (β). Beta measures how sensitive a particular asset's returns are to movements in the overall market. A stock with a beta of 1.0 tends to move in lockstep with the market: when the market rises 10%, the stock rises roughly 10%. A stock with a beta of 1.5 is more volatile — it amplifies market movements by 50%, so a 10% market gain translates to roughly a 15% gain for the stock, and a 10% market loss hits the stock with a 15% loss. Conversely, a stock with a beta of 0.6 is more muted, moving only about 60% as much as the market in either direction.
+</p>
+
+<p>
+Think of beta as a leverage multiplier on market-wide news. High-beta stocks (technology firms, luxury goods producers, cyclical manufacturers) are highly sensitive to the business cycle. When the economy expands, their earnings surge; when it contracts, they get hit hard. Low-beta stocks (utilities, consumer staples, healthcare) are more insulated — people still need electricity and groceries regardless of whether GDP is growing. A beta of zero means the asset has no systematic risk at all; U.S. Treasury bills are the classic example, since their returns don't fluctuate with the stock market.
+</p>
+
+<p>
+A few key benchmarks to keep in mind: the market portfolio itself, by definition, has a beta of exactly 1.0. Risk-free assets have a beta of 0. Most individual stocks fall somewhere between 0.5 and 2.0, though extreme values are possible.
+</p>
+
+<div class="example-embed" data-label="Example 1 — Interpreting Beta">
+  <p class="scenario">
+    Red Acre Industries, a cyclical manufacturer of industrial equipment, has a beta of 1.8. If the overall market rises by 10% this year, what return would you <em>expect</em> Red Acre's stock to deliver, all else equal? What if the market falls by 5%?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Beta tells us the stock moves 1.8× as much as the market.</li>
+      <li data-step="2.">If the market rises 10%: <span class="calc">1.8 × 10% = 18%</span> expected gain.</li>
+      <li data-step="3.">If the market falls 5%: <span class="calc">1.8 × (−5%) = −9%</span> expected loss.</li>
+    </ul>
+    <div class="answer-line">Red Acre's stock is expected to rise about 18% or fall about 9%, depending on the market's direction. The high beta reflects the cyclical nature of industrial equipment demand.</div>
+  </details>
+</div>
+
+<p>
+Notice the symmetry: a high beta is a double-edged sword. Red Acre's shareholders enjoy amplified gains in good times, but they suffer amplified losses when the market turns. That's exactly why high-beta stocks need to offer higher expected returns — investors demand compensation for bearing that extra systematic risk.
+</p>
+
+<h3>Portfolio Beta</h3>
+
+<p>
+One of the most useful properties of beta is that it combines linearly across a portfolio. The beta of a portfolio is simply the weighted average of the betas of the individual assets, where the weights are the fraction of portfolio value invested in each asset. This makes portfolio risk easy to compute — you don't need to worry about correlations the way you do when calculating portfolio standard deviation.
+</p>
+
+<div class="formula-box">
+  <span class="label">Portfolio Beta</span>
+  <span class="formula">β<sub>P</sub> = <em>w</em><sub>1</sub> × β<sub>1</sub> + <em>w</em><sub>2</sub> × β<sub>2</sub> + ··· + <em>w</em><sub>n</sub> × β<sub>n</sub></span>
+  <div class="note">where <em>w<sub>i</sub></em> = portfolio weight of asset <em>i</em>, β<sub><em>i</em></sub> = beta of asset <em>i</em>, and the weights sum to 1.0</div>
+</div>
+
+<div class="example-embed" data-label="Example 2 — Portfolio Beta">
+  <p class="scenario">
+    You invest 50% of your portfolio in Red Acre Industries (β = 1.4), 30% in Blue Acre Financial (β = 0.6), and 20% in Treasury bills (β = 0). What is your portfolio's beta?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify weights and betas: <em>w</em><sub>RA</sub> = 0.50, β<sub>RA</sub> = 1.4; <em>w</em><sub>BA</sub> = 0.30, β<sub>BA</sub> = 0.6; <em>w</em><sub>Tbill</sub> = 0.20, β<sub>Tbill</sub> = 0.</li>
+      <li data-step="2.">Apply the formula: <span class="calc">β<sub>P</sub> = 0.50 × 1.4 + 0.30 × 0.6 + 0.20 × 0 = 0.70 + 0.18 + 0.00</span></li>
+      <li data-step="3.">Calculate: <span class="calc">β<sub>P</sub> = 0.88</span></li>
+    </ul>
+    <div class="answer-line">The portfolio beta is 0.88 — slightly less systematic risk than the market as a whole, thanks to the defensive Blue Acre position and the risk-free T-bill allocation.</div>
+  </details>
+</div>
+
+<p>
+The portfolio beta formula has a powerful practical implication: you can <em>dial</em> your systematic risk exposure up or down by adjusting the mix. Want more risk (and more expected return)? Shift weight toward high-beta stocks. Want to reduce your exposure to market swings? Add low-beta stocks or risk-free assets. This is a much more targeted tool than simply "diversifying" — it lets you control the specific dimension of risk the market actually rewards.
+</p>
+
+<div class="example-embed" data-label="Example 3 — Targeting a Portfolio Beta">
+  <p class="scenario">
+    You want a portfolio with a beta of exactly 1.0 (market-level systematic risk). You can invest in only two assets: Stock A (β = 1.5) and Stock B (β = 0.5). What weights should you use?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Let <em>w</em> = weight in Stock A, so (1 − <em>w</em>) = weight in Stock B.</li>
+      <li data-step="2.">Set up: <span class="calc"><em>w</em> × 1.5 + (1 − <em>w</em>) × 0.5 = 1.0</span></li>
+      <li data-step="3.">Solve: <span class="calc">1.5<em>w</em> + 0.5 − 0.5<em>w</em> = 1.0 → 1.0<em>w</em> = 0.5 → <em>w</em> = 0.50</span></li>
+    </ul>
+    <div class="answer-line">Invest 50% in Stock A and 50% in Stock B to achieve a portfolio beta of 1.0.</div>
+  </details>
+</div>
+
+<p>
+This example illustrates a general principle: you can engineer any portfolio beta between the lowest and highest component betas by adjusting the weights. If you could borrow money (leverage), you could even push the portfolio beta above that of your highest-beta holding — but that's a topic for more advanced courses.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART B — THE CAPITAL ASSET PRICING MODEL -->
+<!-- ============================================================ -->
+
+<h2>Part B — The Capital Asset Pricing Model</h2>
+
+<p>
+We now know that beta measures systematic risk, and we know that only systematic risk is rewarded by the market. The <span class="key-term">Capital Asset Pricing Model (CAPM)</span> pulls these ideas together into a single equation that tells you exactly how much return you should expect for any given level of systematic risk. It's one of the most important formulas in all of finance.
+</p>
+
+<h3>The CAPM Equation</h3>
+
+<p>
+The logic of the CAPM is straightforward. Start with the risk-free rate — that's the return you can earn with zero risk (Treasury bills). Now consider the extra return the <em>market</em> earns above the risk-free rate; this is the <span class="key-term">market risk premium</span>, the reward investors collectively demand for bearing the average level of systematic risk (a beta of 1.0). The CAPM says: your asset's expected return is the risk-free rate plus a scaled portion of the market risk premium, where the scaling factor is your asset's beta.
+</p>
+
+<div class="formula-box">
+  <span class="label">Capital Asset Pricing Model (CAPM)</span>
+  <span class="formula">E(<em>R<sub>i</sub></em>) = <em>R<sub>f</sub></em> + β<sub><em>i</em></sub> × [E(<em>R<sub>M</sub></em>) − <em>R<sub>f</sub></em>]</span>
+  <div class="note">where E(<em>R<sub>i</sub></em>) = expected return on asset <em>i</em>, <em>R<sub>f</sub></em> = risk-free rate, β<sub><em>i</em></sub> = beta of asset <em>i</em>, E(<em>R<sub>M</sub></em>) = expected return on the market, and [E(<em>R<sub>M</sub></em>) − <em>R<sub>f</sub></em>] = market risk premium</div>
+</div>
+
+<p>
+Unpack the formula piece by piece. The term <em>R<sub>f</sub></em> is your baseline — the time value of money compensation you'd earn even with no risk. The term β<sub><em>i</em></sub> × [E(<em>R<sub>M</sub></em>) − <em>R<sub>f</sub></em>] is your <span class="key-term">risk premium</span> — the extra return above the risk-free rate that compensates you for bearing systematic risk. If β = 0, you earn only the risk-free rate. If β = 1, you earn the full market risk premium. If β > 1, you earn <em>more</em> than the market risk premium because you're taking on more systematic risk than the average stock.
+</p>
+
+<div class="example-embed" data-label="Example 4 — Basic CAPM Calculation">
+  <p class="scenario">
+    Red Acre Industries has a beta of 1.3. The risk-free rate is 4%, and the expected market return is 11%. What is Red Acre's expected return according to the CAPM?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify the inputs: <em>R<sub>f</sub></em> = 4%, β = 1.3, E(<em>R<sub>M</sub></em>) = 11%.</li>
+      <li data-step="2.">Compute the market risk premium: <span class="calc">11% − 4% = 7%</span></li>
+      <li data-step="3.">Apply the CAPM: <span class="calc">E(<em>R</em>) = 4% + 1.3 × 7% = 4% + 9.10% = 13.10%</span></li>
+    </ul>
+    <div class="answer-line">Red Acre's expected return is 13.10%. The 9.10% risk premium above the risk-free rate compensates investors for bearing 1.3 units of systematic risk.</div>
+  </details>
+</div>
+
+<h3>Sensitivity to Beta — How Much Does It Matter?</h3>
+
+<p>
+It's worth pausing to see how powerfully beta drives expected returns. Using the same risk-free rate (4%) and market return (11%), look at how expected returns escalate across different betas:
+</p>
+
+<div class="example-embed" data-label="Example 5 — CAPM at Different Betas">
+  <p class="scenario">
+    Compute the expected return for four assets with betas of 0.5, 1.0, 1.5, and 2.0, assuming a risk-free rate of 4% and an expected market return of 11%.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">β = 0.5: <span class="calc">4% + 0.5 × 7% = 7.50%</span></li>
+      <li data-step="2.">β = 1.0: <span class="calc">4% + 1.0 × 7% = 11.00%</span> (the market return, by definition)</li>
+      <li data-step="3.">β = 1.5: <span class="calc">4% + 1.5 × 7% = 14.50%</span></li>
+      <li data-step="4.">β = 2.0: <span class="calc">4% + 2.0 × 7% = 18.00%</span></li>
+    </ul>
+    <div class="answer-line">Each additional unit of beta adds exactly one market risk premium (7%) to the expected return. The relationship is perfectly linear — this linearity is the essence of the CAPM.</div>
+  </details>
+</div>
+
+<p>
+That linearity is worth emphasizing. The CAPM doesn't say "more risk, more return" in some vague way — it gives you a precise exchange rate. Every additional unit of beta adds exactly one market risk premium to your expected return. This is the relationship depicted by the <span class="key-term">Security Market Line</span>.
+</p>
+
+<h3>The Security Market Line (SML)</h3>
+
+<p>
+The <span class="key-term">Security Market Line</span> is simply the graphical representation of the CAPM equation. On the horizontal axis, you plot beta; on the vertical axis, expected return. The SML is a straight line that starts at the risk-free rate (where β = 0) and passes through the market portfolio (where β = 1.0 and expected return = E(<em>R<sub>M</sub></em>)). Every asset that is <em>fairly priced</em> should lie exactly on this line.
+</p>
+
+<p>
+The slope of the SML is the market risk premium, E(<em>R<sub>M</sub></em>) − <em>R<sub>f</sub></em>. When the market risk premium increases — because investors become more risk-averse, for instance during a recession — the SML steepens, and all risky assets must offer higher expected returns. When the risk-free rate changes, the entire SML shifts up or down.
+</p>
+
+<div class="figure">
+  <span class="figure-label">Figure 1 — The Security Market Line</span>
+  <svg viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The Security Market Line: a straight line plotting expected return versus beta, starting at the risk-free rate of 4% at beta zero and rising through the market portfolio at beta 1.">
+    <!-- Plot area: x=80..560, y=30..290 -->
+    <!-- Beta axis: 0 to 2.2, Return axis: 0% to 20% -->
+    <!-- x(b) = 80 + b/2.2*480, y(r) = 290 - r/20*260 -->
+    <rect x="80" y="30" width="480" height="260" fill="#ffffff" stroke="#d4d0c8" stroke-width="0.5" rx="2"/>
+
+    <!-- Grid lines -->
+    <g stroke="#e8e4dc" stroke-width="0.5">
+      <line x1="80" y1="238" x2="560" y2="238"/><!-- 4% -->
+      <line x1="80" y1="186" x2="560" y2="186"/><!-- 8% -->
+      <line x1="80" y1="134" x2="560" y2="134"/><!-- 12% -->
+      <line x1="80" y1="82" x2="560" y2="82"/><!-- 16% -->
+      <!-- Vertical grid at beta 0.5, 1.0, 1.5, 2.0 -->
+      <line x1="189.1" y1="30" x2="189.1" y2="290"/>
+      <line x1="298.2" y1="30" x2="298.2" y2="290"/>
+      <line x1="407.3" y1="30" x2="407.3" y2="290"/>
+      <line x1="516.4" y1="30" x2="516.4" y2="290"/>
+    </g>
+
+    <!-- Y-axis labels -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="end">
+      <text x="74" y="294">0%</text>
+      <text x="74" y="242">4%</text>
+      <text x="74" y="190">8%</text>
+      <text x="74" y="138">12%</text>
+      <text x="74" y="86">16%</text>
+      <text x="74" y="34">20%</text>
+    </g>
+
+    <!-- X-axis labels -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="middle">
+      <text x="80" y="308">0</text>
+      <text x="189.1" y="308">0.5</text>
+      <text x="298.2" y="308">1.0</text>
+      <text x="407.3" y="308">1.5</text>
+      <text x="516.4" y="308">2.0</text>
+    </g>
+
+    <!-- Axis titles -->
+    <text x="320" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Beta (β)</text>
+    <text x="22" y="165" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 22 165)">Expected Return E(R)</text>
+
+    <!-- The SML line: from (0, 4%) to (2.2, 19.4%) -->
+    <line x1="80" y1="238" x2="560" y2="37.8" stroke="#c75000" stroke-width="2.5"/>
+
+    <!-- Risk-free rate point -->
+    <circle cx="80" cy="238" r="5" fill="#c75000"/>
+    <text x="92" y="250" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#c75000" font-weight="500">R<tspan font-size="7" dy="2">f</tspan><tspan dy="-2"> = 4%</tspan></text>
+
+    <!-- Market portfolio point (beta=1, 11%) -->
+    <circle cx="298.2" cy="147" r="5" fill="#c75000"/>
+    <text x="310" y="164" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#c75000" font-weight="500">Market (β=1, 11%)</text>
+
+    <!-- Example 5 data points -->
+    <!-- beta=0.5, 7.50% -->
+    <circle cx="189.1" cy="192.5" r="4" fill="#c75000"/>
+    <text x="199" y="207" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#6b6560">7.50%</text>
+
+    <!-- beta=1.5, 14.50% -->
+    <circle cx="407.3" cy="101.5" r="4" fill="#c75000"/>
+    <text x="417" y="116" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#6b6560">14.50%</text>
+
+    <!-- beta=2.0, 18.00% -->
+    <circle cx="516.4" cy="56" r="4" fill="#c75000"/>
+    <text x="504" y="48" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#6b6560" text-anchor="end">18.00%</text>
+
+    <!-- Slope annotation -->
+    <text x="468" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="9.5" fill="#6b6560" text-anchor="middle" font-style="italic">Slope = Market Risk Premium = 7%</text>
+
+    <!-- SML label (above line at x=440; SML at x=440 ≈ y=88) -->
+    <text x="440" y="68" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#c75000" font-weight="600">SML</text>
+  </svg>
+  <p class="figure-caption">The Security Market Line plots expected return against beta. Every fairly priced asset lies on the line. The y-intercept is the risk-free rate (4%); the slope is the market risk premium (7%). Each additional unit of beta adds exactly 7% to the required return.</p>
+</div>
+
+<h3>Mispricing and the SML</h3>
+
+<p>
+Here's where the SML becomes a practical tool. If you have an estimate of what an asset's return <em>will</em> be (from analyst forecasts, your own analysis, etc.), you can compare that to what the CAPM <em>says</em> the return <em>should</em> be given the asset's beta. The difference between the two is sometimes called <span class="key-term">alpha</span> (α):
+</p>
+
+<p>
+If an asset plots <em>above</em> the SML — meaning its expected return exceeds the CAPM prediction — it's offering more return than its systematic risk warrants. This suggests it's <em>undervalued</em>: you're getting a bargain, a positive alpha. If an asset plots <em>below</em> the SML, the opposite is true: the expected return is too low for the risk, and the asset appears <em>overvalued</em>.
+</p>
+
+<div class="example-embed" data-label="Example 6 — Identifying Mispricing with the SML">
+  <p class="scenario">
+    Assume the risk-free rate is 4% and the expected market return is 11%. Your analyst provides the following estimates:<br>
+    Stock X: β = 0.8, analyst's expected return = 12%<br>
+    Stock Y: β = 1.6, analyst's expected return = 15%<br>
+    Which stock is undervalued and which is overvalued, according to the CAPM?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Compute the required return for Stock X: <span class="calc">4% + 0.8 × 7% = 9.60%</span></li>
+      <li data-step="2.">Stock X alpha: <span class="calc">12.00% − 9.60% = +2.40%</span>. Expected return exceeds required return — Stock X plots <em>above</em> the SML.</li>
+      <li data-step="3.">Compute the required return for Stock Y: <span class="calc">4% + 1.6 × 7% = 15.20%</span></li>
+      <li data-step="4.">Stock Y alpha: <span class="calc">15.00% − 15.20% = −0.20%</span>. Expected return falls short of required return — Stock Y plots <em>below</em> the SML.</li>
+    </ul>
+    <div class="answer-line">Stock X is undervalued (positive alpha of 2.40% — a buying opportunity). Stock Y is slightly overvalued (negative alpha of −0.20% — you're not being fully compensated for the risk).</div>
+  </details>
+</div>
+
+<p>
+A word of caution: the mispricing analysis is only as good as both your beta estimate and your expected return forecast. In practice, small alphas (like Stock Y's −0.20%) could easily be noise. The CAPM gives you a framework for thinking about fair compensation for risk, but it's not an oracle.
+</p>
+
+<div class="figure">
+  <span class="figure-label">Figure 2 — Mispricing and the SML</span>
+  <svg viewBox="0 0 620 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The Security Market Line with Stock X plotting above the line (undervalued, positive alpha) and Stock Y plotting just below (overvalued, negative alpha).">
+    <!-- Same coordinate system as Figure 1 -->
+    <!-- x(b) = 80 + b/2.2*480, y(r) = 290 - r/20*260 -->
+    <rect x="80" y="30" width="480" height="260" fill="#ffffff" stroke="#d4d0c8" stroke-width="0.5" rx="2"/>
+
+    <!-- Grid lines -->
+    <g stroke="#e8e4dc" stroke-width="0.5">
+      <line x1="80" y1="238" x2="560" y2="238"/>
+      <line x1="80" y1="186" x2="560" y2="186"/>
+      <line x1="80" y1="134" x2="560" y2="134"/>
+      <line x1="80" y1="82" x2="560" y2="82"/>
+      <line x1="189.1" y1="30" x2="189.1" y2="290"/>
+      <line x1="298.2" y1="30" x2="298.2" y2="290"/>
+      <line x1="407.3" y1="30" x2="407.3" y2="290"/>
+      <line x1="516.4" y1="30" x2="516.4" y2="290"/>
+    </g>
+
+    <!-- Y-axis labels -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="end">
+      <text x="74" y="294">0%</text>
+      <text x="74" y="242">4%</text>
+      <text x="74" y="190">8%</text>
+      <text x="74" y="138">12%</text>
+      <text x="74" y="86">16%</text>
+      <text x="74" y="34">20%</text>
+    </g>
+
+    <!-- X-axis labels -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#6b6560" text-anchor="middle">
+      <text x="80" y="308">0</text>
+      <text x="189.1" y="308">0.5</text>
+      <text x="298.2" y="308">1.0</text>
+      <text x="407.3" y="308">1.5</text>
+      <text x="516.4" y="308">2.0</text>
+    </g>
+
+    <!-- Axis titles -->
+    <text x="320" y="340" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle">Beta (β)</text>
+    <text x="22" y="165" font-family="'Source Serif 4', Georgia, serif" font-size="11" fill="#1a1a1a" text-anchor="middle" transform="rotate(-90 22 165)">Expected Return E(R)</text>
+
+    <!-- The SML line -->
+    <line x1="80" y1="238" x2="560" y2="37.8" stroke="#c75000" stroke-width="2" stroke-opacity="0.5"/>
+    <!-- SML label (above line at x=475; SML at x=475 ≈ y=73) -->
+    <text x="475" y="55" font-family="'Source Serif 4', Georgia, serif" font-size="10" fill="#c75000" font-weight="600" opacity="0.7">SML</text>
+
+    <!-- Reference points on SML (subtle) -->
+    <circle cx="80" cy="238" r="3" fill="#c75000" opacity="0.5"/>
+    <circle cx="298.2" cy="147" r="3" fill="#c75000" opacity="0.5"/>
+
+    <!-- Stock X: beta=0.8, forecast=12%, required=9.60%, alpha=+2.40% -->
+    <!-- Actual position: (254.5, 134.0) -->
+    <!-- SML position: (254.5, 165.2) -->
+
+    <!-- Alpha arrow for Stock X (vertical from SML to actual) -->
+    <line x1="254.5" y1="165.2" x2="254.5" y2="137" stroke="#2a7d2a" stroke-width="1.5" marker-end="url(#arrowGreenUp)"/>
+
+    <!-- Stock X actual point (above SML) -->
+    <circle cx="254.5" cy="134" r="6" fill="#2a7d2a" stroke="#ffffff" stroke-width="1.5"/>
+
+    <!-- Stock X labels (positioned upper-left, clear of SML) -->
+    <text x="140" y="112" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#2a7d2a" font-weight="500">Stock X</text>
+    <text x="140" y="124" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#2a7d2a">β=0.8, E(R)=12%</text>
+    <line x1="210" y1="118" x2="248" y2="132" stroke="#2a7d2a" stroke-width="0.7" opacity="0.5"/>
+
+    <!-- Alpha label for Stock X (below SML line, at y=182; SML at this x ≈ y=160) -->
+    <text x="268" y="184" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#2a7d2a" font-weight="500">α = +2.40%</text>
+
+    <!-- Stock X on-SML reference point (hollow) -->
+    <circle cx="254.5" cy="165.2" r="3" fill="none" stroke="#c75000" stroke-width="1" opacity="0.6"/>
+
+    <!-- Stock Y: beta=1.6, forecast=15%, required=15.20%, alpha=-0.20% -->
+    <!-- Actual position: (429.1, 95.0) -->
+    <!-- SML position: (429.1, 92.4) -->
+
+    <!-- Alpha arrow for Stock Y (vertical from SML to actual — very short, downward) -->
+    <line x1="429.1" y1="92.4" x2="429.1" y2="95" stroke="#b82020" stroke-width="1.5"/>
+
+    <!-- Stock Y actual point (below SML) -->
+    <circle cx="429.1" cy="95" r="6" fill="#b82020" stroke="#ffffff" stroke-width="1.5"/>
+
+    <!-- Stock Y labels (below the point, well clear of SML; SML at x=460 ≈ y=80) -->
+    <line x1="432" y1="101" x2="448" y2="113" stroke="#b82020" stroke-width="0.7" opacity="0.5"/>
+    <text x="450" y="118" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" fill="#b82020" font-weight="500">Stock Y</text>
+    <text x="450" y="130" font-family="'JetBrains Mono', Consolas, monospace" font-size="8" fill="#b82020">β=1.6, E(R)=15%</text>
+    <text x="450" y="142" font-family="'JetBrains Mono', Consolas, monospace" font-size="8.5" fill="#b82020" font-weight="500">α = −0.20%</text>
+
+    <!-- Stock Y on-SML reference point (hollow) -->
+    <circle cx="429.1" cy="92.4" r="3" fill="none" stroke="#c75000" stroke-width="1" opacity="0.6"/>
+
+    <!-- Legend -->
+    <circle cx="96" cy="50" r="5" fill="#2a7d2a" stroke="#ffffff" stroke-width="1"/>
+    <text x="108" y="54" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#6b6560">Above SML = undervalued (positive α)</text>
+    <circle cx="96" cy="68" r="5" fill="#b82020" stroke="#ffffff" stroke-width="1"/>
+    <text x="108" y="72" font-family="'Source Serif 4', Georgia, serif" font-size="9" fill="#6b6560">Below SML = overvalued (negative α)</text>
+
+    <defs>
+      <marker id="arrowGreenUp" markerWidth="6" markerHeight="6" refX="3" refY="6" orient="auto"><path d="M0,6 L3,0 L6,6" fill="none" stroke="#2a7d2a" stroke-width="1"/></marker>
+    </defs>
+  </svg>
+  <p class="figure-caption">Stock X (β = 0.8) plots above the SML — its forecast return of 12% exceeds the CAPM-required 9.60%, giving a positive alpha of +2.40%. Stock Y (β = 1.6) plots just below the SML — its forecast return of 15% falls slightly short of the required 15.20%, a negative alpha of −0.20%.</p>
+</div>
+
+<div class="example-embed" data-label="Example 7 — Solving for Beta">
+  <p class="scenario">
+    White Acre Pharmaceuticals has an expected return of 13.5%. If the risk-free rate is 3.5% and the expected market return is 10.5%, what must White Acre's beta be?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Start from the CAPM: <span class="calc">13.5% = 3.5% + β × (10.5% − 3.5%)</span></li>
+      <li data-step="2.">Isolate β: <span class="calc">13.5% − 3.5% = β × 7.0%</span></li>
+      <li data-step="3.">Solve: <span class="calc">β = 10.0% ÷ 7.0% = 1.43</span></li>
+    </ul>
+    <div class="answer-line">White Acre's beta is approximately 1.43, indicating systematic risk well above the market average.</div>
+  </details>
+</div>
+
+<p>
+You can solve the CAPM for any one of its four variables — expected return, risk-free rate, beta, or expected market return — as long as you know the other three. This flexibility makes it a versatile analytical tool.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART C — THE COST OF EQUITY -->
+<!-- ============================================================ -->
+
+<h2>Part C — The Cost of Equity</h2>
+
+<p>
+So far, we've used the CAPM as a tool for understanding expected returns on investments. Now we're going to pivot and look at it from the <em>firm's</em> perspective. When a company raises money from shareholders, those shareholders expect a return — they have alternatives, and they won't invest in your stock unless they expect to earn at least as much as other investments of comparable risk. That minimum required return is the firm's <span class="key-term">cost of equity</span>.
+</p>
+
+<p>
+The cost of equity is a critical input in corporate finance. It's one of the key components of a firm's <span class="key-term">weighted average cost of capital (WACC)</span>, which we'll formalize in Week 10. The WACC, in turn, is the discount rate firms use to evaluate new projects — so getting the cost of equity right directly affects which investments a company pursues.
+</p>
+
+<p>
+There are two primary methods for estimating the cost of equity: the CAPM approach and the dividend discount model (DDM) approach. Neither is perfect, and in practice analysts often use both and compare.
+</p>
+
+<h3>Method 1: The CAPM Approach</h3>
+
+<p>
+The logic is immediate. If the CAPM tells you what return investors <em>require</em> for a given level of systematic risk, then that required return is exactly what the firm must deliver to its equity investors. The formula is the same CAPM equation you already know — you're just interpreting it from the issuer's side rather than the investor's side.
+</p>
+
+<div class="formula-box">
+  <span class="label">Cost of Equity — CAPM Approach</span>
+  <span class="formula"><em>r<sub>E</sub></em> = <em>R<sub>f</sub></em> + β × Market Risk Premium</span>
+  <div class="note">where <em>r<sub>E</sub></em> = cost of equity, <em>R<sub>f</sub></em> = risk-free rate, β = firm's equity beta, and the market risk premium = E(<em>R<sub>M</sub></em>) − <em>R<sub>f</sub></em></div>
+</div>
+
+<p>
+To use this method, you need three inputs: a risk-free rate (typically the yield on long-term Treasury bonds), the firm's beta (estimated from historical stock return data, or obtained from a financial data provider), and the market risk premium (either the historical average or a forward-looking estimate). Each of these introduces estimation uncertainty, but the method has the advantage of being directly grounded in the risk-return framework you've been building all quarter.
+</p>
+
+<div class="example-embed" data-label="Example 8 — Cost of Equity via CAPM">
+  <p class="scenario">
+    Green Acre Agricultural has a beta of 1.15. The current risk-free rate (10-year Treasury yield) is 3%, and you estimate the market risk premium at 7%. What is Green Acre's cost of equity using the CAPM?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify inputs: <em>R<sub>f</sub></em> = 3%, β = 1.15, market risk premium = 7%.</li>
+      <li data-step="2.">Apply the CAPM: <span class="calc"><em>r<sub>E</sub></em> = 3% + 1.15 × 7% = 3% + 8.05%</span></li>
+      <li data-step="3.">Calculate: <span class="calc"><em>r<sub>E</sub></em> = 11.05%</span></li>
+    </ul>
+    <div class="answer-line">Green Acre's cost of equity is 11.05%. This is the minimum return the firm needs to earn on equity-financed investments to satisfy its shareholders.</div>
+  </details>
+</div>
+
+<h3>Method 2: The Dividend Discount Model Approach</h3>
+
+<p>
+Recall from Week 4 that the constant-growth dividend discount model prices a stock as:
+</p>
+
+<p style="text-align: center; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 1.05rem; margin: 0.75rem 0;">
+P<sub>0</sub> = D<sub>1</sub> ÷ (<em>r<sub>E</sub></em> − <em>g</em>)
+</p>
+
+<p>
+If we rearrange this equation to solve for <em>r<sub>E</sub></em> instead of <em>P<sub>0</sub></em>, we get the DDM cost of equity estimate:
+</p>
+
+<div class="formula-box">
+  <span class="label">Cost of Equity — Dividend Discount Model Approach</span>
+  <span class="formula"><em>r<sub>E</sub></em> = D<sub>1</sub> ÷ P<sub>0</sub> + <em>g</em></span>
+  <div class="note">where D<sub>1</sub> = expected dividend next year, P<sub>0</sub> = current stock price, <em>g</em> = constant dividend growth rate</div>
+</div>
+
+<p>
+The first term, D<sub>1</sub> ÷ P<sub>0</sub>, is called the <span class="key-term">dividend yield</span> — the immediate cash return you receive from holding the stock. The second term, <em>g</em>, is the <span class="key-term">capital gains yield</span> — the expected rate of price appreciation if dividends grow at rate <em>g</em> forever. Together, they represent the total return shareholders expect.
+</p>
+
+<p>
+This method is appealingly intuitive — you're using market data (the stock price and dividend) to infer what return investors are demanding. But it has real limitations. It only works for firms that pay dividends and are expected to grow at a roughly constant rate. And the result is highly sensitive to your estimate of <em>g</em>: change the growth assumption by even 1%, and the cost of equity shifts significantly.
+</p>
+
+<div class="example-embed" data-label="Example 9 — Cost of Equity via DDM">
+  <p class="scenario">
+    Green Acre Agricultural's stock trades at $52.00 per share. The company just paid a dividend of $2.20, and dividends are expected to grow at 4% per year indefinitely. What is Green Acre's cost of equity using the DDM approach?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Compute next year's dividend: <span class="calc">D<sub>1</sub> = $2.20 × 1.04 = $2.29</span></li>
+      <li data-step="2.">Compute the dividend yield: <span class="calc">$2.29 ÷ $52.00 = 0.0440 = 4.40%</span></li>
+      <li data-step="3.">Add the growth rate: <span class="calc"><em>r<sub>E</sub></em> = 4.40% + 4.00% = 8.40%</span></li>
+    </ul>
+    <div class="answer-line">Green Acre's cost of equity via the DDM is 8.40%.</div>
+  </details>
+</div>
+
+<h3>Comparing the Two Methods</h3>
+
+<p>
+In a perfect world, both methods would give you the same number. In practice, they almost never do — and the gap can be substantial.
+</p>
+
+<div class="example-embed" data-label="Example 10 — CAPM vs. DDM">
+  <p class="scenario">
+    For Green Acre Agricultural, the CAPM estimate of the cost of equity was 11.05% (Example 8) and the DDM estimate was 8.40% (Example 9). The two methods disagree by 2.65 percentage points. How should a financial manager interpret this?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">The CAPM approach depends on the accuracy of the beta estimate, the risk-free rate, and the market risk premium. Each introduces uncertainty.</li>
+      <li data-step="2.">The DDM approach depends on the accuracy of the growth rate estimate. If Green Acre's dividends actually grow faster than 4%, the DDM estimate would be higher.</li>
+      <li data-step="3.">A common practice is to average the two: <span class="calc">(11.05% + 8.40%) ÷ 2 = 9.72%</span></li>
+      <li data-step="4.">Alternatively, managers may weight one method more heavily if they have greater confidence in its inputs.</li>
+    </ul>
+    <div class="answer-line">There is no single "right" answer. Many practitioners average the two estimates (yielding 9.72%) or use a range (8.40% to 11.05%) in sensitivity analysis. The disagreement itself is useful — it tells you where uncertainty lies.</div>
+  </details>
+</div>
+
+<p>
+Why might the methods disagree? The CAPM is built on a model of how risk and return relate in equilibrium. It doesn't use any information about the firm's dividends or stock price — it's purely about systematic risk. The DDM, by contrast, is anchored entirely in the firm's dividend policy and stock price, and doesn't consider beta at all. When they diverge, it typically means that one or more of the underlying assumptions — the beta estimate, the market risk premium, or the growth rate — is off. A large divergence should prompt you to reexamine your inputs rather than simply picking whichever number you prefer.
+</p>
+
+<p>
+We'll put the cost of equity to work next week when we combine it with the cost of debt to compute the firm's overall weighted average cost of capital.
+</p>
+
+<!-- ============================================================ -->
+<!-- KEY FORMULAS REFERENCE -->
+<!-- ============================================================ -->
+
+<h2>Key Formulas Reference</h2>
+
+<table class="formula-ref">
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Formula</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Portfolio Beta</td>
+      <td>β<sub>P</sub> = Σ <em>w<sub>i</sub></em> × β<sub><em>i</em></sub></td>
+      <td>Weighted average of component betas</td>
+    </tr>
+    <tr>
+      <td>CAPM / SML</td>
+      <td>E(<em>R<sub>i</sub></em>) = <em>R<sub>f</sub></em> + β<sub><em>i</em></sub> × [E(<em>R<sub>M</sub></em>) − <em>R<sub>f</sub></em>]</td>
+      <td>Expected return given systematic risk</td>
+    </tr>
+    <tr>
+      <td>Alpha (mispricing)</td>
+      <td>α = E(<em>R</em>)<sub>forecast</sub> − E(<em>R</em>)<sub>CAPM</sub></td>
+      <td>Positive α → undervalued; Negative α → overvalued</td>
+    </tr>
+    <tr>
+      <td>Cost of Equity (CAPM)</td>
+      <td><em>r<sub>E</sub></em> = <em>R<sub>f</sub></em> + β × MRP</td>
+      <td>MRP = market risk premium</td>
+    </tr>
+    <tr>
+      <td>Cost of Equity (DDM)</td>
+      <td><em>r<sub>E</sub></em> = D<sub>1</sub> ÷ P<sub>0</sub> + <em>g</em></td>
+      <td>Requires constant growth assumption</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!-- PRACTICE PROBLEMS -->
+<!-- ============================================================ -->
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/Introduction-to-Finance/">All Course Materials</a></div>
+
+<h2>Practice Problems</h2>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W9.1]</span>
+  </div>
+  <p>You invest 40% of your portfolio in Orange Acre Logistics (β = 0.9), 35% in White Acre Pharmaceuticals (β = 1.7), and the remaining 25% in Treasury bills. What is your portfolio's beta?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W9.2]</span>
+  </div>
+  <p>A stock has a beta of 1.25. The risk-free rate is 3.5% and the expected market return is 10.5%. According to the CAPM, what is the stock's expected return?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W9.2]</span>
+  </div>
+  <p>A stock has a beta of 1.4, an expected return of 14%, and the expected market return is 11%. Using the CAPM, solve for the risk-free rate.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W9.3]</span>
+  </div>
+  <p>Assume the risk-free rate is 4% and the expected market return is 10%. Your analyst provides these forecasts: Stock A has a beta of 0.7 and an expected return of 10%. Stock B has a beta of 1.3 and an expected return of 13%. Determine whether each stock is overvalued, undervalued, or fairly priced according to the CAPM. Which stock would you buy?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W9.4]</span>
+  </div>
+  <p>Violet Acre Energy has a beta of 0.95. The risk-free rate is 2.5% and the market risk premium is 8%. What is Violet Acre's cost of equity using the CAPM approach?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W9.5]</span>
+  </div>
+  <p>Violet Acre Energy's stock currently trades at $38.00 per share. The company just paid a dividend of $1.50, and dividends are expected to grow at 5.5% per year indefinitely. What is Violet Acre's cost of equity using the DDM approach?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 7</span>
+    <span class="skill-tag">[W9.4, W9.5]</span>
+  </div>
+  <p>Silver Acre Technologies has a beta of 1.1. The risk-free rate is 3% and the market risk premium is 6.5%. Silver Acre's stock trades at $45.00, and the company expects to pay a dividend of $2.70 next year. Dividends are expected to grow at 3% per year. Compute the cost of equity using both the CAPM and DDM approaches. What would you recommend as a reasonable estimate of the cost of equity?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 8</span>
+    <span class="skill-tag">[W9.1, W9.2, W9.3]</span>
+  </div>
+  <p>In two or three sentences, explain why a stock with a high standard deviation of returns does not necessarily have a high expected return. Specifically, what type of risk is rewarded by the market, and how does the CAPM capture this distinction? (No calculation required.)</p>
+</div>
+
+</body>
+</html>
