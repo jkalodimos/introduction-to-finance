@@ -18,6 +18,16 @@
       --card-bg: #ffffff;
     }
 
+    [data-theme="dark"] {
+      --bg: #141516;
+      --text: #d6d3cd;
+      --accent: #b8845a;
+      --accent-light: #1b1815;
+      --border: #2e2f31;
+      --muted: #8a857e;
+      --card-bg: #1c1d1f;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -151,6 +161,42 @@
       text-decoration: underline;
     }
 
+    /* ---- Theme Toggle ---- */
+    .theme-toggle {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.2rem;
+      z-index: 100;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 1rem;
+      padding: 0.25rem 0.6rem;
+      cursor: pointer;
+      font-size: 1.05rem;
+      line-height: 1;
+      color: var(--accent);
+      transition: background 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .theme-toggle:hover {
+      background: var(--card-bg);
+    }
+    .toggle-icon {
+      transition: opacity 0.2s;
+      display: inline;
+    }
+    .light-icon { opacity: 1; }
+    .dark-icon { opacity: 0.3; }
+    [data-theme="dark"] .light-icon { opacity: 0.3; }
+    [data-theme="dark"] .dark-icon { opacity: 1; }
+
+    @media print {
+      .theme-toggle { display: none; }
+    }
+
     @media (max-width: 600px) {
       body { padding: 1.5rem 1.2rem 3rem; }
       .week-link { flex-wrap: wrap; gap: 0.3rem; }
@@ -159,6 +205,11 @@
   </style>
 </head>
 <body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+  <span class="toggle-icon light-icon">&#9728;&#65038;</span>
+  <span class="toggle-icon dark-icon">&#9790;</span>
+</button>
 
   <div class="course-header">
     <h1>Introduction to Finance</h1>
@@ -251,6 +302,42 @@
   <footer>
     Course content licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>. Code licensed under <a href="LICENSE-CODE">MIT</a>.
   </footer>
+
+<script>
+(function() {
+  var STORAGE_KEY = 'coursepack-theme';
+  var html = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+
+  var saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    html.setAttribute('data-theme', saved);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    html.setAttribute('data-theme', 'dark');
+  }
+
+  toggle.addEventListener('click', function() {
+    var current = html.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    if (next === 'light') {
+      html.removeAttribute('data-theme');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+    }
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      if (e.matches) {
+        html.setAttribute('data-theme', 'dark');
+      } else {
+        html.removeAttribute('data-theme');
+      }
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
