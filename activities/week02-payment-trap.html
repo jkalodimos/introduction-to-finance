@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Finance — Week 2 Activity — The Payment Trap</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+  --warning-bg: #fff7e6;
+  --warning-border: #e6c069;
+  --error-bg: #fbeaea;
+  --error-border: #d49090;
+  --error-text: #a02020;
+  --correct-bg: #eaf5ea;
+  --correct-border: #6fa86f;
+  --correct-text: #2a7d2a;
+  --principal: #6fa86f;
+  --trim: #d4a574;
+  --interest: #c75000;
+  --chart-axis: #6b6560;
+  --chart-grid: #d4d0c8;
+}
+[data-theme="dark"] {
+  --bg: #141516;
+  --text: #d6d3cd;
+  --accent: #b8845a;
+  --accent-light: #1b1815;
+  --border: #2e2f31;
+  --muted: #8a857e;
+  --formula-bg: #1a1b1c;
+  --example-border: #2e2f31;
+  --problem-bg: #1b1815;
+  --solution-bg: #131f13;
+  --warning-bg: #1f1a10;
+  --warning-border: #6b5828;
+  --error-bg: #2a1414;
+  --error-border: #6b3030;
+  --error-text: #e06060;
+  --correct-bg: #131f13;
+  --correct-border: #3a6b3a;
+  --correct-text: #5ab85a;
+  --principal: #5ab85a;
+  --trim: #b8845a;
+  --interest: #d4824c;
+  --chart-axis: #8a857e;
+  --chart-grid: #2e2f31;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem 4rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+/* ---- Header ---- */
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header .eyebrow {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-top: 0.4rem;
+}
+.course-header h1 {
+  font-size: 1.95rem;
+  font-weight: 700;
+  margin: 0.2rem 0 0.35rem;
+  line-height: 1.2;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-block;
+}
+.nav-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-link a:hover { text-decoration: underline; }
+
+.meta-bar {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 0.85rem 1.2rem;
+  margin-bottom: 1.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  font-size: 0.9rem;
+}
+.meta-bar .meta-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+.meta-bar .skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.3rem;
+}
+
+/* ---- Scenario callout ---- */
+.scenario-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem 1.2rem;
+  margin: 1.5rem 0 2rem;
+}
+.scenario-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.scenario-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0.9rem 0;
+}
+.scenario-box ul li {
+  padding: 0.15rem 0;
+}
+.scenario-box .quote {
+  font-style: italic;
+  border-left: 3px solid var(--accent);
+  padding: 0.2rem 0 0.2rem 0.9rem;
+  margin-top: 0.7rem;
+  color: var(--text);
+}
+
+/* ---- Activity Parts ---- */
+.activity-part {
+  background: var(--bg);
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.4rem 1.6rem 1.6rem;
+  margin: 1.6rem 0;
+  position: relative;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+.activity-part::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.22rem 0.7rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.6rem;
+  left: 1.2rem;
+}
+.activity-part.locked {
+  opacity: 0.42;
+  filter: blur(2px);
+  pointer-events: none;
+  user-select: none;
+}
+.activity-part.locked::after {
+  content: "🔒 Complete the previous part to unlock";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--card-bg, var(--bg));
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-style: italic;
+  color: var(--muted);
+  filter: blur(0);
+  pointer-events: none;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+.activity-part h3 {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0.4rem 0 0.25rem;
+}
+.activity-part .part-subtitle {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.98rem;
+  margin-bottom: 0.85rem;
+}
+.activity-part .part-body {
+  margin-bottom: 1rem;
+}
+.activity-part .prompt {
+  margin-top: 0.9rem;
+  font-weight: 600;
+}
+
+/* ---- Inputs ---- */
+.input-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin: 0.55rem 0;
+  padding: 0.25rem 0;
+}
+.input-row .input-label {
+  flex: 1 1 320px;
+  min-width: 200px;
+}
+.input-row .input-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-right: 0.4rem;
+}
+.answer-input {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1rem;
+  padding: 0.35rem 0.55rem;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--text);
+  width: 9rem;
+  text-align: right;
+}
+.answer-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.answer-input.correct {
+  border-color: var(--correct-border);
+  background: var(--correct-bg);
+}
+.answer-input.incorrect {
+  border-color: var(--error-border);
+  background: var(--error-bg);
+}
+.input-fb {
+  flex: 1 1 100%;
+  font-size: 0.88rem;
+  margin: 0.1rem 0 0.4rem 0;
+  padding-left: 0.2rem;
+  min-height: 1rem;
+}
+.input-fb.correct { color: var(--correct-text); }
+.input-fb.incorrect { color: var(--error-text); }
+
+.check-btn {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  transition: background 0.15s, transform 0.05s;
+}
+.check-btn:hover { filter: brightness(0.92); }
+.check-btn:active { transform: translateY(1px); }
+
+/* ---- Verdict box ---- */
+.verdict {
+  margin-top: 1rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 4px;
+  border-left: 4px solid var(--border);
+  font-size: 0.97rem;
+  display: none;
+}
+.verdict.show { display: block; }
+.verdict.success {
+  background: var(--correct-bg);
+  border-left-color: var(--correct-border);
+  color: var(--text);
+}
+.verdict.partial {
+  background: var(--warning-bg);
+  border-left-color: var(--warning-border);
+  color: var(--text);
+}
+.verdict.fail {
+  background: var(--error-bg);
+  border-left-color: var(--error-border);
+  color: var(--text);
+}
+.verdict strong { color: var(--accent); }
+
+/* ---- Stacked bar chart ---- */
+.chart-container {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1.2rem 1rem 1rem;
+  margin: 1.6rem 0;
+  display: none;
+}
+.chart-container.show { display: block; }
+.chart-container .chart-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+  padding-left: 0.4rem;
+}
+.chart-container svg {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.chart-container svg .seg-principal { fill: var(--principal); }
+.chart-container svg .seg-trim      { fill: var(--trim); }
+.chart-container svg .seg-interest  { fill: var(--interest); }
+.chart-container svg .axis-line     { stroke: var(--chart-axis); }
+.chart-container svg .grid-line     { stroke: var(--chart-grid); stroke-dasharray: 2 3; }
+.chart-container svg .axis-label    { fill: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+.chart-container svg .bar-label     { fill: var(--text); font-family: 'Source Serif 4', Georgia, serif; font-size: 12px; font-weight: 600; }
+.chart-container svg .seg-label     { fill: #ffffff; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; }
+.chart-container svg .total-label   { fill: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; }
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.4rem;
+  margin-top: 0.8rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.chart-legend .swatch {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+.chart-legend .swatch.principal { background: var(--principal); }
+.chart-legend .swatch.trim      { background: var(--trim); }
+.chart-legend .swatch.interest  { background: var(--interest); }
+
+/* ---- Reflection textarea ---- */
+.reflection-prompt {
+  background: var(--problem-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+textarea.reflection {
+  width: 100%;
+  min-height: 7rem;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  resize: vertical;
+  line-height: 1.6;
+}
+textarea.reflection:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ---- Comparison table ---- */
+table.compare {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+table.compare th {
+  background: var(--formula-bg);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  padding: 0.5rem 0.7rem;
+  text-align: right;
+  border-bottom: 2px solid var(--border);
+}
+table.compare th:first-child { text-align: left; }
+table.compare td {
+  padding: 0.4rem 0.7rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+table.compare td:first-child {
+  text-align: left;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.95rem;
+}
+
+/* ---- Instructor key ---- */
+details.instructor-key {
+  margin-top: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--formula-bg);
+  padding: 0.6rem 1rem;
+}
+details.instructor-key summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+details.instructor-key summary:hover { text-decoration: underline; }
+details.instructor-key .key-section {
+  margin: 1rem 0 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--border);
+}
+details.instructor-key .key-section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+details.instructor-key .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+/* ---- Theme Toggle ---- */
+.theme-toggle {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 100;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: 1rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--accent);
+  transition: background 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.theme-toggle:hover { background: var(--formula-bg); }
+.toggle-icon { transition: opacity 0.2s; display: inline; }
+.light-icon { opacity: 1; }
+.dark-icon { opacity: 0.3; }
+[data-theme="dark"] .light-icon { opacity: 0.3; }
+[data-theme="dark"] .dark-icon { opacity: 1; }
+
+/* ---- Responsive: Tablet (768px) ---- */
+@media (max-width: 768px) {
+  body { padding: 2rem 1.6rem; }
+  .activity-part { padding: 1.2rem 1.2rem 1.4rem; }
+  .input-row .input-label { flex: 1 1 100%; }
+  .answer-input { width: 8rem; }
+}
+
+/* ---- Responsive: Phone (600px) ---- */
+@media (max-width: 600px) {
+  body { padding: 1.5rem 1.1rem 3rem; }
+  .course-header { padding-right: 4rem; }
+  .course-header h1 { font-size: 1.55rem; }
+  .activity-part { padding: 1.1rem 1rem; }
+  .activity-part::before { font-size: 0.66rem; padding: 0.18rem 0.55rem; left: 0.9rem; }
+  .activity-part.locked::after { white-space: normal; max-width: 80%; text-align: center; font-size: 0.85rem; padding: 0.4rem 0.7rem; }
+  .scenario-box { padding: 0.9rem 1rem 1rem; }
+  .meta-bar { padding: 0.7rem 0.95rem; gap: 0.3rem 1rem; }
+  .answer-input { width: 100%; max-width: 11rem; }
+  .check-btn { width: 100%; padding: 0.6rem 1rem; }
+  table.compare { font-size: 0.85rem; }
+  table.compare th, table.compare td { padding: 0.35rem 0.45rem; }
+}
+
+/* ---- Responsive: Small Phone (480px) ---- */
+@media (max-width: 480px) {
+  body { padding: 1.2rem 0.9rem 3rem; font-size: 1rem; }
+  .course-header h1 { font-size: 1.35rem; }
+  .activity-part { padding: 1rem 0.8rem; }
+  .activity-part::before { font-size: 0.6rem; left: 0.7rem; }
+  .activity-part h3 { font-size: 1.05rem; }
+  .scenario-box { padding: 0.8rem 0.9rem; font-size: 0.95rem; }
+  .meta-bar { font-size: 0.83rem; padding: 0.6rem 0.8rem; }
+  table.compare { font-size: 0.78rem; }
+  table.compare th, table.compare td { padding: 0.3rem 0.35rem; }
+  .input-row { gap: 0.4rem; }
+  .theme-toggle { top: 0.8rem; right: 0.8rem; font-size: 0.9rem; padding: 0.2rem 0.45rem; }
+  .course-header { padding-right: 4rem; }
+}
+
+@media print {
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+  }
+  .theme-toggle, .check-btn { display: none; }
+  .activity-part.locked { opacity: 1; filter: none; pointer-events: auto; }
+  .activity-part.locked::after { display: none; }
+  .chart-container { display: block !important; }
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  details.instructor-key[open] summary { display: none; }
+  details.instructor-key { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+  <span class="toggle-icon light-icon">&#9728;&#65038;</span>
+  <span class="toggle-icon dark-icon">&#9790;</span>
+</button>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+
+<div class="course-header">
+  <div class="course-id">Introduction to Finance &middot; Week 2 &middot; In-Class Activity</div>
+  <div class="eyebrow">Small Group Activity &middot; 20&ndash;30 min &middot; Groups of 3</div>
+  <h1>The Payment Trap</h1>
+  <div class="subtitle">A car salesman who optimizes your monthly payment is not optimizing your life. Find out why.</div>
+</div>
+
+<div class="nav-link">&larr; <a href="https://jkalodimos.github.io/introduction-to-finance/">All Course Materials</a></div>
+
+<div class="meta-bar">
+  <div>
+    <span class="meta-label">Skills</span>
+    <span class="skill-code">W2.4</span>
+    <span class="skill-code">W2.5</span>
+    <span class="skill-code">W2.6</span>
+    <span class="skill-code">W2.7</span>
+  </div>
+  <div>
+    <span class="meta-label">Format</span>Guided worksheet
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SCENARIO                                                      -->
+<!-- ============================================================ -->
+
+<div class="scenario-box">
+  <span class="label">Scenario</span>
+  <p>Your group is shopping for a new <strong>Aspire Sedan</strong>. You've test-driven two trim levels and like them both:</p>
+  <ul>
+    <li>&middot; <strong>Aspire S</strong> (base trim): <span data-val-round="LX_PRICE"></span></li>
+    <li>&middot; <strong>Aspire GT</strong> (top trim): <span data-val-round="ST_PRICE"></span></li>
+  </ul>
+  <p>You have <strong><span data-val-round="DOWN_PAYMENT"></span></strong> for a down payment either way. You walk into the dealership with a clear budget in mind.</p>
+  <div class="quote">&ldquo;I can comfortably afford <strong><span data-val-round="BUDGET"></span></strong> a month.&rdquo;</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART I                                                        -->
+<!-- ============================================================ -->
+
+<div class="activity-part" id="part1" data-label="Part I — What you thought you were buying">
+  <h3>What you thought you were buying</h3>
+  <p class="part-subtitle">Your plan walking in: a 48-month loan at 6.0% APR, compounded monthly.</p>
+  <div class="part-body">
+    <p>Before talking to the salesperson, figure out what's actually in your budget. Compute the monthly payment for each trim level on the standard loan terms you came in expecting.</p>
+  </div>
+
+  <div class="input-row">
+    <div class="input-label"><span class="input-tag">a)</span> Aspire S monthly payment (48 mo @ 6.0% APR):</div>
+    <div>$ <input class="answer-input" id="p1lx" inputmode="decimal" placeholder="0.00"></div>
+    <div class="input-fb" id="p1lx-fb"></div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-label"><span class="input-tag">b)</span> Aspire GT monthly payment (48 mo @ 6.0% APR):</div>
+    <div>$ <input class="answer-input" id="p1st" inputmode="decimal" placeholder="0.00"></div>
+    <div class="input-fb" id="p1st-fb"></div>
+  </div>
+
+  <p class="prompt">c) Based on these numbers, which Aspire can you actually afford on your original plan?</p>
+
+  <button class="check-btn" data-part="1">Check My Work</button>
+  <div class="verdict" id="verdict1"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART II                                                       -->
+<!-- ============================================================ -->
+
+<div class="activity-part locked" id="part2" data-label="Part II — The salesperson's move">
+  <h3>The salesperson's move</h3>
+  <p class="part-subtitle">&ldquo;No problem &mdash; I can get you into the Aspire GT for under $500 a month.&rdquo;</p>
+  <div class="part-body">
+    <p>You tell the salesperson you love the Aspire GT but it's out of your budget. They smile, tap at their screen, and come back with a <strong>72-month loan</strong> for the Aspire GT. What they don't emphasize: lenders charge a higher rate on longer-term loans because they're riskier, so this loan comes in at <strong>7.5% APR</strong> &mdash; not the 6.0% you were originally planning on.</p>
+  </div>
+
+  <div class="input-row">
+    <div class="input-label"><span class="input-tag">a)</span> Aspire GT monthly payment (72 mo @ 7.5% APR):</div>
+    <div>$ <input class="answer-input" id="p2pmt" inputmode="decimal" placeholder="0.00"></div>
+    <div class="input-fb" id="p2pmt-fb"></div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-label"><span class="input-tag">b)</span> Total paid over the life of the trap loan:</div>
+    <div>$ <input class="answer-input" id="p2total" inputmode="decimal" placeholder="0.00"></div>
+    <div class="input-fb" id="p2total-fb"></div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-label"><span class="input-tag">c)</span> Total interest on the trap loan:</div>
+    <div>$ <input class="answer-input" id="p2int" inputmode="decimal" placeholder="0.00"></div>
+    <div class="input-fb" id="p2int-fb"></div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-label"><span class="input-tag">d)</span> Total interest on the original 48-month Aspire S loan (from Part I):</div>
+    <div>$ <input class="answer-input" id="p2lxint" inputmode="decimal" placeholder="0.00"></div>
+    <div class="input-fb" id="p2lxint-fb"></div>
+  </div>
+
+  <button class="check-btn" data-part="2">Check My Work</button>
+  <div class="verdict" id="verdict2"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STACKED BAR CHART                                             -->
+<!-- ============================================================ -->
+
+<div class="chart-container" id="chartContainer">
+  <span class="chart-label">Where your money actually goes</span>
+  <div id="chartHost"></div>
+  <div class="chart-legend">
+    <span><span class="swatch principal"></span>Car (principal)</span>
+    <span><span class="swatch trim"></span>Trim upgrade</span>
+    <span><span class="swatch interest"></span>Interest</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART III                                                      -->
+<!-- ============================================================ -->
+
+<div class="activity-part locked" id="part3" data-label="Part III — The amortization gut-punch">
+  <h3>The amortization gut-punch</h3>
+  <p class="part-subtitle">Where does that first payment actually go?</p>
+  <div class="part-body">
+    <p>On the 72-month, 7.5% APR Aspire GT loan, compute the first month of the amortization schedule. Remember: interest is calculated on the remaining balance, which at month 1 is just the original principal (car price minus down payment).</p>
+  </div>
+
+  <div class="input-row">
+    <div class="input-label"><span class="input-tag">a)</span> Month 1 interest:</div>
+    <div>$ <input class="answer-input" id="p3int" inputmode="decimal" placeholder="0.00"></div>
+    <div class="input-fb" id="p3int-fb"></div>
+  </div>
+
+  <div class="input-row">
+    <div class="input-label"><span class="input-tag">b)</span> Month 1 principal:</div>
+    <div>$ <input class="answer-input" id="p3prin" inputmode="decimal" placeholder="0.00"></div>
+    <div class="input-fb" id="p3prin-fb"></div>
+  </div>
+
+  <p>A typical new car loses roughly <span data-val-pct="DEPRECIATION_YEAR_1"></span> of its value in the first year. After 12 months of payments on this loan, your remaining loan balance will be approximately <strong><span data-val="stBalanceYear1"></span></strong>. Meanwhile, the car will be worth approximately <strong><span data-val="stCarValueYear1"></span></strong> (<span data-val-pct-inv="DEPRECIATION_YEAR_1"></span> of <span data-val-round="ST_PRICE"></span>).</p>
+
+  <p class="prompt">c) Are you "underwater" on the loan &mdash; that is, do you owe more than the car is worth? What does that mean for you if you need to sell the car in year 2? Discuss with your group.</p>
+
+  <button class="check-btn" data-part="3">Check My Work</button>
+  <div class="verdict" id="verdict3"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART IV                                                       -->
+<!-- ============================================================ -->
+
+<div class="activity-part locked" id="part4" data-label="Part IV — The writeup">
+  <h3>The writeup</h3>
+  <p class="part-subtitle">Put it together in your own words.</p>
+  <div class="part-body">
+    <p>The salesperson technically did what you asked &mdash; they got you "into the Aspire GT for under <span data-val-round="BUDGET"></span> a month." Every number they quoted was accurate.</p>
+  </div>
+
+  <div class="reflection-prompt">
+    Explain, in your own words, how shopping by <em>monthly payment</em> rather than by <em>total cost</em> lets a salesperson steer you into a worse deal. What should you have asked about instead of &mdash; or in addition to &mdash; the monthly payment?
+  </div>
+
+  <textarea class="reflection" placeholder="Write 3–5 sentences as a group..."></textarea>
+</div>
+
+<!-- ============================================================ -->
+<!-- INSTRUCTOR KEY                                                -->
+<!-- ============================================================ -->
+
+<details class="instructor-key">
+  <summary>Answer key</summary>
+
+  <div class="key-section">
+    <h4>Part I &mdash; Monthly payments at 48 mo / 6.0% APR</h4>
+    <p>Loan principals: Aspire S = <span class="calc"><span data-val-round="LX_PRICE"></span> &minus; <span data-val-round="DOWN_PAYMENT"></span> = <span data-val-round="lxPrincipal"></span></span>; Aspire GT = <span class="calc"><span data-val-round="ST_PRICE"></span> &minus; <span data-val-round="DOWN_PAYMENT"></span> = <span data-val-round="stPrincipal"></span></span>. Monthly rate = 0.005, t = 48.</p>
+    <p>Aspire S: PMT &asymp; <strong><span data-val="lxPayment"></span></strong> &mdash; fits the <span data-val-round="BUDGET"></span> budget, barely.</p>
+    <p>Aspire GT: PMT &asymp; <strong><span data-val="stPaymentOriginal"></span></strong> &mdash; over budget. Only the Aspire S fits.</p>
+  </div>
+
+  <div class="key-section">
+    <h4>Part II &mdash; Aspire GT at 72 mo / 7.5% APR</h4>
+    <p>Monthly rate = 0.00625, t = 72. PMT &asymp; <strong><span data-val="stPaymentTrap"></span></strong> &mdash; yes, it fits the <span data-val-round="BUDGET"></span> budget, and is actually <em>lower</em> than the Aspire S payment. That's the seductive trick.</p>
+    <p>Total paid &asymp; <strong><span data-val="stTotalPaid"></span></strong>; total interest &asymp; <strong><span data-val="stTotalInterest"></span></strong>. Aspire S total interest (from Part I): &asymp; <strong><span data-val="lxTotalInterest"></span></strong>.</p>
+    <p>Extra cost of driving home in the GT vs. the S &asymp; <strong><span data-val="extraTotalCost"></span></strong>, of which <span data-val-round="trimUpgrade"></span> is the sticker difference and <strong><span data-val="extraInterest"></span> is extra interest</strong>.</p>
+
+    <table class="compare">
+      <thead>
+        <tr><th>&nbsp;</th><th>Aspire S (orig)</th><th>Aspire GT (trap)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Loan principal</td><td><span data-val-round="lxPrincipal"></span></td><td><span data-val-round="stPrincipal"></span></td></tr>
+        <tr><td>Term</td><td>48 mo</td><td>72 mo</td></tr>
+        <tr><td>APR</td><td>6.00%</td><td>7.50%</td></tr>
+        <tr><td>Monthly payment</td><td><span data-val="lxPayment"></span></td><td><span data-val="stPaymentTrap"></span></td></tr>
+        <tr><td>Total paid (loan only)</td><td><span data-val="lxTotalPaid"></span></td><td><span data-val="stTotalPaid"></span></td></tr>
+        <tr><td>Total interest</td><td><span data-val="lxTotalInterest"></span></td><td><span data-val="stTotalInterest"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-section">
+    <h4>Part III &mdash; Month 1 amortization</h4>
+    <p>Interest = <span class="calc"><span data-val-round="stPrincipal"></span> &times; 0.00625 = <span data-val="month1Interest"></span></span>.</p>
+    <p>Principal = <span class="calc"><span data-val="stPaymentTrap"></span> &minus; <span data-val="month1Interest"></span> = <span data-val="month1Principal"></span></span>.</p>
+    <p>Only about <strong><span id="key-prinPct"></span></strong> of the first payment actually reduces the loan.</p>
+    <p>Year-end: balance &asymp; <span data-val="stBalanceYear1"></span> vs. car value &asymp; <span data-val="stCarValueYear1"></span> &mdash; about $608 <em>above</em> water under the 20% first-year depreciation assumption, but the cushion is razor-thin. Many cars depreciate 25&ndash;30% in year 1, in which case this buyer would already be underwater. The broader lesson: on a long-term loan, principal reduction is back-loaded while depreciation is front-loaded, so equity builds slowly and even moderate depreciation can leave the borrower underwater early in the loan.</p>
+  </div>
+
+  <div class="key-section">
+    <h4>Part IV &mdash; The key insight</h4>
+    <p>Monthly payment is a function of four variables: price, down payment, rate, and term. A salesperson can hit any target payment by stretching the term, raising the rate, or both. Shopping by payment lets them move the levers the customer isn't watching. Better questions: "What's the total cost of the loan?", "What's the shortest term that fits my budget?", "What's the rate, and does it change if I take a longer term?"</p>
+  </div>
+</details>
+
+<script>
+// ============================================================
+// THEME TOGGLE  (matches packs/week02.html behavior)
+// ============================================================
+(function() {
+  var STORAGE_KEY = 'coursepack-theme';
+  var html = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+
+  var saved = localStorage.getItem(STORAGE_KEY);
+  if (saved === 'dark') {
+    html.setAttribute('data-theme', 'dark');
+  } else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    html.setAttribute('data-theme', 'dark');
+  }
+
+  toggle.addEventListener('click', function() {
+    var current = html.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    if (next === 'light') {
+      html.removeAttribute('data-theme');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+    }
+    localStorage.setItem(STORAGE_KEY, next);
+    // Notify the activity to redraw the chart so any JS-driven colors stay correct.
+    window.dispatchEvent(new CustomEvent('themechange'));
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      if (e.matches) html.setAttribute('data-theme', 'dark');
+      else html.removeAttribute('data-theme');
+      window.dispatchEvent(new CustomEvent('themechange'));
+    }
+  });
+})();
+
+// ============================================================
+// ACTIVITY LOGIC
+// ============================================================
+(function() {
+  // ---- Input parameters (the only hardcoded numbers in the file) ----
+  const LX_PRICE             = 24000;
+  const ST_PRICE             = 31500;
+  const DOWN_PAYMENT         = 3000;
+  const BUDGET               = 500;
+  const ORIGINAL_TERM_MONTHS = 48;
+  const ORIGINAL_APR         = 0.06;
+  const TRAP_TERM_MONTHS     = 72;
+  const TRAP_APR             = 0.075;
+  const DEPRECIATION_YEAR_1  = 0.20;
+
+  // ---- Helpers ----
+  function pmt(pv, r, n) {
+    return pv * (r / (1 - Math.pow(1 + r, -n)));
+  }
+
+  function amortizeBalance(principal, monthlyRate, payment, months) {
+    let balance = principal;
+    for (let i = 0; i < months; i++) {
+      const interest = balance * monthlyRate;
+      balance -= (payment - interest);
+    }
+    return balance;
+  }
+
+  // ---- Derived values ----
+  const lxPrincipal       = LX_PRICE - DOWN_PAYMENT;
+  const stPrincipal       = ST_PRICE - DOWN_PAYMENT;
+  const trimUpgrade       = ST_PRICE - LX_PRICE;
+
+  const lxPayment         = pmt(lxPrincipal, ORIGINAL_APR / 12, ORIGINAL_TERM_MONTHS);
+  const stPaymentOriginal = pmt(stPrincipal, ORIGINAL_APR / 12, ORIGINAL_TERM_MONTHS);
+  const stPaymentTrap     = pmt(stPrincipal, TRAP_APR / 12, TRAP_TERM_MONTHS);
+
+  const lxTotalPaid       = lxPayment * ORIGINAL_TERM_MONTHS;
+  const lxTotalInterest   = lxTotalPaid - lxPrincipal;
+
+  const stTotalPaid       = stPaymentTrap * TRAP_TERM_MONTHS;
+  const stTotalInterest   = stTotalPaid - stPrincipal;
+
+  const extraInterest     = stTotalInterest - lxTotalInterest;
+  const extraTotalCost    = stTotalPaid - lxTotalPaid;
+
+  const month1Interest    = stPrincipal * (TRAP_APR / 12);
+  const month1Principal   = stPaymentTrap - month1Interest;
+
+  const stCarValueYear1   = ST_PRICE * (1 - DEPRECIATION_YEAR_1);
+  const stBalanceYear1    = amortizeBalance(stPrincipal, TRAP_APR / 12, stPaymentTrap, 12);
+
+  // Expose for tests / verification scripts
+  window.__activityValues = {
+    LX_PRICE, ST_PRICE, DOWN_PAYMENT, BUDGET,
+    ORIGINAL_TERM_MONTHS, ORIGINAL_APR, TRAP_TERM_MONTHS, TRAP_APR, DEPRECIATION_YEAR_1,
+    lxPrincipal, stPrincipal, trimUpgrade,
+    lxPayment, stPaymentOriginal, stPaymentTrap,
+    lxTotalPaid, lxTotalInterest, stTotalPaid, stTotalInterest,
+    extraInterest, extraTotalCost,
+    month1Interest, month1Principal,
+    stCarValueYear1, stBalanceYear1
+  };
+
+  // ---- Formatting ----
+  // IEEE-754 cannot exactly represent values like 0.00625 (= 1/160, denominator
+  // has factor of 5), so naive arithmetic produces tiny float errors. For
+  // example, 28500 * 0.00625 evaluates to 178.12499999999997 even though the
+  // true product is exactly 178.125. Routing through toPrecision(12) collapses
+  // that noise to a clean decimal before we round to cents, so $178.125 rounds
+  // up to $178.13 the way a student doing the math by hand would expect.
+  function roundCents(n) {
+    return Math.round(Number(n.toPrecision(12)) * 100) / 100;
+  }
+  function fmt(n) {
+    return '$' + roundCents(n).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  }
+  function fmtRound(n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function fmtPct(d) {
+    return Math.round(d * 100) + '%';
+  }
+
+  // ---- Substitute computed values into the page ----
+  const valLookup = {
+    LX_PRICE, ST_PRICE, DOWN_PAYMENT, BUDGET,
+    lxPrincipal, stPrincipal, trimUpgrade,
+    lxPayment, stPaymentOriginal, stPaymentTrap,
+    lxTotalPaid, lxTotalInterest, stTotalPaid, stTotalInterest,
+    extraInterest, extraTotalCost,
+    month1Interest, month1Principal,
+    stCarValueYear1, stBalanceYear1
+  };
+
+  document.querySelectorAll('[data-val]').forEach(el => {
+    const key = el.getAttribute('data-val');
+    if (valLookup[key] !== undefined) el.textContent = fmt(valLookup[key]);
+  });
+  document.querySelectorAll('[data-val-round]').forEach(el => {
+    const key = el.getAttribute('data-val-round');
+    if (valLookup[key] !== undefined) el.textContent = fmtRound(valLookup[key]);
+  });
+  const pctLookup = { DEPRECIATION_YEAR_1: DEPRECIATION_YEAR_1 };
+  document.querySelectorAll('[data-val-pct]').forEach(el => {
+    const key = el.getAttribute('data-val-pct');
+    if (pctLookup[key] !== undefined) el.textContent = fmtPct(pctLookup[key]);
+  });
+  document.querySelectorAll('[data-val-pct-inv]').forEach(el => {
+    const key = el.getAttribute('data-val-pct-inv');
+    if (pctLookup[key] !== undefined) el.textContent = fmtPct(1 - pctLookup[key]);
+  });
+
+  // Principal-percent in instructor key
+  const prinPct = document.getElementById('key-prinPct');
+  if (prinPct) prinPct.textContent = Math.round((month1Principal / stPaymentTrap) * 100) + '%';
+
+  // ============================================================
+  // INPUT VALIDATION
+  // ============================================================
+
+  // Each part: list of fields with their target value and tolerance.
+  const PARTS = {
+    1: [
+      { id: 'p1lx',  target: lxPayment,         tol: 1.00 },
+      { id: 'p1st',  target: stPaymentOriginal, tol: 1.00 }
+    ],
+    2: [
+      { id: 'p2pmt',   target: stPaymentTrap,    tol: 1.00 },
+      { id: 'p2total', target: stTotalPaid,      tol: 50.00 },
+      { id: 'p2int',   target: stTotalInterest,  tol: 25.00 },
+      { id: 'p2lxint', target: lxTotalInterest,  tol: 25.00 }
+    ],
+    3: [
+      { id: 'p3int',  target: month1Interest,  tol: 1.00 },
+      { id: 'p3prin', target: month1Principal, tol: 1.00 }
+    ]
+  };
+
+  function validateField(field) {
+    const input = document.getElementById(field.id);
+    const fb    = document.getElementById(field.id + '-fb');
+    const raw   = input.value.trim().replace(/[$,\s]/g, '');
+
+    if (raw === '') {
+      input.classList.remove('correct', 'incorrect');
+      fb.className = 'input-fb';
+      fb.textContent = '';
+      return 'empty';
+    }
+    const val = parseFloat(raw);
+    if (isNaN(val)) {
+      input.classList.remove('correct');
+      input.classList.add('incorrect');
+      fb.className = 'input-fb incorrect';
+      fb.textContent = '⚠ enter a number';
+      return 'wrong';
+    }
+    const diff = val - field.target;
+    if (Math.abs(diff) <= field.tol) {
+      input.classList.remove('incorrect');
+      input.classList.add('correct');
+      fb.className = 'input-fb correct';
+      fb.innerHTML = '✓ correct &mdash; <strong>' + fmt(field.target) + '</strong>';
+      return 'correct';
+    } else {
+      input.classList.remove('correct');
+      input.classList.add('incorrect');
+      fb.className = 'input-fb incorrect';
+      const ratio = field.target === 0 ? 1 : val / field.target;
+      let hint;
+      if (ratio > 1.30)      hint = 'too high &mdash; check your rate/term conversion';
+      else if (ratio < 0.70) hint = 'too low &mdash; check your rate/term conversion';
+      else                   hint = 'close, but not quite &mdash; recheck';
+      fb.innerHTML = '✗ ' + hint;
+      return 'wrong';
+    }
+  }
+
+  function showVerdict(partNum, kind, htmlMsg) {
+    const v = document.getElementById('verdict' + partNum);
+    v.className = 'verdict show ' + kind;
+    v.innerHTML = htmlMsg;
+  }
+
+  function unlockPart(partNum) {
+    const part = document.getElementById('part' + partNum);
+    if (!part) return;
+    if (part.classList.contains('locked')) {
+      part.classList.remove('locked');
+      setTimeout(function() {
+        part.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }, 350);
+    }
+  }
+
+  function checkPart(partNum) {
+    const fields = PARTS[partNum];
+    const results = fields.map(validateField);
+    const correctCount = results.filter(r => r === 'correct').length;
+    const wrongCount   = results.filter(r => r === 'wrong').length;
+    const emptyCount   = results.filter(r => r === 'empty').length;
+
+    if (correctCount === fields.length) {
+      // Full success — show verdict + unlock next
+      const successMsg = SUCCESS_MESSAGES[partNum];
+      showVerdict(partNum, 'success', successMsg);
+
+      if (partNum === 1) {
+        unlockPart(2);
+      } else if (partNum === 2) {
+        // Reveal chart, then unlock part 3
+        document.getElementById('chartContainer').classList.add('show');
+        drawChart();
+        unlockPart(3);
+      } else if (partNum === 3) {
+        unlockPart(4);
+      }
+      return;
+    }
+
+    if (emptyCount === fields.length) {
+      showVerdict(partNum, 'partial', 'Fill in your group\'s answers above, then click <strong>Check My Work</strong> again.');
+      return;
+    }
+
+    if (correctCount > 0 && wrongCount > 0) {
+      showVerdict(partNum, 'partial',
+        'Partial credit: <strong>' + correctCount + ' of ' + fields.length + '</strong> correct. The red fields above show which ones to recheck.');
+    } else {
+      showVerdict(partNum, 'fail',
+        'Not yet. Look at the field hints above and try again. Common mistakes: forgetting to convert APR to a monthly rate (APR &divide; 12), or to use months as <em>n</em> rather than years.');
+    }
+  }
+
+  // Success-verdict templates (use the deterministically computed values, not student inputs)
+  const SUCCESS_MESSAGES = {
+    1:
+      'Correct. The Aspire S fits your <strong>' + fmtRound(BUDGET) + '</strong> budget at <strong>' + fmt(lxPayment) + '/month</strong>. ' +
+      'The Aspire GT at <strong>' + fmt(stPaymentOriginal) + '/month</strong> is well over budget. ' +
+      'On your original plan, you can only afford the Aspire S. <em>Part II unlocked.</em>',
+    2:
+      'All correct. Notice: the Aspire GT payment is actually <em>lower</em> than the Aspire S payment ' +
+      '(<strong>' + fmt(stPaymentTrap) + '</strong> vs. <strong>' + fmt(lxPayment) + '</strong>). ' +
+      'That\'s how the trap works. But you\'ll pay about <strong>' + fmt(extraInterest) + '</strong> more in interest alone. ' +
+      '<em>The visualization below shows where your money is actually going. Part III unlocked.</em>',
+    3:
+      'Correct. Only <strong>' + fmt(month1Principal) + '</strong> of your first <strong>' + fmt(stPaymentTrap) + '</strong> payment actually reduces the loan. ' +
+      'The rest &mdash; <strong>' + fmt(month1Interest) + '</strong> &mdash; is pure interest. ' +
+      'That\'s why long-term loans build equity so slowly: principal reduction is back-loaded while depreciation is front-loaded. ' +
+      '<em>Part IV unlocked.</em>'
+  };
+
+  // Wire up the Check buttons
+  document.querySelectorAll('.check-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const p = parseInt(btn.getAttribute('data-part'), 10);
+      checkPart(p);
+    });
+  });
+
+  // ============================================================
+  // STACKED BAR CHART  (inline SVG, redrawn on theme change)
+  // ============================================================
+  function drawChart() {
+    const host = document.getElementById('chartHost');
+    if (!host) return;
+
+    // Y-axis bounds: round max stack up to next 5,000.
+    const maxVal = Math.max(lxPrincipal + lxTotalInterest,
+                            lxPrincipal + trimUpgrade + stTotalInterest);
+    const yMax   = Math.ceil(maxVal / 5000) * 5000;
+
+    // SVG dimensions
+    const W = 600, H = 380;
+    const PAD_L = 70, PAD_R = 30, PAD_T = 30, PAD_B = 80;
+    const PLOT_W = W - PAD_L - PAD_R;
+    const PLOT_H = H - PAD_T - PAD_B;
+
+    function yPos(v)    { return PAD_T + PLOT_H * (1 - v / yMax); }
+    function yHeight(v) { return PLOT_H * (v / yMax); }
+
+    const barW = 110;
+    const xLX = PAD_L + PLOT_W * 0.25 - barW / 2;
+    const xST = PAD_L + PLOT_W * 0.75 - barW / 2;
+
+    // Build SVG markup
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stacked bar chart comparing loan costs">';
+
+    // Y-axis gridlines + labels
+    const gridStep = 10000;
+    for (let v = 0; v <= yMax; v += gridStep) {
+      const y = yPos(v);
+      svg += '<line class="grid-line" x1="' + PAD_L + '" y1="' + y + '" x2="' + (W - PAD_R) + '" y2="' + y + '" />';
+      svg += '<text class="axis-label" x="' + (PAD_L - 8) + '" y="' + (y + 4) + '" text-anchor="end">$' + (v / 1000) + 'K</text>';
+    }
+    // Y-axis line
+    svg += '<line class="axis-line" x1="' + PAD_L + '" y1="' + PAD_T + '" x2="' + PAD_L + '" y2="' + (PAD_T + PLOT_H) + '" />';
+    // X-axis line
+    svg += '<line class="axis-line" x1="' + PAD_L + '" y1="' + (PAD_T + PLOT_H) + '" x2="' + (W - PAD_R) + '" y2="' + (PAD_T + PLOT_H) + '" />';
+
+    // Helper to draw a stacked segment with optional in-segment label
+    function segment(x, valBase, valSeg, cls, labelText) {
+      const yTop = yPos(valBase + valSeg);
+      const h = yHeight(valSeg);
+      let s = '<rect class="' + cls + '" x="' + x + '" y="' + yTop + '" width="' + barW + '" height="' + h + '" />';
+      if (h > 22 && labelText) {
+        s += '<text class="seg-label" x="' + (x + barW / 2) + '" y="' + (yTop + h / 2 + 4) + '" text-anchor="middle">' + labelText + '</text>';
+      }
+      return s;
+    }
+
+    // ---- Left bar: Aspire S ----
+    svg += segment(xLX, 0, lxPrincipal,    'seg-principal', fmtRound(lxPrincipal));
+    svg += segment(xLX, lxPrincipal, lxTotalInterest, 'seg-interest',  fmtRound(lxTotalInterest));
+    // Total label above
+    const lxTotal = lxPrincipal + lxTotalInterest;
+    svg += '<text class="total-label" x="' + (xLX + barW / 2) + '" y="' + (yPos(lxTotal) - 8) + '" text-anchor="middle">' + fmtRound(lxTotal) + '</text>';
+    // Bar caption below
+    svg += '<text class="bar-label" x="' + (xLX + barW / 2) + '" y="' + (PAD_T + PLOT_H + 22) + '" text-anchor="middle">Aspire S</text>';
+    svg += '<text class="axis-label" x="' + (xLX + barW / 2) + '" y="' + (PAD_T + PLOT_H + 40) + '" text-anchor="middle">48 mo @ 6.0%</text>';
+
+    // ---- Right bar: Aspire GT ----
+    svg += segment(xST, 0, lxPrincipal, 'seg-principal', fmtRound(lxPrincipal));
+    svg += segment(xST, lxPrincipal, trimUpgrade, 'seg-trim', fmtRound(trimUpgrade));
+    svg += segment(xST, lxPrincipal + trimUpgrade, stTotalInterest, 'seg-interest', fmtRound(stTotalInterest));
+    const stTotal = lxPrincipal + trimUpgrade + stTotalInterest;
+    svg += '<text class="total-label" x="' + (xST + barW / 2) + '" y="' + (yPos(stTotal) - 8) + '" text-anchor="middle">' + fmtRound(stTotal) + '</text>';
+    svg += '<text class="bar-label" x="' + (xST + barW / 2) + '" y="' + (PAD_T + PLOT_H + 22) + '" text-anchor="middle">Aspire GT</text>';
+    svg += '<text class="axis-label" x="' + (xST + barW / 2) + '" y="' + (PAD_T + PLOT_H + 40) + '" text-anchor="middle">72 mo @ 7.5%</text>';
+
+    svg += '</svg>';
+    host.innerHTML = svg;
+  }
+
+  // Re-draw chart on theme change (defensive — colors are CSS-driven, but redraw guarantees consistency)
+  window.addEventListener('themechange', function() {
+    if (document.getElementById('chartContainer').classList.contains('show')) {
+      drawChart();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
