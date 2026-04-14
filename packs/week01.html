@@ -551,17 +551,17 @@ h3 {
 
 <p>But what happens in year two? You earn 10% on $110, not just on the original $100. That gives you $110 × 1.10 = $121. The extra dollar (compared to $120 you'd have with simple interest) is interest earned on the first year's $10 of interest. This is <span class="key-term">compounding</span>: the process by which interest earns interest over time.</p>
 
-<p>The amount your investment grows to after <em>t</em> periods is the <span class="key-term">future value</span> (FV):</p>
+<p>The amount your investment grows to after <em>T</em> periods is the <span class="key-term">future value</span> (FV):</p>
 
 <div class="formula-box">
   <span class="label">Future Value (FV)</span>
-  <span class="formula">FV = <em>PV</em> × (1 + <em>r</em>)<sup><em>t</em></sup></span>
+  <span class="formula">FV = <em>PV</em> × (1 + <em>r</em>)<sup><em>T</em></sup></span>
   <div class="note">
-    where <em>PV</em> = present value (amount invested today), <em>r</em> = interest rate per period, <em>t</em> = number of periods
+    where <em>PV</em> = present value (amount invested today), <em>r</em> = interest rate per period, <em>T</em> = number of periods
   </div>
 </div>
 
-<p>The expression (1 + <em>r</em>)<sup><em>t</em></sup> is called the <span class="key-term">future value interest factor</span>. It tells you how many dollars you'll have in the future for each dollar invested today. For example, at <em>r</em> = 8% and <em>t</em> = 10, the factor is (1.08)<sup>10</sup> = 2.1589. Each dollar invested today becomes $2.16 in ten years.</p>
+<p>The expression (1 + <em>r</em>)<sup><em>T</em></sup> is called the <span class="key-term">future value interest factor</span>. It tells you how many dollars you'll have in the future for each dollar invested today. For example, at <em>r</em> = 8% and <em>T</em> = 10, the factor is (1.08)<sup>10</sup> = 2.1589. Each dollar invested today becomes $2.16 in ten years.</p>
 
 <div class="example-embed" data-label="Example 4 — Future Value">
   <p class="scenario">
@@ -570,7 +570,7 @@ h3 {
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PV</em> = $50,000, <em>r</em> = 0.045, <em>t</em> = 6</li>
+      <li data-step="1.">Identify: <em>PV</em> = $50,000, <em>r</em> = 0.045, <em>T</em> = 6</li>
       <li data-step="2.">Apply: <span class="calc">FV = $50,000 × (1.045)<sup>6</sup></span></li>
       <li data-step="3.">Calculate: <span class="calc">FV = $50,000 × 1.30226 = $65,113.01</span></li>
     </ul>
@@ -580,7 +580,7 @@ h3 {
 
 <h3>Simple Interest vs. Compound Interest</h3>
 
-<p>With <span class="key-term">simple interest</span>, you earn interest only on the original principal — the interest itself never earns interest. The total after <em>t</em> years is just PV + (PV × <em>r</em> × <em>t</em>). With <span class="key-term">compound interest</span>, each period's interest is added to the balance and earns interest in subsequent periods.</p>
+<p>With <span class="key-term">simple interest</span>, you earn interest only on the original principal — the interest itself never earns interest. The total after <em>T</em> years is just PV + (PV × <em>r</em> × <em>T</em>). With <span class="key-term">compound interest</span>, each period's interest is added to the balance and earns interest in subsequent periods.</p>
 
 <p>Over short horizons the difference is small. Over long horizons it becomes enormous, because compound growth is exponential while simple growth is linear.</p>
 
@@ -610,7 +610,7 @@ h3 {
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PV</em> = $5,000, <em>r</em> = 0.09, <em>t</em> = 65 − 22 = 43</li>
+      <li data-step="1.">Identify: <em>PV</em> = $5,000, <em>r</em> = 0.09, <em>T</em> = 65 − 22 = 43</li>
       <li data-step="2.">Apply: <span class="calc">FV = $5,000 × (1.09)<sup>43</sup></span></li>
       <li data-step="3.">Calculate: <span class="calc">FV = $5,000 × 40.6761 = $203,380.55</span></li>
     </ul>
@@ -644,13 +644,13 @@ h3 {
 
 <p>Future value answers "what will my money grow to?" Now flip the question: if you need a specific amount in the future, how much do you need to invest <em>today</em> to get there? This is the <span class="key-term">present value</span> (PV) question.</p>
 
-<p>The process of translating future dollars into today's dollars is called <span class="key-term">discounting</span>. It's compounding in reverse. Instead of multiplying by (1 + <em>r</em>)<sup><em>t</em></sup>, you divide by it:</p>
+<p>The process of translating future dollars into today's dollars is called <span class="key-term">discounting</span>. It's compounding in reverse. Instead of multiplying by (1 + <em>r</em>)<sup><em>T</em></sup>, you divide by it:</p>
 
 <div class="formula-box">
   <span class="label">Present Value (PV)</span>
-  <span class="formula">PV = <em>FV</em> ÷ (1 + <em>r</em>)<sup><em>t</em></sup></span>
+  <span class="formula">PV = <em>FV</em> ÷ (1 + <em>r</em>)<sup><em>T</em></sup></span>
   <div class="note">
-    Equivalently: PV = <em>FV</em> × [1 ÷ (1 + <em>r</em>)<sup><em>t</em></sup>]. The bracketed term is the <em>present value interest factor</em>.
+    Equivalently: PV = <em>FV</em> × [1 ÷ (1 + <em>r</em>)<sup><em>T</em></sup>]. The bracketed term is the <em>present value interest factor</em>.
   </div>
 </div>
 
@@ -663,7 +663,7 @@ h3 {
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>FV</em> = $20,000, <em>r</em> = 0.08, <em>t</em> = 5</li>
+      <li data-step="1.">Identify: <em>FV</em> = $20,000, <em>r</em> = 0.08, <em>T</em> = 5</li>
       <li data-step="2.">Apply: <span class="calc">PV = $20,000 ÷ (1.08)<sup>5</sup></span></li>
       <li data-step="3.">Calculate: <span class="calc">PV = $20,000 ÷ 1.46933 = $13,611.66</span></li>
     </ul>
@@ -699,17 +699,17 @@ h3 {
 
 <p>So far we've used the TVM formula to find future values and present values, treating <em>r</em> as a known input. But sometimes you know the beginning value, the ending value, and the time, and you want to find the implied rate of return. This is common in investment analysis: you bought something, you sold it later for more, and you want to know what annual return you earned.</p>
 
-<p>Rearranging FV = PV × (1 + <em>r</em>)<sup><em>t</em></sup> to isolate <em>r</em>:</p>
+<p>Rearranging FV = PV × (1 + <em>r</em>)<sup><em>T</em></sup> to isolate <em>r</em>:</p>
 
 <div class="formula-box">
   <span class="label">Solving for Rate (r)</span>
-  <span class="formula"><em>r</em> = (<em>FV</em> ÷ <em>PV</em>)<sup>1/<em>t</em></sup> − 1</span>
+  <span class="formula"><em>r</em> = (<em>FV</em> ÷ <em>PV</em>)<sup>1/<em>T</em></sup> − 1</span>
   <div class="note">
-    Divide future value by present value, take the <em>t</em>-th root, subtract 1.
+    Divide future value by present value, take the <em>T</em>-th root, subtract 1.
   </div>
 </div>
 
-<p>The quantity FV ÷ PV tells you the total multiple on your investment. The <em>t</em>-th root converts that total multiple into a per-period rate. This is sometimes called the <span class="key-term">compound annual growth rate</span> (CAGR) in investment contexts.</p>
+<p>The quantity FV ÷ PV tells you the total multiple on your investment. The <em>T</em>-th root converts that total multiple into a per-period rate. This is sometimes called the <span class="key-term">compound annual growth rate</span> (CAGR) in investment contexts.</p>
 
 <div class="example-embed" data-label="Example 10 — Finding the Rate">
   <p class="scenario">
@@ -718,7 +718,7 @@ h3 {
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PV</em> = $1,000, <em>FV</em> = $2,593.74, <em>t</em> = 10</li>
+      <li data-step="1.">Identify: <em>PV</em> = $1,000, <em>FV</em> = $2,593.74, <em>T</em> = 10</li>
       <li data-step="2.">Apply: <span class="calc"><em>r</em> = ($2,593.74 ÷ $1,000)<sup>1/10</sup> − 1</span></li>
       <li data-step="3.">Calculate: <span class="calc"><em>r</em> = (2.59374)<sup>0.10</sup> − 1 = 1.1000 − 1 = 0.1000</span></li>
     </ul>
@@ -733,7 +733,7 @@ h3 {
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PV</em> = $200,000, <em>FV</em> = $310,000, <em>t</em> = 7</li>
+      <li data-step="1.">Identify: <em>PV</em> = $200,000, <em>FV</em> = $310,000, <em>T</em> = 7</li>
       <li data-step="2.">Apply: <span class="calc"><em>r</em> = ($310,000 ÷ $200,000)<sup>1/7</sup> − 1</span></li>
       <li data-step="3.">Calculate: <span class="calc"><em>r</em> = (1.55)<sup>0.142857</sup> − 1 = 1.0646 − 1 = 0.0646</span></li>
     </ul>
@@ -744,11 +744,11 @@ h3 {
 
 <h3>Solving for Time</h3>
 
-<p>The final rearrangement: you know how much you have, how much you need, and what rate you can earn, but you want to know <em>how long</em> it will take. To solve for <em>t</em>, you need logarithms. Starting from FV = PV × (1 + <em>r</em>)<sup><em>t</em></sup>:</p>
+<p>The final rearrangement: you know how much you have, how much you need, and what rate you can earn, but you want to know <em>how long</em> it will take. To solve for <em>T</em>, you need logarithms. Starting from FV = PV × (1 + <em>r</em>)<sup><em>T</em></sup>:</p>
 
 <div class="formula-box">
-  <span class="label">Solving for Time (t)</span>
-  <span class="formula"><em>t</em> = ln(<em>FV</em> ÷ <em>PV</em>) ÷ ln(1 + <em>r</em>)</span>
+  <span class="label">Solving for Time (T)</span>
+  <span class="formula"><em>T</em> = ln(<em>FV</em> ÷ <em>PV</em>) ÷ ln(1 + <em>r</em>)</span>
   <div class="note">
     where ln is the natural logarithm — available on any scientific or financial calculator
   </div>
@@ -762,8 +762,8 @@ h3 {
     <summary>Show Solution</summary>
     <ul class="steps">
       <li data-step="1.">Identify: <em>PV</em> = $8,000, <em>FV</em> = $15,000, <em>r</em> = 0.07</li>
-      <li data-step="2.">Apply: <span class="calc"><em>t</em> = ln($15,000 ÷ $8,000) ÷ ln(1.07)</span></li>
-      <li data-step="3.">Calculate: <span class="calc"><em>t</em> = ln(1.875) ÷ ln(1.07) = 0.6286 ÷ 0.0677 = 9.29</span></li>
+      <li data-step="2.">Apply: <span class="calc"><em>T</em> = ln($15,000 ÷ $8,000) ÷ ln(1.07)</span></li>
+      <li data-step="3.">Calculate: <span class="calc"><em>T</em> = ln(1.875) ÷ ln(1.07) = 0.6286 ÷ 0.0677 = 9.29</span></li>
     </ul>
     <div class="answer-line">Approximately 9.29 years — about 9 years and 3.5 months. If interest is credited annually, you'd need to wait until the end of year 10.</div>
   </details>
@@ -787,19 +787,19 @@ h3 {
   <table>
     <tr>
       <td>Future Value</td>
-      <td>FV = PV × (1 + r)<sup>t</sup></td>
+      <td>FV = PV × (1 + r)<sup>T</sup></td>
     </tr>
     <tr>
       <td>Present Value</td>
-      <td>PV = FV ÷ (1 + r)<sup>t</sup></td>
+      <td>PV = FV ÷ (1 + r)<sup>T</sup></td>
     </tr>
     <tr>
       <td>Solving for Rate</td>
-      <td>r = (FV ÷ PV)<sup>1/t</sup> − 1</td>
+      <td>r = (FV ÷ PV)<sup>1/T</sup> − 1</td>
     </tr>
     <tr>
       <td>Solving for Time</td>
-      <td>t = ln(FV ÷ PV) ÷ ln(1 + r)</td>
+      <td>T = ln(FV ÷ PV) ÷ ln(1 + r)</td>
     </tr>
     <tr>
       <td>Rule of 72</td>

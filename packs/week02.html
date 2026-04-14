@@ -538,14 +538,14 @@ The most common type is an <span class="key-term">ordinary annuity</span>, where
 </p>
 
 <p>
-Suppose you'll receive a payment of <em>PMT</em> at the end of each period for <em>t</em> periods, and you can earn a rate of <em>r</em> per period. What is the present value of that entire stream? You'd discount the first payment back one period, the second payment back two periods, and so on. When you sum all those discounted values and simplify the algebra, you get:
+Suppose you'll receive a payment of <em>PMT</em> at the end of each period for <em>T</em> periods, and you can earn a rate of <em>r</em> per period. What is the present value of that entire stream? You'd discount the first payment back one period, the second payment back two periods, and so on. When you sum all those discounted values and simplify the algebra, you get:
 </p>
 
 <div class="formula-box">
   <span class="label">Present Value of an Ordinary Annuity</span>
-  <span class="formula">PV = <em>PMT</em> × [(1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>) ÷ <em>r</em>]</span>
+  <span class="formula">PV = <em>PMT</em> × [(1 − (1 + <em>r</em>)<sup>−<em>T</em></sup>) ÷ <em>r</em>]</span>
   <div class="note">
-    where <em>PMT</em> = payment per period, <em>r</em> = discount rate per period, <em>t</em> = number of periods. The bracketed term is called the <strong>present value annuity factor</strong>.
+    where <em>PMT</em> = payment per period, <em>r</em> = discount rate per period, <em>T</em> = number of periods. The bracketed term is called the <strong>present value annuity factor</strong>.
   </div>
 </div>
 
@@ -564,7 +564,7 @@ Two things worth noting about how this factor behaves. First, a higher discount 
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PMT</em> = $15,000, <em>r</em> = 0.06, <em>t</em> = 5</li>
+      <li data-step="1.">Identify: <em>PMT</em> = $15,000, <em>r</em> = 0.06, <em>T</em> = 5</li>
       <li data-step="2.">Compute the annuity factor: <span class="calc">(1 − (1.06)<sup>−5</sup>) ÷ 0.06 = (1 − 0.747258) ÷ 0.06 = 4.212364</span></li>
       <li data-step="3.">Multiply: <span class="calc">PV = $15,000 × 4.212364 = $63,185.46</span></li>
     </ul>
@@ -587,7 +587,7 @@ What happens if Green Acre's discount rate were higher — say 10% instead of 6%
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PMT</em> = $15,000, <em>r</em> = 0.10, <em>t</em> = 5</li>
+      <li data-step="1.">Identify: <em>PMT</em> = $15,000, <em>r</em> = 0.10, <em>T</em> = 5</li>
       <li data-step="2.">Compute the annuity factor: <span class="calc">(1 − (1.10)<sup>−5</sup>) ÷ 0.10 = (1 − 0.620921) ÷ 0.10 = 3.790787</span></li>
       <li data-step="3.">Multiply: <span class="calc">PV = $15,000 × 3.790787 = $56,861.80</span></li>
     </ul>
@@ -607,14 +607,14 @@ The PV formula answers the question "what is this stream of payments worth <em>t
 
 <div class="formula-box">
   <span class="label">Future Value of an Ordinary Annuity</span>
-  <span class="formula">FV = <em>PMT</em> × [((1 + <em>r</em>)<sup><em>t</em></sup> − 1) ÷ <em>r</em>]</span>
+  <span class="formula">FV = <em>PMT</em> × [((1 + <em>r</em>)<sup><em>T</em></sup> − 1) ÷ <em>r</em>]</span>
   <div class="note">
-    where <em>PMT</em> = payment per period, <em>r</em> = rate per period, <em>t</em> = number of periods. The bracketed term is the <strong>future value annuity factor</strong>.
+    where <em>PMT</em> = payment per period, <em>r</em> = rate per period, <em>T</em> = number of periods. The bracketed term is the <strong>future value annuity factor</strong>.
   </div>
 </div>
 
 <p>
-The logic is straightforward: the first payment has the longest to compound (it sits for <em>t</em> − 1 periods), the second-to-last payment compounds for just one period, and the very last payment doesn't compound at all — it arrives at the same moment you're measuring the future value. The formula sums all of those compounded amounts.
+The logic is straightforward: the first payment has the longest to compound (it sits for <em>T</em> − 1 periods), the second-to-last payment compounds for just one period, and the very last payment doesn't compound at all — it arrives at the same moment you're measuring the future value. The formula sums all of those compounded amounts.
 </p>
 
 <div class="example-embed" data-label="Example 3 — Retirement Savings">
@@ -624,7 +624,7 @@ The logic is straightforward: the first payment has the longest to compound (it 
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PMT</em> = $3,000, <em>r</em> = 0.07, <em>t</em> = 20</li>
+      <li data-step="1.">Identify: <em>PMT</em> = $3,000, <em>r</em> = 0.07, <em>T</em> = 20</li>
       <li data-step="2.">Compute the FV annuity factor: <span class="calc">((1.07)<sup>20</sup> − 1) ÷ 0.07 = (3.869684 − 1) ÷ 0.07 = 40.995492</span></li>
       <li data-step="3.">Multiply: <span class="calc">FV = $3,000 × 40.995492 = $122,986.48</span></li>
     </ul>
@@ -639,11 +639,11 @@ You contributed a total of $60,000 over 20 years ($3,000 × 20), but you end up 
 <h3>Perpetuities: Annuities That Never End</h3>
 
 <p>
-What happens to the annuity formula if the payments go on forever? That is, what if <em>t</em> → ∞? This might sound like a theoretical curiosity, but it's actually quite practical. Certain financial instruments — like preferred stock and some endowments — promise to make the same payment indefinitely. A stream of equal cash flows that continues forever is called a <span class="key-term">perpetuity</span>.
+What happens to the annuity formula if the payments go on forever? That is, what if <em>T</em> → ∞? This might sound like a theoretical curiosity, but it's actually quite practical. Certain financial instruments — like preferred stock and some endowments — promise to make the same payment indefinitely. A stream of equal cash flows that continues forever is called a <span class="key-term">perpetuity</span>.
 </p>
 
 <p>
-Mathematically, something elegant happens when you let <em>t</em> go to infinity in the PV annuity formula. The term (1 + <em>r</em>)<sup>−<em>t</em></sup> shrinks toward zero, which means the numerator in the annuity factor approaches 1, and the whole factor simplifies to just 1/<em>r</em>. The formula becomes remarkably clean:
+Mathematically, something elegant happens when you let <em>T</em> go to infinity in the PV annuity formula. The term (1 + <em>r</em>)<sup>−<em>T</em></sup> shrinks toward zero, which means the numerator in the annuity factor approaches 1, and the whole factor simplifies to just 1/<em>r</em>. The formula becomes remarkably clean:
 </p>
 
 <div class="formula-box">
@@ -701,7 +701,7 @@ An <span class="key-term">annuity due</span> is identical to an ordinary annuity
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PMT</em> = $1,200, <em>r</em> = 0.005 per month, <em>t</em> = 12 months. Payments at beginning → annuity due.</li>
+      <li data-step="1.">Identify: <em>PMT</em> = $1,200, <em>r</em> = 0.005 per month, <em>T</em> = 12 months. Payments at beginning → annuity due.</li>
       <li data-step="2.">First, compute the ordinary annuity PV: <span class="calc">PV<sub>ord</sub> = $1,200 × [(1 − (1.005)<sup>−12</sup>) ÷ 0.005] = $1,200 × 11.618935 = $13,942.72</span></li>
       <li data-step="3.">Adjust for annuity due: <span class="calc">PV<sub>due</sub> = $13,942.72 × 1.005 = $14,012.43</span></li>
     </ul>
@@ -729,7 +729,7 @@ The algebra is straightforward — just rearrange the annuity formula. If you kn
 
 <div class="formula-box">
   <span class="label">Solving for Payment (PV known)</span>
-  <span class="formula"><em>PMT</em> = <em>PV</em> × [<em>r</em> ÷ (1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>)]</span>
+  <span class="formula"><em>PMT</em> = <em>PV</em> × [<em>r</em> ÷ (1 − (1 + <em>r</em>)<sup>−<em>T</em></sup>)]</span>
   <div class="note">
     Used for loan payments: you know how much you're borrowing (PV), the rate, and the term.
   </div>
@@ -737,7 +737,7 @@ The algebra is straightforward — just rearrange the annuity formula. If you kn
 
 <div class="formula-box">
   <span class="label">Solving for Payment (FV known)</span>
-  <span class="formula"><em>PMT</em> = <em>FV</em> × [<em>r</em> ÷ ((1 + <em>r</em>)<sup><em>t</em></sup> − 1)]</span>
+  <span class="formula"><em>PMT</em> = <em>FV</em> × [<em>r</em> ÷ ((1 + <em>r</em>)<sup><em>T</em></sup> − 1)]</span>
   <div class="note">
     Used for savings goals: you know your target amount (FV), the rate, and how long you have.
   </div>
@@ -754,7 +754,7 @@ Let's apply both. The first is a loan payment problem — one of the most common
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PV</em> = $25,000, APR = 4.8%, so monthly <em>r</em> = 0.048 ÷ 12 = 0.004, <em>t</em> = 5 × 12 = 60 months</li>
+      <li data-step="1.">Identify: <em>PV</em> = $25,000, APR = 4.8%, so monthly <em>r</em> = 0.048 ÷ 12 = 0.004, <em>T</em> = 5 × 12 = 60 months</li>
       <li data-step="2.">Apply the PMT formula: <span class="calc">PMT = $25,000 × [0.004 ÷ (1 − (1.004)<sup>−60</sup>)]</span></li>
       <li data-step="3.">Calculate: <span class="calc">PMT = $25,000 × [0.004 ÷ (1 − 0.787005)] = $25,000 × [0.004 ÷ 0.212995] = $25,000 × 0.018780 = $469.49</span></li>
     </ul>
@@ -773,7 +773,7 @@ Over 60 months, you'll pay a total of $469.49 × 60 = $28,169.40 — meaning you
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>FV</em> = $50,000, <em>r</em> = 0.06, <em>t</em> = 10</li>
+      <li data-step="1.">Identify: <em>FV</em> = $50,000, <em>r</em> = 0.06, <em>T</em> = 10</li>
       <li data-step="2.">Compute the FV annuity factor: <span class="calc">((1.06)<sup>10</sup> − 1) ÷ 0.06 = (1.790848 − 1) ÷ 0.06 = 13.180795</span></li>
       <li data-step="3.">Solve for PMT: <span class="calc">PMT = $50,000 ÷ 13.180795 = $3,793.40</span></li>
     </ul>
@@ -968,7 +968,7 @@ A home mortgage works on exactly the same principle as Green Acre's equipment lo
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Convert to monthly: <em>r</em> = 0.065 ÷ 12 = 0.005417, <em>t</em> = 30 × 12 = 360 months</li>
+      <li data-step="1.">Convert to monthly: <em>r</em> = 0.065 ÷ 12 = 0.005417, <em>T</em> = 30 × 12 = 360 months</li>
       <li data-step="2.">(a) Solve for PMT: <span class="calc">PMT = $350,000 × [0.005417 ÷ (1 − (1.005417)<sup>−360</sup>)] = $2,212.24</span></li>
       <li data-step="3.">(b) First three months:</li>
     </ul>
@@ -1028,11 +1028,11 @@ This is a preview of how the same TVM toolkit we're building now connects direct
   <tr><th>Formula</th><th>Expression</th></tr>
   <tr>
     <td>PV of Ordinary Annuity</td>
-    <td>PV = PMT × [(1 − (1 + r)<sup>−t</sup>) ÷ r]</td>
+    <td>PV = PMT × [(1 − (1 + r)<sup>−T</sup>) ÷ r]</td>
   </tr>
   <tr>
     <td>FV of Ordinary Annuity</td>
-    <td>FV = PMT × [((1 + r)<sup>t</sup> − 1) ÷ r]</td>
+    <td>FV = PMT × [((1 + r)<sup>T</sup> − 1) ÷ r]</td>
   </tr>
   <tr>
     <td>PV of Perpetuity</td>
@@ -1044,11 +1044,11 @@ This is a preview of how the same TVM toolkit we're building now connects direct
   </tr>
   <tr>
     <td>Solve for PMT (PV known)</td>
-    <td>PMT = PV × [r ÷ (1 − (1 + r)<sup>−t</sup>)]</td>
+    <td>PMT = PV × [r ÷ (1 − (1 + r)<sup>−T</sup>)]</td>
   </tr>
   <tr>
     <td>Solve for PMT (FV known)</td>
-    <td>PMT = FV × [r ÷ ((1 + r)<sup>t</sup> − 1)]</td>
+    <td>PMT = FV × [r ÷ ((1 + r)<sup>T</sup> − 1)]</td>
   </tr>
   <tr>
     <td>Effective Annual Rate (EAR)</td>

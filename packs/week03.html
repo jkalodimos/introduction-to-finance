@@ -540,20 +540,30 @@ table.formula-ref td:nth-child(2) {
 </p>
 
 <p>
-  If you think about it, you already know how to do this. The coupon payments form an ordinary annuity, and the face value is a single future cash flow. Recall from Week 2 that the present value of an annuity is <em>PMT</em> × [(1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>) / <em>r</em>], and the present value of a lump sum is <em>FV</em> / (1 + <em>r</em>)<sup><em>t</em></sup>. A bond's price is simply the sum of these two pieces.
+  If you think about it, you already know how to do this. The coupon payments form an ordinary annuity, and the face value is a single future cash flow. Recall from Week 2 that the present value of an annuity is <em>PMT</em> × [(1 − (1 + <em>r</em>)<sup>−<em>T</em></sup>) / <em>r</em>], and the present value of a lump sum is <em>FV</em> / (1 + <em>r</em>)<sup><em>T</em></sup>, where <em>T</em> is the number of periods. A bond's price is simply the sum of these two pieces. When we apply this machinery to a bond, the discount rate is the bond's <span class="key-term">yield to maturity</span> (YTM), and <em>T</em> is its years to maturity.
 </p>
 
 <div class="formula-box">
-  <span class="label">Bond Price</span>
-  <span class="formula">Bond Price = <em>C</em> × [1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>] / <em>r</em> &nbsp;+&nbsp; <em>F</em> / (1 + <em>r</em>)<sup><em>t</em></sup></span>
+  <span class="label">Bond Price (Annual Coupons)</span>
+  <span class="formula">Bond Price = <em>C</em> × [1 − (1 + <em>YTM</em>)<sup>−<em>T</em></sup>] / <em>YTM</em> &nbsp;+&nbsp; <em>F</em> / (1 + <em>YTM</em>)<sup><em>T</em></sup></span>
   <div class="note">
-    where <em>C</em> = coupon payment per period, <em>r</em> = yield to maturity per period, <em>t</em> = number of periods, <em>F</em> = face value
+    where <em>C</em> = annual coupon payment, <em>YTM</em> = yield to maturity (annual), <em>T</em> = years to maturity, <em>F</em> = face value
   </div>
 </div>
 
 <p>
   The first term is the present value of the coupon annuity. The second term is the present value of the face value repayment. Together, they give you the price a rational investor would pay for this stream of cash flows.
 </p>
+
+<div class="formula-box">
+  <span class="label">Notation Note</span>
+  <span class="formula"><em>YTM</em> is always quoted as a stated annual rate (an APR), never an effective annual rate.</span>
+  <div class="note">
+    <strong>Annual coupons:</strong> per-period rate = <em>YTM</em>, number of periods = <em>T</em>.<br>
+    <strong>Semiannual coupons:</strong> per-period rate = <em>YTM</em>/2, number of periods = 2<em>T</em>, and the per-period coupon is <em>C</em>/2.<br>
+    As in Weeks 1–2, we use uppercase <em>T</em> for a fixed total number of periods — here, years to maturity. (Lowercase <em>t</em> is reserved for a running time index inside a summation, which you'll see when we discount period-by-period cash flows for NPV in Week 6.)
+  </div>
+</div>
 
 <p>
   Let's work through this with Blue Acre Industries, a financial services company that's issued a 10-year bond.
@@ -568,7 +578,7 @@ table.formula-ref td:nth-child(2) {
     <summary>Show Solution</summary>
     <ul class="steps">
       <li data-step="1.">Identify the cash flows: Annual coupon = 6% × $1,000 = <span class="calc">$60</span>. Face value = $1,000 at maturity.</li>
-      <li data-step="2.">Set the discount rate and periods: <span class="calc"><em>r</em> = 0.08, <em>t</em> = 10</span></li>
+      <li data-step="2.">Set the discount rate and horizon: <span class="calc"><em>YTM</em> = 0.08, <em>T</em> = 10</span></li>
       <li data-step="3.">PV of coupons: <span class="calc">$60 × [1 − (1.08)<sup>−10</sup>] / 0.08 = $60 × 6.7101 = $402.60</span></li>
       <li data-step="4.">PV of face value: <span class="calc">$1,000 / (1.08)<sup>10</sup> = $1,000 / 2.1589 = $463.19</span></li>
       <li data-step="5.">Bond price = $402.60 + $463.19 = <span class="calc">$865.80</span></li>
@@ -594,7 +604,7 @@ table.formula-ref td:nth-child(2) {
     <summary>Show Solution</summary>
     <ul class="steps">
       <li data-step="1.">Cash flows unchanged: <span class="calc"><em>C</em> = $60, <em>F</em> = $1,000</span></li>
-      <li data-step="2.">New discount rate: <span class="calc"><em>r</em> = 0.04, <em>t</em> = 10</span></li>
+      <li data-step="2.">New discount rate: <span class="calc"><em>YTM</em> = 0.04, <em>T</em> = 10</span></li>
       <li data-step="3.">PV of coupons: <span class="calc">$60 × [1 − (1.04)<sup>−10</sup>] / 0.04 = $60 × 8.1109 = $486.65</span></li>
       <li data-step="4.">PV of face value: <span class="calc">$1,000 / (1.04)<sup>10</sup> = $1,000 / 1.4802 = $675.56</span></li>
       <li data-step="5.">Bond price = $486.65 + $675.56 = <span class="calc">$1,162.22</span></li>
@@ -700,15 +710,15 @@ table.formula-ref td:nth-child(2) {
 </p>
 
 <div class="formula-box">
-  <span class="label">Semiannual Bond Price</span>
-  <span class="formula">Bond Price = (<em>C</em>/2) × [1 − (1 + <em>r</em>/2)<sup>−2<em>t</em></sup>] / (<em>r</em>/2) &nbsp;+&nbsp; <em>F</em> / (1 + <em>r</em>/2)<sup>2<em>t</em></sup></span>
+  <span class="label">Bond Price (Semiannual Coupons)</span>
+  <span class="formula">Bond Price = (<em>C</em>/2) × [1 − (1 + <em>YTM</em>/2)<sup>−2<em>T</em></sup>] / (<em>YTM</em>/2) &nbsp;+&nbsp; <em>F</em> / (1 + <em>YTM</em>/2)<sup>2<em>T</em></sup></span>
   <div class="note">
-    where <em>C</em> = annual coupon, <em>r</em> = annual YTM (as a stated/APR), <em>t</em> = years to maturity
+    where <em>C</em> = annual coupon payment, <em>YTM</em> = stated annual yield to maturity (the quoted APR), <em>T</em> = years to maturity, <em>F</em> = face value
   </div>
 </div>
 
 <p>
-  Recall from Week 2 that dividing the annual rate by the number of compounding periods gives you the <em>stated</em> rate per period. This is the convention for bond markets — the quoted YTM is always a stated annual rate (an APR), not an effective annual rate. If you wanted the EAR, you'd compute (1 + <em>r</em>/2)<sup>2</sup> − 1, but for bond pricing you use the semiannual rate directly.
+  Notice what changed and what didn't. The structural form of the formula is identical to the annual version — it's still PV of an annuity plus PV of a lump sum. The only difference is that every input has been converted to a six-month basis: the coupon becomes <em>C</em>/2, the discount rate becomes <em>YTM</em>/2, and the horizon becomes 2<em>T</em>. Recall from Week 2 that dividing a stated annual rate by the number of compounding periods gives you the rate per period, and that's exactly what's happening here. The quoted YTM is always a stated annual rate (an APR), never an effective annual rate. If you wanted the EAR, you'd compute (1 + <em>YTM</em>/2)<sup>2</sup> − 1, but for bond pricing you use the semiannual rate <em>YTM</em>/2 directly.
 </p>
 
 <!-- EXAMPLE 4 -->
@@ -719,7 +729,7 @@ table.formula-ref td:nth-child(2) {
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Convert to semiannual: Coupon per period = <span class="calc">8% × $1,000 / 2 = $40</span>. Rate per period = <span class="calc">6% / 2 = 3%</span>. Number of periods = <span class="calc">15 × 2 = 30</span>.</li>
+      <li data-step="1.">Convert to semiannual: per-period coupon = <span class="calc"><em>C</em>/2 = 8% × $1,000 / 2 = $40</span>. Per-period rate = <span class="calc"><em>YTM</em>/2 = 6% / 2 = 3%</span>. Number of periods = <span class="calc">2<em>T</em> = 2 × 15 = 30</span>.</li>
       <li data-step="2.">PV of coupons: <span class="calc">$40 × [1 − (1.03)<sup>−30</sup>] / 0.03 = $40 × 19.6004 = $784.01</span></li>
       <li data-step="3.">PV of face value: <span class="calc">$1,000 / (1.03)<sup>30</sup> = $1,000 / 2.4273 = $411.99</span></li>
       <li data-step="4.">Bond price = $784.01 + $411.99 = <span class="calc">$1,196.00</span></li>
@@ -729,7 +739,7 @@ table.formula-ref td:nth-child(2) {
 </div>
 
 <p>
-  The key pitfall with semiannual bonds is forgetting to adjust <em>all three</em> inputs — the coupon payment, the discount rate, <em>and</em> the number of periods. If you halve the coupon but forget to halve the rate (or vice versa), your answer will be wrong. Develop the habit of converting everything to per-period terms as your first step.
+  The key pitfall with semiannual bonds is forgetting to adjust <em>all three</em> inputs — the coupon payment (<em>C</em>/2), the discount rate (<em>YTM</em>/2), <em>and</em> the number of periods (2<em>T</em>). If you halve the coupon but forget to halve the rate (or vice versa), your answer will be wrong. Develop the habit of converting everything to per-period terms as your first step.
 </p>
 
 <!-- ============================================================ -->
@@ -742,23 +752,23 @@ table.formula-ref td:nth-child(2) {
 </p>
 
 <p>
-  Solving for YTM is the inverse of the pricing problem. You know the price, the coupons, the face value, and the maturity — you need to find the rate <em>r</em> that makes the pricing equation hold:
+  Solving for YTM is the inverse of the pricing problem. You know the price, the coupons, the face value, and the maturity — you need to find the <em>YTM</em> that makes the pricing equation hold:
 </p>
 
 <div class="formula-box">
   <span class="label">Yield to Maturity (YTM)</span>
-  <span class="formula">Price = <em>C</em> × [1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>] / <em>r</em> &nbsp;+&nbsp; <em>F</em> / (1 + <em>r</em>)<sup><em>t</em></sup></span>
+  <span class="formula">Price = <em>C</em> × [1 − (1 + <em>YTM</em>)<sup>−<em>T</em></sup>] / <em>YTM</em> &nbsp;+&nbsp; <em>F</em> / (1 + <em>YTM</em>)<sup><em>T</em></sup></span>
   <div class="note">
-    Solve for <em>r</em> given the bond's market price. There is no closed-form algebraic solution; use a financial calculator or trial-and-error.
+    Solve for <em>YTM</em> given the bond's market price. There is no closed-form algebraic solution; use a financial calculator or trial-and-error.
   </div>
 </div>
 
 <p>
-  Unlike solving for PV or FV, solving for <em>r</em> in the bond pricing equation can't be done with simple algebra — the rate appears in multiple places (both in the annuity factor and the lump-sum discount factor), so you need either a financial calculator, a spreadsheet solver, or trial-and-error. On a financial calculator, you enter <em>N</em> (periods), <em>PMT</em> (coupon), <em>FV</em> (face value), and <em>PV</em> (negative of the price), then compute <em>I/Y</em>.
+  Unlike solving for PV or FV, solving for <em>YTM</em> in the bond pricing equation can't be done with simple algebra — the rate appears in multiple places (both in the annuity factor and the lump-sum discount factor), so you need either a financial calculator, a spreadsheet solver, or trial-and-error. On a financial calculator, you enter <em>N</em> (periods), <em>PMT</em> (coupon), <em>FV</em> (face value), and <em>PV</em> (negative of the price), then compute <em>I/Y</em> — that's your YTM.
 </p>
 
 <p>
-  The trial-and-error approach works too and builds good intuition. You start by guessing a rate, computing the implied price, and then adjusting: if your computed price is too high, the rate must be too low (remember the inverse relationship), so you try a higher rate.
+  The trial-and-error approach works too and builds good intuition. You start by guessing a YTM, computing the implied price, and then adjusting: if your computed price is too high, the YTM must be too low (remember the inverse relationship), so you try a higher rate.
 </p>
 
 <!-- EXAMPLE 5 -->
@@ -769,10 +779,10 @@ table.formula-ref td:nth-child(2) {
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Known values: <span class="calc"><em>C</em> = $70, <em>F</em> = $1,000, <em>t</em> = 8, Price = $1,065</span></li>
+      <li data-step="1.">Known values: <span class="calc"><em>C</em> = $70, <em>F</em> = $1,000, <em>T</em> = 8, Price = $1,065</span></li>
       <li data-step="2.">Since the bond trades at a premium (price > par), we know the YTM must be <em>less</em> than the 7% coupon rate.</li>
-      <li data-step="3.">Try <em>r</em> = 6%: Price = $70 × 6.2098 + $1,000 / 1.5938 = $434.69 + $627.41 = $1,062.10. Too low — need a slightly lower rate.</li>
-      <li data-step="4.">Try <em>r</em> = 5.96%: Price = $70 × 6.2196 + $1,000 / 1.5890 = $435.37 + $629.31 = $1,064.68. Very close to $1,065.</li>
+      <li data-step="3.">Try <em>YTM</em> = 6%: Price = $70 × 6.2098 + $1,000 / 1.5938 = $434.69 + $627.41 = $1,062.10. Too low — need a slightly lower rate.</li>
+      <li data-step="4.">Try <em>YTM</em> = 5.96%: Price = $70 × 6.2196 + $1,000 / 1.5890 = $435.37 + $629.31 = $1,064.68. Very close to $1,065.</li>
       <li data-step="5.">Using a financial calculator: <span class="calc">N = 8, PMT = 70, FV = 1000, PV = −1065 → I/Y = 5.96%</span></li>
     </ul>
     <div class="answer-line">The yield to maturity is approximately 5.96%.</div>
@@ -805,10 +815,10 @@ table.formula-ref td:nth-child(2) {
   <span class="label">Yield Measures Summary</span>
   <span class="formula">Coupon Rate = <em>C</em> / <em>F</em></span><br>
   <span class="formula">Current Yield = <em>C</em> / Price</span><br>
-  <span class="formula">YTM = rate that solves the bond pricing equation</span>
+  <span class="formula"><em>YTM</em> = rate that solves the bond pricing equation</span>
   <div class="note">
-    For a discount bond: Coupon Rate < Current Yield < YTM<br>
-    For a premium bond: Coupon Rate > Current Yield > YTM<br>
+    For a discount bond: Coupon Rate &lt; Current Yield &lt; YTM<br>
+    For a premium bond: Coupon Rate &gt; Current Yield &gt; YTM<br>
     For a par bond: Coupon Rate = Current Yield = YTM
   </div>
 </div>
@@ -823,7 +833,7 @@ table.formula-ref td:nth-child(2) {
     <ul class="steps">
       <li data-step="1.">Coupon rate = <span class="calc">$50 / $1,000 = 5.00%</span></li>
       <li data-step="2.">Current yield = <span class="calc">$50 / $920 = 5.43%</span></li>
-      <li data-step="3.">YTM: Solve <span class="calc">$920 = $50 × [1 − (1 + r)<sup>−12</sup>] / r + $1,000 / (1 + r)<sup>12</sup></span>. Using a financial calculator: <span class="calc">N = 12, PMT = 50, FV = 1000, PV = −920 → I/Y = 5.95%</span></li>
+      <li data-step="3.">YTM: Solve <span class="calc">$920 = $50 × [1 − (1 + <em>YTM</em>)<sup>−12</sup>] / <em>YTM</em> + $1,000 / (1 + <em>YTM</em>)<sup>12</sup></span> with <em>T</em> = 12. Using a financial calculator: <span class="calc">N = 12, PMT = 50, FV = 1000, PV = −920 → I/Y = 5.95%</span></li>
       <li data-step="4.">Ordering: 5.00% < 5.43% < 5.95%. This is the discount bond pattern — the coupon rate is lowest, the YTM is highest, and the current yield falls in between.</li>
     </ul>
     <div class="answer-line">Coupon rate = 5.00%, Current yield = 5.43%, YTM = 5.95%. For a discount bond: Coupon Rate < Current Yield < YTM.</div>
@@ -1012,12 +1022,12 @@ table.formula-ref td:nth-child(2) {
   </thead>
   <tbody>
     <tr>
-      <td>Bond Price (annual coupon)</td>
-      <td><em>C</em> × [1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>] / <em>r</em> + <em>F</em> / (1 + <em>r</em>)<sup><em>t</em></sup></td>
+      <td>Bond Price (annual coupons)</td>
+      <td><em>C</em> × [1 − (1 + <em>YTM</em>)<sup>−<em>T</em></sup>] / <em>YTM</em> + <em>F</em> / (1 + <em>YTM</em>)<sup><em>T</em></sup></td>
     </tr>
     <tr>
-      <td>Bond Price (semiannual)</td>
-      <td>(<em>C</em>/2) × [1 − (1 + <em>r</em>/2)<sup>−2<em>t</em></sup>] / (<em>r</em>/2) + <em>F</em> / (1 + <em>r</em>/2)<sup>2<em>t</em></sup></td>
+      <td>Bond Price (semiannual coupons)</td>
+      <td>(<em>C</em>/2) × [1 − (1 + <em>YTM</em>/2)<sup>−2<em>T</em></sup>] / (<em>YTM</em>/2) + <em>F</em> / (1 + <em>YTM</em>/2)<sup>2<em>T</em></sup></td>
     </tr>
     <tr>
       <td>Coupon Rate</td>
@@ -1029,7 +1039,7 @@ table.formula-ref td:nth-child(2) {
     </tr>
     <tr>
       <td>Yield to Maturity</td>
-      <td>Rate <em>r</em> that solves: Price = <em>C</em> × [1 − (1+<em>r</em>)<sup>−<em>t</em></sup>] / <em>r</em> + <em>F</em> / (1+<em>r</em>)<sup><em>t</em></sup></td>
+      <td><em>YTM</em> that solves: Price = <em>C</em> × [1 − (1+<em>YTM</em>)<sup>−<em>T</em></sup>] / <em>YTM</em> + <em>F</em> / (1+<em>YTM</em>)<sup><em>T</em></sup></td>
     </tr>
   </tbody>
 </table>

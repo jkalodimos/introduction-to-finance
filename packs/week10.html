@@ -437,7 +437,8 @@ But there's a critical twist that doesn't apply to equity: interest payments on 
   <span class="label">After-Tax Cost of Debt</span>
   <span class="formula"><em>r</em><sub>D</sub>(1 − <em>T</em><sub>C</sub>)</span>
   <div class="note">
-    where <em>r</em><sub>D</sub> = yield to maturity (pre-tax cost of debt), <em>T</em><sub>C</sub> = corporate marginal tax rate
+    where <em>r</em><sub>D</sub> = the bond's <em>YTM</em> (pre-tax cost of debt, from Week 3), <em>T</em><sub>C</sub> = corporate marginal tax rate.<br>
+    Note that <em>T</em><sub>C</sub> here is the tax rate; it is unrelated to the <em>T</em> we used in Week 3 to denote a bond's years to maturity. The subscript <sub>C</sub> keeps them distinct.
   </div>
 </div>
 
@@ -481,9 +482,9 @@ In practice, you often need to work a bit harder to find <em>r</em><sub>D</sub>.
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify bond data: Face = $1,000, coupon = 5.50% (semiannual → $27.50 every 6 months), <em>n</em> = 24 semiannual periods, price = $965</li>
-      <li data-step="2.">Find YTM: Solve for the semiannual yield <em>y</em> such that $965 = $27.50 × [1 − (1 + <em>y</em>)<sup>−24</sup>] / <em>y</em> + $1,000 × (1 + <em>y</em>)<sup>−24</sup>. Using a financial calculator or trial-and-error: <span class="calc">y ≈ 2.9557%</span> per half-year.</li>
-      <li data-step="3.">Annualize: <span class="calc">YTM = 2 × 2.9557% = 5.91%</span> (bond-equivalent yield)</li>
+      <li data-step="1.">Identify bond data: Face = $1,000, per-period coupon <em>C</em>/2 = 5.50% × $1,000 / 2 = <span class="calc">$27.50</span>, periods 2<em>T</em> = 2 × 12 = <span class="calc">24</span>, price = $965.</li>
+      <li data-step="2.">Find YTM (Week 3 method): solve for the per-period rate <em>YTM</em>/2 such that $965 = $27.50 × [1 − (1 + <em>YTM</em>/2)<sup>−24</sup>] / (<em>YTM</em>/2) + $1,000 × (1 + <em>YTM</em>/2)<sup>−24</sup>. Using a financial calculator or trial-and-error: <span class="calc"><em>YTM</em>/2 ≈ 2.9557%</span> per half-year.</li>
+      <li data-step="3.">Convert to the stated annual YTM: <span class="calc"><em>YTM</em> = 2 × 2.9557% = 5.91%</span> (the quoted/APR form, exactly as in Week 3).</li>
       <li data-step="4.">After-tax cost: <span class="calc">r<sub>D</sub>(1 − T<sub>C</sub>) = 0.0591 × (1 − 0.25) = 0.0591 × 0.75 = 0.0443</span></li>
     </ul>
     <div class="answer-line">Blue Acre's after-tax cost of debt is 4.43%.</div>

@@ -533,8 +533,8 @@ Recall from Week 1 that the entire field of valuation rests on a single insight:
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: <em>PV</em> = $150,000, <em>r</em> = 0.065, <em>t</em> = 12</li>
-      <li data-step="2.">Apply: <span class="calc">FV = PV × (1 + r)<sup>t</sup> = $150,000 × (1.065)<sup>12</sup></span></li>
+      <li data-step="1.">Identify: <em>PV</em> = $150,000, <em>r</em> = 0.065, <em>T</em> = 12</li>
+      <li data-step="2.">Apply: <span class="calc">FV = PV × (1 + r)<sup>T</sup> = $150,000 × (1.065)<sup>12</sup></span></li>
       <li data-step="3.">Calculate: <span class="calc">$150,000 × 2.1291 = $319,364.44</span></li>
     </ul>
     <div class="answer-line">The farmland will be worth $319,364.44 in 12 years.</div>
@@ -558,7 +558,7 @@ Recall from Week 3 that a bond is just a package of cash flows: a stream of coup
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: Coupon payment = $1,000 × 0.06 ÷ 2 = <span class="calc">$30</span> per period. <em>r</em> = 0.07 ÷ 2 = <span class="calc">0.035</span>. <em>n</em> = 10 × 2 = <span class="calc">20 periods</span>.</li>
+      <li data-step="1.">Identify: per-period coupon <em>C</em>/2 = $1,000 × 0.06 ÷ 2 = <span class="calc">$30</span>. Per-period rate <em>YTM</em>/2 = 0.07 ÷ 2 = <span class="calc">0.035</span>. Number of periods 2<em>T</em> = 10 × 2 = <span class="calc">20</span>.</li>
       <li data-step="2.">PV of coupons: <span class="calc">$30 × [(1 − (1.035)<sup>−20</sup>) ÷ 0.035] = $30 × 14.2124 = $426.37</span></li>
       <li data-step="3.">PV of face value: <span class="calc">$1,000 ÷ (1.035)<sup>20</sup> = $1,000 × 0.5026 = $502.57</span></li>
       <li data-step="4.">Bond price: <span class="calc">$426.37 + $502.57 = $928.94</span></li>
@@ -620,7 +620,7 @@ To compute the realized return, you need to think about three things: (1) what y
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Coupon per period: <span class="calc">$1,000 × 0.08 ÷ 2 = $40</span>. Reinvestment rate per period: <span class="calc">0.06 ÷ 2 = 0.03</span>. Periods: <span class="calc">n = 10</span>.</li>
+      <li data-step="1.">Per-period coupon <em>C</em>/2: <span class="calc">$1,000 × 0.08 ÷ 2 = $40</span>. Reinvestment rate per period: <span class="calc">0.06 ÷ 2 = 0.03</span> (note: this is the reinvestment rate, not the YTM). Number of periods 2<em>T</em>: <span class="calc">2 × 5 = 10</span>.</li>
       <li data-step="2.">FV of reinvested coupons (annuity FV): <span class="calc">$40 × [(1.03)<sup>10</sup> − 1] ÷ 0.03 = $40 × 11.4639 = $458.56</span></li>
       <li data-step="3.">Total ending wealth: <span class="calc">$458.56 + $1,000 = $1,458.56</span></li>
       <li data-step="4.">Solve for realized semiannual rate: <span class="calc">$1,000 × (1 + r)<sup>10</sup> = $1,458.56 → r = ($1,458.56 ÷ $1,000)<sup>1/10</sup> − 1 = 0.0385</span></li>
@@ -649,7 +649,7 @@ Investors frequently face choices between different types of securities. Compari
     <ul class="steps">
       <li data-step="1."><strong>Stock:</strong> <em>D</em><sub>0</sub> = $2.00, <em>g</em> = 0.04, <em>r</em> = 0.11. Next dividend: <span class="calc">D<sub>1</sub> = $2.00 × 1.04 = $2.08</span></li>
       <li data-step="2.">Apply constant growth DDM: <span class="calc">P<sub>0</sub> = $2.08 ÷ (0.11 − 0.04) = $2.08 ÷ 0.07 = $29.71</span></li>
-      <li data-step="3."><strong>Bond:</strong> Coupon = <span class="calc">$1,000 × 0.07 ÷ 2 = $35</span>, <em>r</em> = <span class="calc">0.08 ÷ 2 = 0.04</span>, <em>n</em> = <span class="calc">30 periods</span></li>
+      <li data-step="3."><strong>Bond:</strong> per-period coupon <em>C</em>/2 = <span class="calc">$1,000 × 0.07 ÷ 2 = $35</span>, <em>YTM</em>/2 = <span class="calc">0.08 ÷ 2 = 0.04</span>, 2<em>T</em> = <span class="calc">30 periods</span></li>
       <li data-step="4.">PV of coupons: <span class="calc">$35 × [(1 − (1.04)<sup>−30</sup>) ÷ 0.04] = $35 × 17.2920 = $605.22</span></li>
       <li data-step="5.">PV of face: <span class="calc">$1,000 ÷ (1.04)<sup>30</sup> = $308.32</span></li>
       <li data-step="6.">Bond price: <span class="calc">$605.22 + $308.32 = $913.54</span></li>
@@ -676,7 +676,7 @@ Annuity valuation from Week 2 shows up constantly in real decisions — not just
     <summary>Show Solution</summary>
     <ul class="steps">
       <li data-step="1.">Option (a) is already in present value terms: <span class="calc">$55,000</span></li>
-      <li data-step="2.">Option (b): <em>PMT</em> = $5,000, <em>r</em> = 0.06, <em>t</em> = 20</li>
+      <li data-step="2.">Option (b): <em>PMT</em> = $5,000, <em>r</em> = 0.06, <em>T</em> = 20</li>
       <li data-step="3.">PV of annuity: <span class="calc">$5,000 × [(1 − (1.06)<sup>−20</sup>) ÷ 0.06] = $5,000 × 11.4699 = $57,349.61</span></li>
       <li data-step="4.">Compare: <span class="calc">$57,349.61 > $55,000</span></li>
     </ul>
@@ -703,14 +703,14 @@ A surprisingly common mistake in bond valuation is confusing the coupon rate wit
 
 <div class="error-box" data-label="Example 7 — Find the Error: Bond Pricing">
   <p class="scenario">
-    A student is asked to price a bond with a 5% coupon, $1,000 face value, 10 years to maturity, and a YTM of 7%. Coupons are semiannual. The student writes: "C = $25, r = 0.025, n = 20. Price = $25 × [(1 − 1.025<sup>−20</sup>) ÷ 0.025] + $1,000 ÷ 1.025<sup>20</sup> = $1,000.00." The student concludes the bond trades at par. What went wrong?
+    A student is asked to price a bond with a 5% coupon, $1,000 face value, 10 years to maturity, and a YTM of 7%. Coupons are semiannual. The student writes: "<em>C</em>/2 = $25, <em>YTM</em>/2 = 0.025, 2<em>T</em> = 20. Price = $25 × [(1 − 1.025<sup>−20</sup>) ÷ 0.025] + $1,000 ÷ 1.025<sup>20</sup> = $1,000.00." The student concludes the bond trades at par. What went wrong?
   </p>
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1."><strong>The error:</strong> The student used <em>r</em> = 0.025 (the coupon rate ÷ 2) instead of <em>r</em> = 0.035 (the YTM ÷ 2). The coupon rate tells you the payment size — it is not the discount rate.</li>
+      <li data-step="1."><strong>The error:</strong> The student labeled the per-period rate correctly as <em>YTM</em>/2, but plugged in 0.025 — which is the <em>coupon</em> rate ÷ 2 (5% ÷ 2), not the YTM ÷ 2. The correct value is <em>YTM</em>/2 = 7% ÷ 2 = 0.035. The coupon rate tells you the size of each cash flow; it is not the discount rate.</li>
       <li data-step="2."><strong>Why the answer looks suspicious:</strong> Getting exactly $1,000 should be a red flag. A bond trades at par <em>only</em> when the coupon rate equals the YTM. Here the coupon rate (5%) is below the YTM (7%), so the bond <em>must</em> trade at a discount.</li>
-      <li data-step="3."><strong>Correct calculation:</strong> <span class="calc">C = $25, r = 0.035, n = 20</span></li>
+      <li data-step="3."><strong>Correct calculation:</strong> <span class="calc"><em>C</em>/2 = $25, <em>YTM</em>/2 = 0.035, 2<em>T</em> = 20</span></li>
       <li data-step="4.">PV of coupons: <span class="calc">$25 × [(1 − 1.035<sup>−20</sup>) ÷ 0.035] = $25 × 14.2124 = $355.31</span></li>
       <li data-step="5.">PV of face: <span class="calc">$1,000 ÷ (1.035)<sup>20</sup> = $502.57</span></li>
     </ul>
@@ -784,8 +784,8 @@ Here's a practical framework for mapping scenarios to models. When you read a pr
     <summary>Show Solution</summary>
     <ul class="steps">
       <li data-step="1."><strong>Identify the model:</strong> Single lump sum today → single lump sum in the future. No periodic payments. This is basic TVM, solving for the unknown rate.</li>
-      <li data-step="2.">Set up: <em>PV</em> = $50,000, <em>FV</em> = $500,000, <em>t</em> = 20, solve for <em>r</em></li>
-      <li data-step="3.">Apply: <span class="calc">r = (FV ÷ PV)<sup>1/t</sup> − 1 = ($500,000 ÷ $50,000)<sup>1/20</sup> − 1 = 10<sup>0.05</sup> − 1</span></li>
+      <li data-step="2.">Set up: <em>PV</em> = $50,000, <em>FV</em> = $500,000, <em>T</em> = 20, solve for <em>r</em></li>
+      <li data-step="3.">Apply: <span class="calc">r = (FV ÷ PV)<sup>1/T</sup> − 1 = ($500,000 ÷ $50,000)<sup>1/20</sup> − 1 = 10<sup>0.05</sup> − 1</span></li>
       <li data-step="4.">Calculate: <span class="calc">r = 1.1220 − 1 = 0.1220 = 12.20%</span></li>
     </ul>
     <div class="answer-line">Your uncle needs a 12.20% annual return. That's aggressive — historically, only small-cap stocks have averaged returns in that range, and with substantial volatility. You might suggest he either save more, extend his time horizon, or adjust his target.</div>
@@ -804,9 +804,9 @@ Notice how the interpretation matters as much as the calculation. A correct answ
     <summary>Show Solution</summary>
     <ul class="steps">
       <li data-step="1."><strong>Identify the model:</strong> Bond pricing — compute price at old YTM, compute price at new YTM, find the difference. This is a price sensitivity exercise (W3.3, W3.4).</li>
-      <li data-step="2.">Set up: C = <span class="calc">$1,000 × 0.055 ÷ 2 = $27.50</span>, n = <span class="calc">40 periods</span></li>
-      <li data-step="3."><strong>Price at YTM = 5.0%:</strong> <em>r</em> = 0.025. PV of coupons = <span class="calc">$27.50 × [(1 − 1.025<sup>−40</sup>) ÷ 0.025] = $27.50 × 25.1028 = $690.33</span>. PV of face = <span class="calc">$1,000 ÷ 1.025<sup>40</sup> = $372.43</span>. Price = <span class="calc">$1,062.76</span></li>
-      <li data-step="4."><strong>Price at YTM = 6.5%:</strong> <em>r</em> = 0.0325. PV of coupons = <span class="calc">$27.50 × [(1 − 1.0325<sup>−40</sup>) ÷ 0.0325] = $27.50 × 22.2084 = $610.73</span>. PV of face = <span class="calc">$1,000 ÷ 1.0325<sup>40</sup> = $278.23</span>. Price = <span class="calc">$888.96</span></li>
+      <li data-step="2.">Set up: <em>C</em>/2 = <span class="calc">$1,000 × 0.055 ÷ 2 = $27.50</span>, 2<em>T</em> = <span class="calc">40 periods</span></li>
+      <li data-step="3."><strong>Price at YTM = 5.0%:</strong> <em>YTM</em>/2 = 0.025. PV of coupons = <span class="calc">$27.50 × [(1 − 1.025<sup>−40</sup>) ÷ 0.025] = $27.50 × 25.1028 = $690.33</span>. PV of face = <span class="calc">$1,000 ÷ 1.025<sup>40</sup> = $372.43</span>. Price = <span class="calc">$1,062.76</span></li>
+      <li data-step="4."><strong>Price at YTM = 6.5%:</strong> <em>YTM</em>/2 = 0.0325. PV of coupons = <span class="calc">$27.50 × [(1 − 1.0325<sup>−40</sup>) ÷ 0.0325] = $27.50 × 22.2084 = $610.73</span>. PV of face = <span class="calc">$1,000 ÷ 1.0325<sup>40</sup> = $278.23</span>. Price = <span class="calc">$888.96</span></li>
       <li data-step="5.">Change: <span class="calc">$888.96 − $1,062.76 = −$173.80</span>, or <span class="calc">−16.35%</span></li>
     </ul>
     <div class="answer-line">The bond would lose about $173.80 in value per bond — a 16.35% decline. Long-maturity bonds are highly sensitive to rate changes.</div>
@@ -846,12 +846,12 @@ Two important things happened in that example. First, we identified that "will b
     <tr><th>Concept</th><th>Formula</th><th>Week</th></tr>
   </thead>
   <tbody>
-    <tr><td>Future Value (single cash flow)</td><td>FV = PV × (1 + r)<sup>t</sup></td><td>1</td></tr>
-    <tr><td>Present Value (single cash flow)</td><td>PV = FV ÷ (1 + r)<sup>t</sup></td><td>1</td></tr>
-    <tr><td>Solving for rate</td><td>r = (FV ÷ PV)<sup>1/t</sup> − 1</td><td>1</td></tr>
-    <tr><td>Solving for time</td><td>t = ln(FV ÷ PV) ÷ ln(1 + r)</td><td>1</td></tr>
-    <tr><td>PV of ordinary annuity</td><td>PV = PMT × [(1 − (1 + r)<sup>−t</sup>) ÷ r]</td><td>2</td></tr>
-    <tr><td>FV of ordinary annuity</td><td>FV = PMT × [((1 + r)<sup>t</sup> − 1) ÷ r]</td><td>2</td></tr>
+    <tr><td>Future Value (single cash flow)</td><td>FV = PV × (1 + r)<sup>T</sup></td><td>1</td></tr>
+    <tr><td>Present Value (single cash flow)</td><td>PV = FV ÷ (1 + r)<sup>T</sup></td><td>1</td></tr>
+    <tr><td>Solving for rate</td><td>r = (FV ÷ PV)<sup>1/T</sup> − 1</td><td>1</td></tr>
+    <tr><td>Solving for time</td><td>T = ln(FV ÷ PV) ÷ ln(1 + r)</td><td>1</td></tr>
+    <tr><td>PV of ordinary annuity</td><td>PV = PMT × [(1 − (1 + r)<sup>−T</sup>) ÷ r]</td><td>2</td></tr>
+    <tr><td>FV of ordinary annuity</td><td>FV = PMT × [((1 + r)<sup>T</sup> − 1) ÷ r]</td><td>2</td></tr>
     <tr><td>PV of perpetuity</td><td>PV = PMT ÷ r</td><td>2</td></tr>
     <tr><td>EAR from APR</td><td>EAR = (1 + APR/m)<sup>m</sup> − 1</td><td>2</td></tr>
     <tr><td>Bond price</td><td>P = C × [(1 − (1 + r)<sup>−n</sup>) ÷ r] + F ÷ (1 + r)<sup>n</sup></td><td>3</td></tr>
